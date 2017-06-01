@@ -1,5 +1,6 @@
 #pragma once
 #ifndef __CORE_VECTOR_H__
+#define __CORE_VECTOR_H__
 
 class Vec2
 {
