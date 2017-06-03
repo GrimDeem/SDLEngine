@@ -151,13 +151,19 @@
   <ItemGroup>
     <ClCompile Include="..\Classes\src\Core\Vec2.inl" />
     <ClCompile Include="..\Classes\src\Game.cpp" />
+    <ClCompile Include="..\Classes\src\Managers\Keeper.cpp" />
+    <ClCompile Include="..\Classes\src\Managers\TextureManager.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Node.cpp" />
+    <ClCompile Include="..\Classes\src\Objects\Sprite.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\include\Core\Vec2.h" />
     <ClInclude Include="..\Classes\include\Game.h" />
+    <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
+    <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />
     <ClInclude Include="..\Classes\include\Objects\Node.h" />
+    <ClInclude Include="..\Classes\include\Objects\Sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\img.bmp" />

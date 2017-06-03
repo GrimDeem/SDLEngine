@@ -34,12 +34,12 @@ void Node::addParent(Node * _parent)
 	parent = _parent;
 }
 
-std::vector<Node*> Node::getChildren()
+std::vector<Node*> Node::getChildren() const
 {
 	return childs;
 }
 
-Node * Node::getParent()
+Node * Node::getParent() const
 {
 	return parent;
 }
@@ -90,9 +90,19 @@ void Node::setPosition(float x, float y)
 	position = Vec2(x, y);
 }
 
-Vec2 Node::getPosition()
+Vec2 Node::getPosition() const
 {
 	return position;
+}
+
+float Node::getPositionX()
+{
+	return position.x;
+}
+
+float Node::getPositionY()
+{
+	return position.y;
 }
 
 void Node::setScaleX(float _scaleX)
@@ -111,18 +121,18 @@ void Node::setScale(float _scale)
 	this->setScaleY(_scale);
 }
 
-float Node::getScale()
+float Node::getScale() const
 {
 	assert(scaleX == scaleY);
 	return scaleX;
 }
 
-float Node::getScaleX()
+float Node::getScaleX() const
 {
 	return scaleX;
 }
 
-float Node::getScaleY()
+float Node::getScaleY() const
 {
 	return scaleY;
 }
@@ -132,7 +142,7 @@ void Node::setDrawOrder(int order)
 	drawOrder = order;
 }
 
-int Node::getDrawOrder()
+int Node::getDrawOrder() const
 {
 	return drawOrder;
 }
