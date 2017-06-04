@@ -31,6 +31,7 @@ void Node::addChild(Node * child, int _drawOrder)
 
 void Node::addParent(Node * _parent)
 {
+	assert(_parent != nullptr);
 	parent = _parent;
 }
 
@@ -145,4 +146,22 @@ void Node::setDrawOrder(int order)
 int Node::getDrawOrder() const
 {
 	return drawOrder;
+}
+
+void Node::setAnchorPoint(Vec2 newAnchorPoint)
+{
+	assert(newAnchorPoint.x <= 1 && newAnchorPoint.x >= 0
+		&& newAnchorPoint.y <= 1 && newAnchorPoint.y >= 0);
+	anchorPoint = newAnchorPoint;
+}
+
+void Node::setAnchorPoint(float anchorX, float anchorY)
+{
+	assert(anchorX <= 1 && anchorX >= 0 && anchorY <= 1 && anchorY >= 0);
+	anchorPoint = Vec2(anchorX, anchorY);
+}
+
+Vec2 Node::getAnchorPoint()
+{
+	return anchorPoint;
 }

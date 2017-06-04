@@ -21,6 +21,7 @@ public:
 
 	//TODO:: draw with anchor point
 	virtual void draw() override;
+	virtual Size getContentSize();
 };
 
 

@@ -58,6 +58,10 @@ public:
 
 	virtual void setDrawOrder(int order);
 	virtual int getDrawOrder() const;
+
+	virtual void setAnchorPoint(Vec2 newAnchorPoint);
+	virtual void setAnchorPoint(float anchorX, float anchorY);
+	virtual Vec2 getAnchorPoint();
 };
 
 #endif //!__NODE_H__
