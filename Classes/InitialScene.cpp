@@ -24,7 +24,8 @@ bool InitialScene::init()
 {
 	//initialize scene here
 	Sprite* tank = new Sprite(IMG_PATH);
-	tank->setPosition(Vec2(0, 0));
+	tank->setPosition(Vec2(100, 100));
+	tank->setRotation(270);
 	tank->setScale(2);
 	this->addChild(tank);
 
