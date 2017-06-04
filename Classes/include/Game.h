@@ -5,7 +5,7 @@
 #include <SDL_render.h>
 #include <SDL_main.h>
 #include "Managers\Keeper.h"
-#include "Objects\Sprite.h"
+#include "../InitialScene.h"
 
 //#define DEBUG
 #ifdef DEBUG

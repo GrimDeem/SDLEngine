@@ -5,6 +5,7 @@ Keeper::Keeper()
 	renderer = nullptr;
 	window = nullptr;
 	texManager = new TextureManager();
+	currentScene = nullptr;
 }
 
 Keeper & Keeper::getInstance()
@@ -38,6 +39,19 @@ void Keeper::initWindow(SDL_Window * _window)
 		assert(_window != nullptr);
 		window = _window;
 	}
+}
+
+void Keeper::replaceScene(Scene* newScene)
+{
+	assert(newScene != nullptr);
+	currentScene = newScene;
+
+}
+
+void Keeper::drawCurrentScene()
+{
+	assert(currentScene != nullptr);
+	currentScene->draw();
 }
 
 void Keeper::end()

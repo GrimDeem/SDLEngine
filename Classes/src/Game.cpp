@@ -1,11 +1,11 @@
 #include "../include/Game.h"
 
-#define IMG_PATH "../Resources/tank.bmp"
-
 Game::Game()
 {
 	initSDL();	
 	is_running = true;
+	auto scene = InitialScene::createScene();
+	Keeper::getInstance().replaceScene(scene);
 }
 
 bool Game::initSDL()
@@ -87,11 +87,8 @@ void Game::updateWorld(float dt)
 void Game::draw()
 {
 	SDL_RenderClear(Keeper::getInstance().getRenderer());
-	
-	Sprite* as = new Sprite(IMG_PATH);
-	as->setPosition(Vec2(100,100));
-	as->setScale(2);
-	as->draw();
+
+	Keeper::getInstance().drawCurrentScene();
 
 	SDL_RenderPresent(Keeper::getInstance().getRenderer());
 }

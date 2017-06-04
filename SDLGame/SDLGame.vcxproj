@@ -149,11 +149,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\InitialScene.cpp" />
     <ClCompile Include="..\Classes\src\Core\Vec2.inl" />
     <ClCompile Include="..\Classes\src\Game.cpp" />
     <ClCompile Include="..\Classes\src\Managers\Keeper.cpp" />
     <ClCompile Include="..\Classes\src\Managers\TextureManager.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Node.cpp" />
+    <ClCompile Include="..\Classes\src\Objects\Scene.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Sprite.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -163,7 +165,9 @@
     <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />
     <ClInclude Include="..\Classes\include\Objects\Node.h" />
+    <ClInclude Include="..\Classes\include\Objects\Scene.h" />
     <ClInclude Include="..\Classes\include\Objects\Sprite.h" />
+    <ClInclude Include="..\Classes\InitialScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\img.bmp" />

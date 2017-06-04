@@ -20,6 +20,5 @@ void Sprite::draw()
 
 Sprite::~Sprite()
 {
-	Keeper::getInstance().getTextureManager()->unloadTexture(texture2D);
 	Keeper::getInstance().getTextureManager()->unloadTexture(path);
 }
