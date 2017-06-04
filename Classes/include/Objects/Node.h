@@ -3,6 +3,7 @@
 #define __NODE_H__
 
 #include <vector>
+#include <algorithm>
 #include <cassert>
 #include "../Core/Vec2.h"
 
@@ -28,7 +29,7 @@ public:
 	Node();
 	virtual ~Node() {};
 
-	virtual void draw() = 0;
+	virtual void draw();
 
 	virtual void addChild(Node* child);
 	virtual void addChild(Node* child, int _drawOrder);

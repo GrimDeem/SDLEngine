@@ -10,6 +10,15 @@ Node::Node()
 {
 }
 
+void Node::draw()
+{
+	std::sort(childs.begin(), childs.end(), [&](Node *first, Node *second) {
+		return first->getDrawOrder() < second->getDrawOrder();
+	});
+	//todo: sort children by priority (discending)
+	for (auto &child : Node::getChildren())
+		child->draw();
+}
 
 void Node::addChild(Node * child)
 {

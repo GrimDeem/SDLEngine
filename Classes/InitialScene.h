@@ -5,8 +5,6 @@
 #include "include\Objects\Scene.h"
 #include "include\Objects\Sprite.h"
 
-#define IMG_PATH "../Resources/tank.bmp"
-
 class InitialScene : public Scene
 {
 private:

@@ -20,6 +20,8 @@ void Sprite::draw()
 
 	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(), 
 		texture2D, nullptr, &texr, rotation, nullptr, flip);
+
+	Node::draw();
 }
 
 Size Sprite::getContentSize()
