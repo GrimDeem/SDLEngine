@@ -18,7 +18,7 @@ class Keeper
 {
 private:
 	Keeper();
-	Keeper(Keeper const&) = delete;				//forbid to copy and create new instances
+	Keeper(Keeper const&) = delete;		//forbid to copy and create new instances
 	Keeper& operator= (Keeper const&) = delete;
 	
 	//todo: add scenes stack
@@ -41,7 +41,8 @@ public:
 	void replaceScene(Scene* newScene);
 	void drawCurrentScene();
 
-	void end(); //End engine, release memory, destroy window
+	/*End engine, release memory, destroy window*/
+	void end(); 
 };
 
 #endif // !__KEEPER_H__

@@ -15,7 +15,6 @@ class Node
 {
 private:
 	Vec2 position;
-	//todo: rotate && mb size?
 
 	float scaleX;
 	float scaleY;
@@ -42,7 +41,6 @@ public:
 	virtual void removeChild(Node* childToRemove);
 	virtual void insertChild(Node* child, int order);
 
-	//todo: get/set rotate & mb size?
 	virtual void setPosition(Vec2 _position);
 	virtual void setPosition(float _x, float _y);
 	virtual Vec2 getPosition() const;

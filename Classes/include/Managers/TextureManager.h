@@ -17,8 +17,7 @@
 class TextureManager
 {
 private:
-	/* map of the loaded textures
-	*/
+	/* map of the loaded textures*/
 	std::unordered_map<std::string, SDL_Texture*> _textures;
 	/*add new texture to the map*/
 	SDL_Texture* loadTexture(std::string pathToTexture); 
