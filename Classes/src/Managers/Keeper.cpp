@@ -1,11 +1,11 @@
 #include "..\..\include\Managers\Keeper.h"
 
 Keeper::Keeper()
+	: renderer(nullptr)
+	, window(nullptr)
 {
-	renderer = nullptr;
-	window = nullptr;
 	texManager = new TextureManager();
-	currentScene = nullptr;
+	sceneManager = new SceneManager();
 }
 
 Keeper & Keeper::getInstance()
@@ -21,10 +21,8 @@ TextureManager* Keeper::getTextureManager()
 
 void Keeper::initRenderer(SDL_Renderer* _renderer)
 {
-	if (renderer == nullptr) {
-		assert(_renderer != nullptr);
-		renderer = _renderer;
-	}
+	assert(_renderer != nullptr);
+	renderer = _renderer;
 }
 
 SDL_Renderer* Keeper::getRenderer()
@@ -35,23 +33,24 @@ SDL_Renderer* Keeper::getRenderer()
 
 void Keeper::initWindow(SDL_Window * _window)
 {
-	if (window == nullptr) {
-		assert(_window != nullptr);
-		window = _window;
-	}
+	assert(_window != nullptr);
+	window = _window;
+
 }
 
-void Keeper::replaceScene(Scene* newScene)
+void Keeper::replaceScene(Scene * newScene)
 {
-	assert(newScene != nullptr);
-	currentScene = newScene;
-
+	sceneManager->replaceScene(newScene);
 }
 
 void Keeper::drawCurrentScene()
 {
-	assert(currentScene != nullptr);
-	currentScene->draw();
+	sceneManager->drawCurrentScene();
+}
+
+void Keeper::updateCurrentScene( float dt)
+{
+	sceneManager->updateCurrentScene(dt);
 }
 
 void Keeper::end()

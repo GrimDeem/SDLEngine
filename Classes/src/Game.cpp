@@ -81,7 +81,7 @@ void Game::processEvents()
 void Game::updateWorld(float dt)
 {
 	//update each game object with delta time here
-	system("cls");
+	Keeper::getInstance().updateCurrentScene(dt);
 }
 
 void Game::draw()

@@ -5,6 +5,9 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
+#ifdef LOG
+#include <iostream>
+#endif // LOG
 #include "../Core/Vec2.h"
 
 /*	Node is the base element of the Scene Graph. 
@@ -25,18 +28,28 @@ private:
 
 	std::vector<Node*> childs;
 	Node* parent;
+
 public:
+	std::string nodeKey;
+
 	Node();
-	virtual ~Node() {};
+	virtual ~Node() {
+#ifdef LOG
+		std::cout << nodeKey.c_str() << " node destructor" << std::endl;
+#endif LOG
+		this->removeFromParent();
+	};
 
 	virtual void draw();
 
 	virtual void addChild(Node* child);
 	virtual void addChild(Node* child, int _drawOrder);
+	virtual void addChild(Node* child, int _drawOrder, std::string key);
 	virtual void addParent(Node* _parent);
 
 	virtual std::vector<Node*> getChildren() const;
 	virtual Node* getParent() const;
+	virtual void setParent(Node* _parent);
 
 	virtual void removeFromParent();
 	virtual void removeChild(Node* childToRemove);

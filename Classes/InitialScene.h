@@ -8,7 +8,9 @@
 class InitialScene : public Scene
 {
 private:
+	Sprite* movableTank;
 public:
+	void updateScene(const Uint8* kbState, float dt);
 	static Scene* createScene();
 	static InitialScene* create();
 	virtual bool init();

@@ -7,6 +7,7 @@ Node::Node()
 	, drawOrder(0)
 	, anchorPoint(0.5, 0.5)
 	, parent(nullptr)
+	, nodeKey("")
 {
 }
 
@@ -18,6 +19,9 @@ void Node::draw()
 	//todo: sort children by priority (discending)
 	for (auto &child : Node::getChildren())
 		child->draw();
+#ifdef LOG
+	std::cout << "child " << this->nodeKey.c_str() << " drawn" << std::endl;
+#endif LOG 
 }
 
 void Node::addChild(Node * child)
@@ -38,6 +42,12 @@ void Node::addChild(Node * child, int _drawOrder)
 	this->insertChild(child, _drawOrder);
 }
 
+void Node::addChild(Node * child, int _drawOrder, std::string key)
+{
+	child->nodeKey = key;
+	Node::addChild(child, _drawOrder);
+}
+
 void Node::addParent(Node * _parent)
 {
 	assert(_parent != nullptr);
@@ -52,6 +62,11 @@ std::vector<Node*> Node::getChildren() const
 Node * Node::getParent() const
 {
 	return parent;
+}
+
+void Node::setParent(Node* _parent)
+{
+	parent = _parent;
 }
 
 void Node::removeFromParent()
@@ -81,13 +96,22 @@ void Node::removeChild(Node * childToRemove)
 
 	assert(!childs.empty() && index >= 0 && index < childs.size());
 	auto it = std::next(childs.begin(), index);
+#ifdef LOG
+	std::cout << "child " << ((Node*)*it)->nodeKey.c_str() << " removed" << std::endl;
+#endif LOG
 	childs.erase(it);
+
+	parent = nullptr;
 }
 
 void Node::insertChild(Node * child, int order)
 {
+#ifdef LOG
+	std::cout << "child " << child->nodeKey.c_str() << " added" << std::endl;
+#endif LOG
 	childs.push_back(child);
 	child->setDrawOrder(order);
+	child->setParent(this);
 }
 
 void Node::setPosition(Vec2 _position)

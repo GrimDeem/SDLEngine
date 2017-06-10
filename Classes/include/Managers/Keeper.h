@@ -6,11 +6,10 @@
 #include <iostream>
 #include <SDL_render.h>
 #include "TextureManager.h"
-#include "../Objects/Scene.h"
-/* Keeper is the main class of the game engine
+#include "SceneManager.h"
+/*  Keeper is the main class of the game engine
 	Stores an unique entities such as TextureManager,
-	renderer and provides access to them.
-	also manage scenes
+	SceneManager, renderer and provides access to them.
 */
 class TextureManager;
 
@@ -26,7 +25,7 @@ private:
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 	TextureManager* texManager;
-	Scene* currentScene;
+	SceneManager* sceneManager;
 public:
 	static Keeper& getInstance();
 	TextureManager* getTextureManager();
@@ -37,9 +36,10 @@ public:
 	void initWindow(SDL_Window* _window);
 	//SDL_Window* getWindow(); 
 
-	/*replaces currnt scene with a passed new one*/
+	/*replaces current scene with a passed new one*/
 	void replaceScene(Scene* newScene);
 	void drawCurrentScene();
+	void updateCurrentScene(float dt);
 
 	/*End engine, release memory, destroy window*/
 	void end(); 
