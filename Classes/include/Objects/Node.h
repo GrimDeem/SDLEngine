@@ -29,8 +29,8 @@ private:
 	std::vector<Node*> childs;
 	Node* parent;
 
-public:
 	std::string nodeKey;
+public:
 
 	Node();
 	virtual ~Node() {
@@ -74,6 +74,9 @@ public:
 	virtual void setAnchorPoint(Vec2 newAnchorPoint);
 	virtual void setAnchorPoint(float anchorX, float anchorY);
 	virtual Vec2 getAnchorPoint();
+
+	virtual void setNodeKey(std::string _key);
+	virtual std::string getNodeKey();
 };
 
 #endif //!__NODE_H__

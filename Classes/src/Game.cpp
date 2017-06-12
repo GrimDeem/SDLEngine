@@ -53,8 +53,10 @@ void Game::run()
 		auto _frameRate = 1000 / prevDeltaTime;
 		std::cout << "framerate - " << round(_frameRate) << std::endl;
 #endif
-		while ((SDL_GetTicks() - lastTime) < targetFrameTime) 
+#ifdef FRAME_LIMIT
+		while ((SDL_GetTicks() - lastTime) < targetFrameTime)
 			SDL_Delay(targetFrameTime - (SDL_GetTicks() - lastTime));
+#endif // FRAME_LIMIT
 		lastTime = loopStartTime;
 	}
 	clean();

@@ -198,3 +198,13 @@ Vec2 Node::getAnchorPoint()
 {
 	return anchorPoint;
 }
+
+void Node::setNodeKey(std::string _key)
+{
+	this->nodeKey = _key;
+}
+
+std::string Node::getNodeKey()
+{
+	return nodeKey;
+}
