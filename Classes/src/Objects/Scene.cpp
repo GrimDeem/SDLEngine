@@ -6,6 +6,18 @@ void Scene::draw()
 	Node::draw();
 }
 
+void Scene::removeChild(Node * childToRemove)
+{
+	Node::removeChild(childToRemove);
+	Updatable::removeChild(childToRemove);
+}
+
+void Scene::insertChild(Node * child, int order)
+{
+	Node::insertChild(child, order);
+	Updatable::insertChild(child);
+}
+
 void Scene::update(float dt)
 {
 	if (_update != nullptr) {

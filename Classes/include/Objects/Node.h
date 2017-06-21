@@ -11,6 +11,7 @@
 /*	Node is the base element of the Scene Graph. 
 	Elements of the Scene Graph must be Node objects or subclasses of it.
 
+	Node is drawable object
 	Node can contain other node objects (addChild)	
 */
 class Node
@@ -24,7 +25,7 @@ private:
 	Vec2 anchorPoint;
 	int drawOrder;
 
-	std::vector<Node*> childs;
+	std::vector<Node*> drwChilds;
 	Node* parent;
 
 	std::string nodeKey;
@@ -40,9 +41,8 @@ public:
 	virtual void addChild(Node* child);
 	virtual void addChild(Node* child, int _drawOrder);
 	virtual void addChild(Node* child, int _drawOrder, std::string key);
-	virtual void addParent(Node* _parent);
 
-	virtual std::vector<Node*> getChildren() const;
+	virtual std::vector<Node*> getDrawableChildren() const;
 	virtual Node* getParent() const;
 	virtual void setParent(Node* _parent);
 

@@ -98,6 +98,9 @@
     <ClInclude Include="..\Classes\include\Core\Logger.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\include\Objects\Updatable.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\img.bmp">

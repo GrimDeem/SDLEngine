@@ -13,10 +13,10 @@ Node::Node()
 
 void Node::draw()
 {
-	std::sort(childs.begin(), childs.end(), [&](Node *first, Node *second) {
+	std::sort(drwChilds.begin(), drwChilds.end(), [&](Node *first, Node *second) {
 		return first->getDrawOrder() < second->getDrawOrder();
 	});
-	for (auto &child : Node::getChildren())
+	for (auto &child : Node::getDrawableChildren())
 		child->draw();
 }
 
@@ -29,8 +29,8 @@ void Node::addChild(Node * child, int _drawOrder)
 {
 	assert(child != nullptr);
 	assert(child->parent == nullptr); 
-	if (childs.empty())
-		childs.reserve(5);
+	if (drwChilds.empty())
+		drwChilds.reserve(5);
 	this->insertChild(child, _drawOrder);
 }
 
@@ -40,15 +40,9 @@ void Node::addChild(Node * child, int _drawOrder, std::string key)
 	Node::addChild(child, _drawOrder);
 }
 
-void Node::addParent(Node * _parent)
+std::vector<Node*> Node::getDrawableChildren() const
 {
-	assert(_parent != nullptr);
-	parent = _parent;
-}
-
-std::vector<Node*> Node::getChildren() const
-{
-	return childs;
+	return drwChilds;
 }
 
 Node * Node::getParent() const
@@ -58,6 +52,7 @@ Node * Node::getParent() const
 
 void Node::setParent(Node* _parent)
 {
+	assert(_parent != nullptr);
 	parent = _parent;
 }
 
@@ -69,26 +64,19 @@ void Node::removeFromParent()
 
 void Node::removeChild(Node * childToRemove)
 {
-	if (childs.empty())
+	if (drwChilds.empty())
 		return;
 
-	size_t index;
-	auto iter = std::find(childs.begin(), childs.end(), childToRemove);
-	if (iter != childs.end())
-		index = iter - childs.begin();
-	else
-		return;
-
-	assert(!childs.empty() && index >= 0 && index < childs.size());
-	auto it = std::next(childs.begin(), index);
-	childs.erase(it);
-
-	parent = nullptr;
+	auto iter = std::find(drwChilds.begin(), drwChilds.end(), childToRemove);
+	if (iter != drwChilds.end()) {
+		drwChilds.erase(iter);
+		childToRemove->setParent(nullptr);
+	}
 }
 
 void Node::insertChild(Node * child, int order)
 {
-	childs.push_back(child);
+	drwChilds.push_back(child);
 	child->setDrawOrder(order);
 	child->setParent(this);
 }

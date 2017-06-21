@@ -169,6 +169,7 @@
     <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
     <ClInclude Include="..\Classes\include\Managers\SceneManager.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />
+    <ClInclude Include="..\Classes\include\Objects\Updatable.h" />
     <ClInclude Include="..\Classes\include\Objects\Node.h" />
     <ClInclude Include="..\Classes\include\Objects\Scene.h" />
     <ClInclude Include="..\Classes\include\Objects\Sprite.h" />
