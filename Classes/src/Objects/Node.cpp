@@ -16,12 +16,8 @@ void Node::draw()
 	std::sort(childs.begin(), childs.end(), [&](Node *first, Node *second) {
 		return first->getDrawOrder() < second->getDrawOrder();
 	});
-	//todo: sort children by priority (discending)
 	for (auto &child : Node::getChildren())
 		child->draw();
-#ifdef LOG
-	std::cout << "child " << this->nodeKey.c_str() << " drawn" << std::endl;
-#endif LOG 
 }
 
 void Node::addChild(Node * child)
@@ -32,13 +28,9 @@ void Node::addChild(Node * child)
 void Node::addChild(Node * child, int _drawOrder)
 {
 	assert(child != nullptr);
-	assert(child->parent == nullptr); //checks if child already added
-
+	assert(child->parent == nullptr); 
 	if (childs.empty())
-	{
 		childs.reserve(5);
-	}
-
 	this->insertChild(child, _drawOrder);
 }
 
@@ -72,33 +64,23 @@ void Node::setParent(Node* _parent)
 void Node::removeFromParent()
 {
 	if (parent != nullptr)
-	{
 		parent->removeChild(this);
-	}
 }
 
 void Node::removeChild(Node * childToRemove)
 {
 	if (childs.empty())
-	{
 		return;
-	}
 
 	size_t index;
-
 	auto iter = std::find(childs.begin(), childs.end(), childToRemove);
 	if (iter != childs.end())
 		index = iter - childs.begin();
-	else {
-		index = -1;
+	else
 		return;
-	}
 
 	assert(!childs.empty() && index >= 0 && index < childs.size());
 	auto it = std::next(childs.begin(), index);
-#ifdef LOG
-	std::cout << "child " << ((Node*)*it)->nodeKey.c_str() << " removed" << std::endl;
-#endif LOG
 	childs.erase(it);
 
 	parent = nullptr;
@@ -106,9 +88,6 @@ void Node::removeChild(Node * childToRemove)
 
 void Node::insertChild(Node * child, int order)
 {
-#ifdef LOG
-	std::cout << "child " << child->nodeKey.c_str() << " added" << std::endl;
-#endif LOG
 	childs.push_back(child);
 	child->setDrawOrder(order);
 	child->setParent(this);

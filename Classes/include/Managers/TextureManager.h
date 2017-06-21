@@ -7,10 +7,6 @@
 #include <SDL_image.h>
 #include "../Managers/Keeper.h"
 
-#ifdef LOG
-#include <iostream>
-#endif
-
 /*	TextureManager is the class, which loads, unloads,  
 	stores and provides access to all texures in engine
 */

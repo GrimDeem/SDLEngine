@@ -1,13 +1,8 @@
 #include "InitialScene.h"
-#include <assert.h>
-#define IMG_PATH "../Resources/tank.bmp"
-#define IMG2_PATH "../Resources/img.bmp"
 
 Scene * InitialScene::createScene()
 {
 	Scene* scene = InitialScene::create();
-	/*auto init = 
-	scene->addChild(init);*/
 	return scene;
 }
 
@@ -25,8 +20,7 @@ InitialScene * InitialScene::create()
 
 bool InitialScene::init()
 {
-	//write testCode here
-	Node* parentNode1 = new Node(); 
+	parentNode1 = new Node(); 
 	{
 		//initialize scene here
 		Sprite* tank = new Sprite(IMG_PATH);
@@ -64,16 +58,14 @@ bool InitialScene::init()
 		
 		movableTank = new Sprite(IMG_PATH);
 		movableTank->setPosition(Vec2(100, 150));
-		movableTank->setScale(1.0f / 2);
+		movableTank->setScale(2);
 		parentNode2->addChild(movableTank, -1, "Movlinux");
-
-
 	}
+
 	this->addChild(parentNode1, 0, "parentNode1");
 	this->addChild(parentNode2, -1, "parentNode2");
 
-	delete parentNode1;
-	_update = std::bind(&InitialScene::updateScene, this, std::placeholders::_1, std::placeholders::_2);;
+	_update = std::bind(&InitialScene::updateScene, this, std::placeholders::_1, std::placeholders::_2);
 	return true;
 }
 
@@ -82,17 +74,12 @@ void InitialScene::updateScene(const Uint8* kbState, float dt)
 	float speed = 0.1;
 	if (kbState[SDL_SCANCODE_RIGHT]) {
 		movableTank->setPosition(movableTank->getPositionX() + dt * speed, movableTank->getPositionY());
-		std::cout << "SDL_SCANCODE_RIGHT" << std::endl;
 	} else if (kbState[SDL_SCANCODE_LEFT]) {
 		movableTank->setPosition(movableTank->getPositionX() - dt * speed, movableTank->getPositionY());
-		std::cout << "SDL_SCANCODE_LEFT" << std::endl;
 	}
 	if (kbState[SDL_SCANCODE_UP]) {
 		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() - dt * speed);
-		std::cout << "SDL_SCANCODE_UP" << std::endl;
 	} else  if (kbState[SDL_SCANCODE_DOWN]) {
-		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() + dt * speed);
-		std::cout << "SDL_SCANCODE_DOWN" << std::endl;
+		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() + dt * speed);		
 	}
-
 }

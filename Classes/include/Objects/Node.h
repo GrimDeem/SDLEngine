@@ -5,9 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
-#ifdef LOG
-#include <iostream>
-#endif // LOG
+#include "../Core/GlobalDefines.h"
 #include "../Core/Vec2.h"
 
 /*	Node is the base element of the Scene Graph. 
@@ -34,9 +32,6 @@ public:
 
 	Node();
 	virtual ~Node() {
-#ifdef LOG
-		std::cout << nodeKey.c_str() << " node destructor" << std::endl;
-#endif LOG
 		this->removeFromParent();
 	};
 
