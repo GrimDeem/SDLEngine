@@ -1,20 +1,15 @@
 #include "..\..\include\Objects\Scene.h"
 #include <iostream>
 
-void Scene::draw()
-{
-	Node::draw();
-}
-
 void Scene::removeChild(Node * childToRemove)
 {
 	Node::removeChild(childToRemove);
 	Updatable::removeChild(childToRemove);
 }
 
-void Scene::insertChild(Node * child, int order)
+void Scene::insertChild(Node * child, int order, std::string key)
 {
-	Node::insertChild(child, order);
+	Node::insertChild(child, order, key);
 	Updatable::insertChild(child);
 }
 
@@ -29,4 +24,5 @@ void Scene::update(float dt)
 			std::cout << e.what() << '\n';
 		}
 	}
+	Updatable::update(dt);
 }

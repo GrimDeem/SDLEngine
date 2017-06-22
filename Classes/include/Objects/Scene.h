@@ -19,10 +19,8 @@ public:
 			delete child;
 	}
 
-	/*draw scene means draw all it children*/
-	virtual void draw() override;
 	virtual void removeChild(Node* childToRemove) override;
-	virtual void insertChild(Node * child, int order) override;
+	virtual void insertChild(Node * child, int order, std::string key) override;
 	virtual void update(float dt) override;
 };
 

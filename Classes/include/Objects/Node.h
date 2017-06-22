@@ -48,7 +48,7 @@ public:
 
 	virtual void removeFromParent();
 	virtual void removeChild(Node* childToRemove);
-	virtual void insertChild(Node* child, int order);
+	virtual void insertChild(Node* child, int order, std::string key);
 
 	virtual void setPosition(Vec2 _position);
 	virtual void setPosition(float _x, float _y);

@@ -2,12 +2,20 @@
 #ifndef __UPDATABLE_H__
 #define __UPDATABLE_H__
 
+/*
+	Updatable is auxiliary class to describe objects
+	which have to be updated each frame with delta time
+	sush as animated sprite
+	Methods of the "updatable" class should be called in overridden 
+	methods of the derived classes with similar "Node" methods
+
+	Updatable can contain other updatable objects (insertChild) 
+*/
 class Updatable
 {
 private:
 	std::vector<Updatable*> updChilds;	//updatable
 public:
-	virtual ~Updatable() {}
 	virtual void update(float dt)
 	{
 		for (auto &child : Updatable::getUpdatableChildren())

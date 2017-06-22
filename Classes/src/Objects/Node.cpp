@@ -27,17 +27,18 @@ void Node::addChild(Node * child)
 
 void Node::addChild(Node * child, int _drawOrder)
 {
-	assert(child != nullptr);
-	assert(child->parent == nullptr); 
-	if (drwChilds.empty())
-		drwChilds.reserve(5);
-	this->insertChild(child, _drawOrder);
+	Node::addChild(child, _drawOrder, "");
 }
 
 void Node::addChild(Node * child, int _drawOrder, std::string key)
 {
-	child->nodeKey = key;
-	Node::addChild(child, _drawOrder);
+	assert(child != nullptr);
+	assert(child->parent == nullptr);
+	
+	if (drwChilds.empty())
+		drwChilds.reserve(5);
+
+	this->insertChild(child, _drawOrder);
 }
 
 std::vector<Node*> Node::getDrawableChildren() const
@@ -74,9 +75,10 @@ void Node::removeChild(Node * childToRemove)
 	}
 }
 
-void Node::insertChild(Node * child, int order)
+void Node::insertChild(Node * child, int order, std::string key)
 {
 	drwChilds.push_back(child);
+	child->setNodeKey(key);
 	child->setDrawOrder(order);
 	child->setParent(this);
 }
