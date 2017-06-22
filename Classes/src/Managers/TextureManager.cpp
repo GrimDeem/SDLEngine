@@ -55,7 +55,8 @@ void TextureManager::unloadTexture(SDL_Texture * texture)
 		return;
 	}
 
-	auto it = std::find_if(_textures.begin(), _textures.end(), [&texture](const std::unordered_map<std::string, SDL_Texture*>::value_type& value)
+	auto it = std::find_if(_textures.begin(), _textures.end(), 
+		[&texture](const std::unordered_map<std::string, SDL_Texture*>::value_type& value)
 	{
 		return value.second == texture;			
 	});

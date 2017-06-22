@@ -7,7 +7,8 @@
 	which have to be updated each frame with delta time
 	sush as animated sprite
 	Methods of the "updatable" class should be called in overridden 
-	methods of the derived classes with similar "Node" methods
+	methods of the derived classes with similar "Node" methods 
+	to avoid memory leaks
 
 	Updatable can contain other updatable objects (insertChild) 
 */

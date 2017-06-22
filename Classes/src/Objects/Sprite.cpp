@@ -26,7 +26,7 @@ void Sprite::draw()
 
 Size Sprite::getContentSize()
 {
-	return Size(imageRealSize.width  * Node::getScaleX(), imageRealSize.height * Node::getScaleY());
+	return Size(imageRealSize.width * Node::getScaleX(), imageRealSize.height * Node::getScaleY());
 }
 
 void Sprite::setRotation(float angle)

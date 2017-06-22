@@ -38,7 +38,7 @@ void Node::addChild(Node * child, int _drawOrder, std::string key)
 	if (drwChilds.empty())
 		drwChilds.reserve(5);
 
-	this->insertChild(child, _drawOrder);
+	this->insertChild(child, _drawOrder, key);
 }
 
 std::vector<Node*> Node::getDrawableChildren() const
