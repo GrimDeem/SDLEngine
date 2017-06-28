@@ -90,7 +90,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\libs\SDL\SDL2_ttf-2.0.14\include;C:\libs\SDL\SDL2_net-2.0.1\include;C:\libs\SDL\SDL2_image-2.0.1\include;C:\libs\SDL\SDL2_base\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\libs\SDL\SDL2_base\include\SDL2;C:\libs\SDL\SDL2_ttf-2.0.14\include;C:\libs\SDL\SDL2_net-2.0.1\include;C:\libs\SDL\SDL2_image-2.0.1\include;C:\libs\SDL\SDL2_base\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,6 +156,7 @@
     <ClCompile Include="..\Classes\src\Managers\Keeper.cpp" />
     <ClCompile Include="..\Classes\src\Managers\SceneManager.cpp" />
     <ClCompile Include="..\Classes\src\Managers\TextureManager.cpp" />
+    <ClCompile Include="..\Classes\src\Objects\AnimatedSprite.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Node.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Scene.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Sprite.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
     <ClInclude Include="..\Classes\include\Managers\SceneManager.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />
+    <ClInclude Include="..\Classes\include\Objects\AnimatedSprite.h" />
     <ClInclude Include="..\Classes\include\Objects\Updatable.h" />
     <ClInclude Include="..\Classes\include\Objects\Node.h" />
     <ClInclude Include="..\Classes\include\Objects\Scene.h" />

@@ -22,6 +22,8 @@ private:
 	float scaleX;
 	float scaleY;
 
+	float rotation;
+
 	Vec2 anchorPoint;
 	int drawOrder;
 
@@ -69,6 +71,10 @@ public:
 	virtual void setAnchorPoint(Vec2 newAnchorPoint);
 	virtual void setAnchorPoint(float anchorX, float anchorY);
 	virtual Vec2 getAnchorPoint();
+
+	/*sets rotation of the sprite clockwise in degrees */
+	virtual void setRotation(float angle);
+	virtual float getRotation();
 
 	virtual void setNodeKey(std::string _key);
 	virtual std::string getNodeKey();

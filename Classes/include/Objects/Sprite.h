@@ -15,16 +15,15 @@ private:
 	SDL_Texture *texture2D; //texture to draw
 	std::string path;
 	Size imageRealSize; // texture width & height
-	float rotation;		// rotation angle in degrees
 public:
+	Sprite();
 	Sprite(std::string imgPath);
 	virtual ~Sprite();
 
 	virtual void draw() override;
 	virtual Size getContentSize();
-
-	/*sets rotation of the sprite clockwise in degrees */
-	virtual void setRotation(float angle); 
+	virtual void setTexture(std::string imgPath);
+	virtual void setTexture(SDL_Texture *texture);
 };
 
 

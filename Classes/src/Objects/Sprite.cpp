@@ -2,24 +2,24 @@
 
 Sprite::Sprite(std::string pathToImg)
 	: path(pathToImg)
-	, rotation(0)
 {
-	this->texture2D = Keeper::getInstance().getTextureManager()->getTexture(pathToImg);
-	SDL_QueryTexture(texture2D, nullptr, nullptr, &imageRealSize.width, &imageRealSize.height);
+	setTexture(Keeper::getInstance().getTextureManager()->getTexture(pathToImg));
+}
+
+Sprite::Sprite()
+{
 }
 
 void Sprite::draw()
 {
 	SDL_Rect texr;
-	texr.w = imageRealSize.width  * Node::getScaleX();	//SpriteSize
+	texr.w = imageRealSize.width  * Node::getScaleX();					//SpriteSize
 	texr.h = imageRealSize.height * Node::getScaleY();
-	texr.x = Node::getPositionX() - Node::getAnchorPoint().x * texr.w; //SpritePosition
+	texr.x = Node::getPositionX() - Node::getAnchorPoint().x * texr.w;  //SpritePosition
 	texr.y = Node::getPositionY() - Node::getAnchorPoint().y * texr.h;
-	
-	SDL_RendererFlip flip = SDL_FLIP_VERTICAL;
 
 	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(), 
-		texture2D, nullptr, &texr, rotation, nullptr, flip);
+		texture2D, nullptr, &texr, Node::getRotation(), nullptr, SDL_FLIP_NONE);
 
 	Node::draw();
 }
@@ -29,9 +29,16 @@ Size Sprite::getContentSize()
 	return Size(imageRealSize.width * Node::getScaleX(), imageRealSize.height * Node::getScaleY());
 }
 
-void Sprite::setRotation(float angle)
+void Sprite::setTexture(std::string imgPath)
 {
-	rotation = angle;
+	path = imgPath;
+	setTexture(Keeper::getInstance().getTextureManager()->getTexture(path));
+}
+
+void Sprite::setTexture(SDL_Texture * texture)
+{
+	texture2D = texture;
+	SDL_QueryTexture(texture2D, nullptr, nullptr, &imageRealSize.width, &imageRealSize.height);
 }
 
 Sprite::~Sprite()

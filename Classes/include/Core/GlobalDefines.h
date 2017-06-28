@@ -2,7 +2,7 @@
 #ifndef __GLOBAL_DEFINES_H__
 #define __GLOBAL_DEFINES_H__ 
 
-#define LOGGING 0
+#define LOGGING 1
 
 #if !defined(LOGGING) || LOGGING == 0
 #define LOG(...)       do {} while (0)

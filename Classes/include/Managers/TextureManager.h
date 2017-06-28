@@ -2,6 +2,7 @@
 #ifndef __TEXTURE_MANAGER_H__
 #define __TEXTURE_MANAGER_H__
 
+#define __TM_LOG__ 0
 #include <unordered_map>
 #include <algorithm>
 #include <SDL_image.h>

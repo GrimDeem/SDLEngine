@@ -16,6 +16,8 @@ class Updatable
 {
 private:
 	std::vector<Updatable*> updChilds;	//updatable
+protected:
+	Updatable() {}
 public:
 	virtual void update(float dt)
 	{

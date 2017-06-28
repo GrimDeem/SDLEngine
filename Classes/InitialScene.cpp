@@ -20,7 +20,38 @@ InitialScene * InitialScene::create()
 
 bool InitialScene::init()
 {
-	parentNode1 = new Node(); 
+	animatedSpriteTest();	
+	return true;
+}
+
+void InitialScene::updateScene(const Uint8* kbState, float dt)
+{
+	float speed = 0.1;
+	if (kbState[SDL_SCANCODE_RIGHT]) {
+		movableTank->setPosition(movableTank->getPositionX() + dt * speed, movableTank->getPositionY());
+	} else if (kbState[SDL_SCANCODE_LEFT]) {
+		movableTank->setPosition(movableTank->getPositionX() - dt * speed, movableTank->getPositionY());
+	}
+	if (kbState[SDL_SCANCODE_UP]) {
+		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() - dt * speed);
+	} else  if (kbState[SDL_SCANCODE_DOWN]) {
+		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() + dt * speed);		
+	}
+}
+
+void InitialScene::updateTest()
+{
+	movableTank = new Sprite("C:/Users/Dmitry/Desktop/PSTimSplit/TimRun0.png");
+	movableTank->setPosition(Vec2(60, 70));
+	movableTank->setRotation(180);
+	this->addChild(movableTank, 1, "movableTank");
+
+	_update = std::bind(&InitialScene::updateScene, this, std::placeholders::_1, std::placeholders::_2);
+}
+
+void InitialScene::drawPriorityTest()
+{
+	parentNode1 = new Node();
 	{
 		//initialize scene here
 		Sprite* tank = new Sprite(IMG_PATH);
@@ -55,7 +86,7 @@ bool InitialScene::init()
 		linux2->setRotation(270);
 		linux2->setScale(2);
 		parentNode2->addChild(linux2, -1, "linux2");
-		
+
 		movableTank = new Sprite(IMG_PATH);
 		movableTank->setPosition(Vec2(100, 150));
 		movableTank->setScale(2);
@@ -64,22 +95,23 @@ bool InitialScene::init()
 
 	this->addChild(parentNode1, 0, "parentNode1");
 	this->addChild(parentNode2, -1, "parentNode2");
-
-	_update = std::bind(&InitialScene::updateScene, this, std::placeholders::_1, std::placeholders::_2);
-	return true;
+	
 }
 
-void InitialScene::updateScene(const Uint8* kbState, float dt)
+void InitialScene::animatedSpriteTest()
 {
-	float speed = 0.1;
-	if (kbState[SDL_SCANCODE_RIGHT]) {
-		movableTank->setPosition(movableTank->getPositionX() + dt * speed, movableTank->getPositionY());
-	} else if (kbState[SDL_SCANCODE_LEFT]) {
-		movableTank->setPosition(movableTank->getPositionX() - dt * speed, movableTank->getPositionY());
+	AnimatedSprite *anim = new AnimatedSprite();
+	anim->setPosition(Vec2(200, 200));
+	std::vector<Sprite*> sprites;
+	char str[256];
+	for (int idx = 0; idx < 27; idx++) {
+		sprintf_s(str, "C:/Users/Dmitry/Desktop/PSTimSplit/TimRun%d.png", idx);
+		sprites.push_back(new Sprite(str));
+		LOG(("TimRun" + std::to_string(idx) + '\n').c_str());
 	}
-	if (kbState[SDL_SCANCODE_UP]) {
-		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() - dt * speed);
-	} else  if (kbState[SDL_SCANCODE_DOWN]) {
-		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() + dt * speed);		
-	}
+	AnimData data;
+	data.images = sprites;
+	data.frameInfo.push_back(AnimFrameData(1, 27));
+	anim->initalize(data, 0);
+	this->addChild(anim, 0, "animated");
 }

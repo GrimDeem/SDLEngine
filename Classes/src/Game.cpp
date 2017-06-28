@@ -36,14 +36,11 @@ bool Game::initSDL()
 
 void Game::run()
 {
-//	float prevDeltaTime = 66.6f; // 30FPS
-//	const float FPS_FILTER = 0.10f;
 	unsigned int lastTime = 0;
 
 	while (is_running) {
 		unsigned int loopStartTime = SDL_GetTicks();
 		unsigned int deltaTime = loopStartTime - lastTime;
-//		prevDeltaTime = deltaTime * FPS_FILTER + (1 - FPS_FILTER) * prevDeltaTime;
 
 		processEvents();
 		updateWorld(deltaTime);
@@ -80,7 +77,7 @@ void Game::processEvents()
 	}
 }
 
-void Game::updateWorld(float dt)
+void Game::updateWorld(float dt) //1 dt = 1ms
 {
 	Keeper::getInstance().updateCurrentScene(dt);
 }

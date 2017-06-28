@@ -22,7 +22,7 @@ void Node::draw()
 
 void Node::addChild(Node * child)
 {
-	this->addChild(child, 0);
+	this->addChild(child, 0, "");
 }
 
 void Node::addChild(Node * child, int _drawOrder)
@@ -34,9 +34,6 @@ void Node::addChild(Node * child, int _drawOrder, std::string key)
 {
 	assert(child != nullptr);
 	assert(child->parent == nullptr);
-	
-	if (drwChilds.empty())
-		drwChilds.reserve(5);
 
 	this->insertChild(child, _drawOrder, key);
 }
@@ -166,6 +163,16 @@ void Node::setAnchorPoint(float anchorX, float anchorY)
 Vec2 Node::getAnchorPoint()
 {
 	return anchorPoint;
+}
+
+void Node::setRotation(float angle)
+{
+	rotation = angle;
+}
+
+float Node::getRotation()
+{
+	return rotation;
 }
 
 void Node::setNodeKey(std::string _key)

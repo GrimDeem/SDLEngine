@@ -1,13 +1,13 @@
 #include "..\..\include\Managers\TextureManager.h"
 
-#ifdef LOGGING
+#if __TM_LOG__ >= 1
 void logListOfTextures(std::unordered_map<std::string, SDL_Texture*> _textures) {
 	LOG("List of textures: \n");
 	for (auto &it : _textures)
 		LOG("%s \n", it.first.c_str());
 	LOG("end \n\n");
 }
-#endif // !LOGGING
+#endif // !__TM_LOG__
 
 SDL_Texture * TextureManager::getTexture(std::string pathToTexture)
 {
@@ -29,7 +29,7 @@ SDL_Texture * TextureManager::loadTexture(std::string pathToTexture)
 	auto loadedTex = IMG_LoadTexture(Keeper::getInstance().getRenderer(), pathToTexture.c_str());
 	_textures.insert(std::make_pair(pathToTexture, loadedTex));
 
-#ifdef LOGGING
+#if __TM_LOG__ >= 1
 	logListOfTextures(_textures);
 #endif
 	return loadedTex;
@@ -44,7 +44,7 @@ void TextureManager::unloadTexture(std::string pathToTexture)
 	if (it != _textures.end()) // if texture is finded -> return it
 		_textures.erase(pathToTexture);
 
-#ifdef LOGGING
+#if __TM_LOG__ >= 1
 	logListOfTextures(_textures);
 #endif
 }
