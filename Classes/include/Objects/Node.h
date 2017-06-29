@@ -31,11 +31,17 @@ private:
 	Node* parent;
 
 	std::string nodeKey;
-public:
 
+protected:
+	virtual void setParent(Node* _parent);
+	virtual void insertChild(Node* child, int order, std::string key);
+
+public:
 	Node();
 	virtual ~Node() {
 		this->removeFromParent();
+		for (auto &child : Node::getDrawableChildren())
+			delete child;
 	};
 
 	virtual void draw();
@@ -46,11 +52,9 @@ public:
 
 	virtual std::vector<Node*> getDrawableChildren() const;
 	virtual Node* getParent() const;
-	virtual void setParent(Node* _parent);
 
 	virtual void removeFromParent();
 	virtual void removeChild(Node* childToRemove);
-	virtual void insertChild(Node* child, int order, std::string key);
 
 	virtual void setPosition(Vec2 _position);
 	virtual void setPosition(float _x, float _y);

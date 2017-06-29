@@ -37,8 +37,7 @@ void AnimatedSprite::update(float deltaTime)
 	int imageNum = (animData.frameInfo[animNum].startFrame + frameNum) 
 		% animData.frameInfo[animNum].numFrames;
 	image = *(animData.images[imageNum]);
-	// We use fmod (floating point modulus) for the same reason
-	// as the % above.
+
 	frameTime = fmod(frameTime, 1 / animFPS);
 
 	Updatable::update(deltaTime);

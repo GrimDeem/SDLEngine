@@ -15,16 +15,11 @@
 class Updatable
 {
 private:
-	std::vector<Updatable*> updChilds;	//updatable
+	std::vector<Updatable*> updChilds;
+
 protected:
 	Updatable() {}
-public:
-	virtual void update(float dt)
-	{
-		for (auto &child : Updatable::getUpdatableChildren())
-			child->update(dt);
-	}
-	
+	~Updatable() {} //do not del or remove childs to avoid multiple del (node destructor)
 	virtual void removeChild(Node* childToRemove)
 	{
 		if (updChilds.empty())
@@ -42,6 +37,13 @@ public:
 		auto updChild = dynamic_cast<Updatable*>(child);
 		if (updChild != nullptr)
 			updChilds.push_back(updChild);
+	}
+
+public:
+	virtual void update(float dt)
+	{
+		for (auto &child : Updatable::getUpdatableChildren())
+			child->update(dt);
 	}
 
 	virtual std::vector<Updatable*> getUpdatableChildren() const

@@ -40,19 +40,20 @@ private:
 	float frameTime;
 	// The FPS the animation is running at (24FPS by default).
 	float animFPS;
+
+protected:
+	virtual void changeAnim(int newAnimNum);
+	virtual void insertChild(Node * child) override;
+
 public:
 	AnimatedSprite();
 	virtual ~AnimatedSprite();
 
-	virtual void draw();
+	virtual void draw() override;
 	virtual void update(float deltaTime) override;
-	virtual void initalize(AnimData data, int startingAnimNum);
-	virtual void changeAnim(int newAnimNum);
-
 	virtual void removeChild(Node * child) override;
-	virtual void insertChild(Node * child) override;
 
-	
+	virtual void initalize(AnimData data, int startingAnimNum);
 };
 
 #endif // !__ANIMATED_SPRITE_H__

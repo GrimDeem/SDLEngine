@@ -60,8 +60,6 @@ void TextureManager::unloadTexture(SDL_Texture * texture)
 	{
 		return value.second == texture;			
 	});
-	if (it == _textures.end()) {
-		return;
-	}
-	unloadTexture(it->first);
+	if (it != _textures.end()) 
+		unloadTexture(it->first);
 }
