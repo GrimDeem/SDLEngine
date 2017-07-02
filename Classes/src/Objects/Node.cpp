@@ -110,15 +110,47 @@ void Node::setScaleX(float _scaleX)
 	scaleX = _scaleX;
 }
 
+void Node::setScaleXRecursive(float _scaleX)
+{
+	scaleX = _scaleX;
+	for (auto &child : Node::getDrawableChildren())
+		child->setScaleXRecursive(_scaleX);
+}
+
 void Node::setScaleY(float _scaleY)
 {
 	scaleY = _scaleY;
+}
+
+void Node::setScaleYRecursive(float _scaleY)
+{
+	scaleY = _scaleY;
+	for (auto &child : Node::getDrawableChildren())
+		child->setScaleYRecursive(_scaleY);
 }
 
 void Node::setScale(float _scale)
 {
 	this->setScaleX(_scale);
 	this->setScaleY(_scale);
+}
+
+void Node::setScaleRecursive(float _scale)
+{
+	this->setScaleXRecursive(_scale);
+	this->setScaleYRecursive(_scale);
+}
+
+void Node::setScale(float _scaleX, float _scaleY)
+{
+	this->setScaleX(_scaleX);
+	this->setScaleY(_scaleY);
+}
+
+void Node::setScaleRecursive(float _scaleX, float _scaleY)
+{
+	this->setScaleXRecursive(_scaleX);
+	this->setScaleYRecursive(_scaleY);
 }
 
 float Node::getScale() const
@@ -168,6 +200,13 @@ Vec2 Node::getAnchorPoint()
 void Node::setRotation(float angle)
 {
 	rotation = angle;
+}
+
+void Node::setRotationRecursive(float angle)
+{
+	this->setRotation(angle);
+	for (auto &child : Node::getDrawableChildren())
+		child->setRotationRecursive(angle);
 }
 
 float Node::getRotation()

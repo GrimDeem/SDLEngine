@@ -15,7 +15,7 @@ InitialScene * InitialScene::create()
 	{ 
 		delete pRet; 
 		return nullptr; 
-	} 
+	}
 }
 
 bool InitialScene::init()
@@ -53,7 +53,6 @@ void InitialScene::drawPriorityTest()
 {
 	parentNode1 = new Node();
 	{
-		//initialize scene here
 		Sprite* tank = new Sprite(IMG_PATH);
 		tank->setPosition(Vec2(100, 100));
 		tank->setRotation(270);
@@ -74,7 +73,6 @@ void InitialScene::drawPriorityTest()
 
 	Node* parentNode2 = new Node();
 	{
-		//initialize scene here
 		Sprite* linux = new Sprite(IMG2_PATH);
 		linux->setPosition(Vec2(100, 100));
 		linux->setRotation(270);
@@ -95,7 +93,6 @@ void InitialScene::drawPriorityTest()
 
 	this->addChild(parentNode1, 0, "parentNode1");
 	this->addChild(parentNode2, -1, "parentNode2");
-	
 }
 
 void InitialScene::animatedSpriteTest()
@@ -114,4 +111,6 @@ void InitialScene::animatedSpriteTest()
 	data.frameInfo.push_back(AnimFrameData(1, 27));
 	anim->initalize(data, 0);
 	this->addChild(anim, 0, "animated");
+
+	anim->setScaleX(3);
 }

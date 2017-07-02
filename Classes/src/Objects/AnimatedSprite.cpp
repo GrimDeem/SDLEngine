@@ -13,7 +13,7 @@ AnimatedSprite::~AnimatedSprite()
 void AnimatedSprite::draw()
 {
 	image.setPosition(this->getPosition());
-	image.setScale(this->getScale());
+	image.setScale(this->getScaleX(), this->getScaleY());
 	image.setRotation(this->getRotation());
 	image.draw();
 }

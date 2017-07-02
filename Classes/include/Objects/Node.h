@@ -63,8 +63,14 @@ public:
 	virtual float getPositionY();
 
 	virtual void setScaleX(float _scaleX);
+	virtual void setScaleXRecursive(float _scaleX);
 	virtual void setScaleY(float _scaleY);
-	virtual void setScale(float _scale);	
+	virtual void setScaleYRecursive(float _scaleY);
+	virtual void setScale(float _scale);
+	virtual void setScaleRecursive(float _scale);
+	virtual void setScale(float _scaleX, float _scaleY);
+	virtual void setScaleRecursive(float _scaleX, float _scaleY);
+
 	virtual float getScale() const;
 	virtual float getScaleX() const;
 	virtual float getScaleY() const;
@@ -78,6 +84,7 @@ public:
 
 	/*sets rotation of the sprite clockwise in degrees */
 	virtual void setRotation(float angle);
+	virtual void setRotationRecursive(float angle);
 	virtual float getRotation();
 
 	virtual void setNodeKey(std::string _key);

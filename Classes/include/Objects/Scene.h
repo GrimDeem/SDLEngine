@@ -10,8 +10,8 @@
 class Scene : public Node, public Updatable
 {
 protected:
-	virtual void insertChild(Node * child, int order, std::string key) override;
 	std::function<void(const Uint8*, float)> _update;
+	virtual void insertChild(Node * child, int order, std::string key) override;
 
 public:
 	Scene() 
