@@ -102,7 +102,7 @@ void InitialScene::animatedSpriteTest()
 	std::vector<Sprite*> sprites;
 	char str[256];
 	for (int idx = 0; idx < 27; idx++) {
-		sprintf(str, "C:/Users/Dmitry/Desktop/PSTimSplit/TimRun%d.png", idx);
+		sprintf(str, "../Resources/Sprites/TimAnimation/TimRun%d.png", idx);
 		sprites.push_back(new Sprite(str));
 		LOG(("TimRun" + std::to_string(idx) + '\n').c_str());
 	}
@@ -111,6 +111,4 @@ void InitialScene::animatedSpriteTest()
 	data.frameInfo.push_back(AnimFrameData(1, 27));
 	anim->initalize(data, 0);
 	this->addChild(anim, 0, "animated");
-
-	anim->setScaleX(3);
 }

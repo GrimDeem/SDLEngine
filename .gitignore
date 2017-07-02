@@ -1,5 +1,7 @@
 # Ignore Emacs temp files
-./*~
+*~
+#*
+*#
 
 # CMake build directory
 [Bb]uild/
