@@ -105,7 +105,7 @@ void InitialScene::animatedSpriteTest()
 	std::vector<Sprite*> sprites;
 	char str[256];
 	for (int idx = 0; idx < 27; idx++) {
-		sprintf_s(str, "C:/Users/Dmitry/Desktop/PSTimSplit/TimRun%d.png", idx);
+		sprintf(str, "C:/Users/Dmitry/Desktop/PSTimSplit/TimRun%d.png", idx);
 		sprites.push_back(new Sprite(str));
 		LOG(("TimRun" + std::to_string(idx) + '\n').c_str());
 	}

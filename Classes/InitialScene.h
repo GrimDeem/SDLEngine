@@ -2,9 +2,9 @@
 #ifndef __INITIAL_SCENE_H__
 #define __INITIAL_SCENE_H__
 
-#include "include\Objects\Scene.h"
-#include "include\Objects\Sprite.h"
-#include "include\Objects\AnimatedSprite.h"
+#include "include/Objects/Scene.h"
+#include "include/Objects/Sprite.h"
+#include "include/Objects/AnimatedSprite.h"
 #include <assert.h>
 #include <string>
 #define IMG_PATH "../Resources/tank.bmp"

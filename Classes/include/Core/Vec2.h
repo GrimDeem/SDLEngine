@@ -19,7 +19,13 @@ public:
 	/**
 	* @brief Constructs a new vector initialized to all zeros.
 	*/
-	Vec2();
+
+	Vec2()
+		: x(0), y(0)
+	{
+
+	}
+
 
 	/**
 	* @brief Constructs a new vector initialized to the specified values.
@@ -27,25 +33,80 @@ public:
 	* @param x The _x coordinate.
 	* @param y The _y coordinate.
 	*/
-	Vec2(float _x, float _y);
+	Vec2(float x, float y) 
+		: x(x), y(y)
+	{
+
+	}
 	
 	/**
 	* @brief Constructs a new vector that is a copy of the specified vector.
 	*
 	* @param copy The vector to copy.
-	*/
-	Vec2(const Vec2& copy);
+	*/	
+	Vec2(const Vec2& copy)
+	{
+		x = copy.x;
+		y = copy.y;
+	}
 
-	~Vec2();
+	~Vec2() {}
 
-	inline const Vec2 operator+(const Vec2& v) const;
-	inline Vec2& operator+=(const Vec2& v);
-	inline const Vec2 operator-(const Vec2& v) const;
-	inline Vec2& operator-=(const Vec2& v);
-	inline const Vec2 operator*(float s) const;
-	inline Vec2& operator*=(float s);
-	inline const Vec2 operator/(float s) const;
-	inline Vec2& operator/=(float s);
+	inline const Vec2 operator+(const Vec2& v) const
+	{
+		Vec2 result(*this);
+		result.x += v.x;
+		result.y += v.y;
+		return result;	
+	}
+
+	inline Vec2& operator+=(const Vec2& v)
+	{
+		x += v.x;
+		y += v.y;
+	}
+
+	inline const Vec2 operator-(const Vec2& v) const
+	{
+		Vec2 result(*this);
+		result.x -= v.x;
+		result.y -= v.y;
+		return result;
+	}
+	inline Vec2& operator-=(const Vec2& v)
+	{
+		x -= v.x;
+		y -= v.y;
+	}
+
+	inline const Vec2 operator*(float s) const
+	{
+		Vec2 result(*this);
+		result.x -= s;
+		result.y -= s;
+		return result;
+	}
+
+	inline Vec2& operator*=(float s)
+	{
+		x -= s;
+		y -= s;
+	}
+
+	inline const Vec2 operator/(float s) const
+	{
+		Vec2 result(*this);
+		result.x -= s;
+		result.y -= s;
+		return result;
+	}
+
+	inline Vec2& operator/=(float s)
+	{
+		x /= s;
+		y /= s;
+	}
+
 };
 
 struct Size

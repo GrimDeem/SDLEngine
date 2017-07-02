@@ -1,4 +1,4 @@
-#include "..\..\include\Objects\Scene.h"
+#include "../../include/Objects/Scene.h"
 #include <iostream>
 
 void Scene::removeChild(Node * childToRemove)
