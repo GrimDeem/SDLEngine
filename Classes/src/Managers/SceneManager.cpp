@@ -1,4 +1,4 @@
-#include "..\..\include\Managers\SceneManager.h"
+#include "../../include/Managers/SceneManager.h"
 
 SceneManager::SceneManager():
 	currentScene(nullptr)

@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <cassert>
+#include <string>
 #include "../Core/GlobalDefines.h"
 #include "../Core/Vec2.h"
 
