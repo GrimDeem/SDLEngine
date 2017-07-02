@@ -42,9 +42,6 @@
     <ClCompile Include="..\Classes\src\Objects\Node.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\src\Core\Vec2.inl">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\src\Objects\Sprite.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
