@@ -130,3 +130,4 @@ void InitialScene::animatedSpriteTest()
 	anim->initalize(data, 0);
 	this->addChild(anim, 0, "animated");
 }
+
