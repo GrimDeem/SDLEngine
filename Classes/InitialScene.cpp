@@ -20,8 +20,26 @@ InitialScene * InitialScene::create()
 
 bool InitialScene::init()
 {
-	animatedSpriteTest();	
+	//animatedSpriteTest();
+	//updateTest();
+	//drawPriorityTest();
+	drawTextLabelTest();
 	return true;
+}
+
+void InitialScene::drawTextLabelTest()
+{
+	TextLabel * label = new TextLabel(FONT_PATH, 26, "Felt");
+	label->setPosition(Vec2(100,100));
+	this->addChild(label, 0);
+	label->setFontPath("../Resources/Fonts/MarkerFelt.ttf");
+	label->setColor({0, 255, 133});
+	label->setAnchorPoint(Vec2(0,0));
+	
+	TextLabel * label2 = new TextLabel("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
+	
+	label2->setPosition(Vec2(170,100));
+	this->addChild(label2, 0);
 }
 
 void InitialScene::updateScene(const Uint8* kbState, float dt)
@@ -51,7 +69,7 @@ void InitialScene::updateTest()
 
 void InitialScene::drawPriorityTest()
 {
-	parentNode1 = new Node();
+	auto parentNode1 = new Node();
 	{
 		Sprite* tank = new Sprite(IMG_PATH);
 		tank->setPosition(Vec2(100, 100));

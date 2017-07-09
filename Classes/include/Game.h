@@ -4,6 +4,7 @@
 
 #include <SDL_render.h>
 #include <SDL_main.h>
+#include <SDL_ttf.h>
 #include "Managers/Keeper.h"
 #include "../InitialScene.h"
 

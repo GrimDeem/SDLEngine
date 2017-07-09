@@ -1,4 +1,6 @@
 #include "../include/Game.h"
+using std::cerr;
+using std::endl;
 
 Game::Game()
 {
@@ -14,6 +16,12 @@ bool Game::initSDL()
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Cant init sdl", NULL);
 		exit(1);
 	}
+
+	if(TTF_Init() < 0) {
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Cant init sdl_ttf", NULL);
+		exit(1);
+	}
+	
 	SDL_Window* window = SDL_CreateWindow(
 		WINDOW_TITLE,
 		WINDOW_POSITION_X,
@@ -85,7 +93,7 @@ void Game::updateWorld(float dt) //1 dt = 1ms
 void Game::draw()
 {
 	SDL_RenderClear(Keeper::getInstance().getRenderer());
-
+	
 	Keeper::getInstance().drawCurrentScene();
 
 	SDL_RenderPresent(Keeper::getInstance().getRenderer());

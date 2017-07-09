@@ -5,6 +5,8 @@
 #include <cassert>
 #include <iostream>
 #include <SDL_render.h>
+#include <SDL_ttf.h>
+
 #include "TextureManager.h"
 #include "SceneManager.h"
 /*  Keeper is the main class of the game engine
@@ -34,7 +36,7 @@ public:
 	SDL_Renderer* getRenderer();
 
 	void initWindow(SDL_Window* _window);
-	//SDL_Window* getWindow(); 
+	SDL_Window* getWindow(); 
 
 	/*replaces current scene with a passed new one*/
 	void replaceScene(Scene* newScene);
