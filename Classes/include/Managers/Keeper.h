@@ -9,6 +9,7 @@
 
 #include "TextureManager.h"
 #include "SceneManager.h"
+
 /*  Keeper is the main class of the game engine
 	Stores an unique entities such as TextureManager,
 	SceneManager, renderer and provides access to them.

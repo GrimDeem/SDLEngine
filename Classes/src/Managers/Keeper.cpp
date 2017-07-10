@@ -35,7 +35,6 @@ void Keeper::initWindow(SDL_Window * _window)
 {
 	assert(_window != nullptr);
 	window = _window;
-
 }
 
 void Keeper::replaceScene(Scene * newScene)
@@ -55,6 +54,8 @@ void Keeper::updateCurrentScene( float dt)
 
 void Keeper::end()
 {
+	delete texManager;
+	delete sceneManager;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	TTF_Quit();

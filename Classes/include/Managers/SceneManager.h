@@ -11,7 +11,9 @@ private:
 	Scene* currentScene;
 public:
 	SceneManager();
-	~SceneManager() {}
+	~SceneManager() {
+		delete currentScene;
+	}
 
 	/*replaces current scene with a passed new one*/
 	void replaceScene(Scene* newScene);

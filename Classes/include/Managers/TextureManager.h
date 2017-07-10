@@ -2,7 +2,7 @@
 #ifndef __TEXTURE_MANAGER_H__
 #define __TEXTURE_MANAGER_H__
 
-#define __TM_LOG__ 0
+#define __TM_LOG__ 1
 #include <unordered_map>
 #include <algorithm>
 #include <SDL_image.h>
@@ -14,14 +14,14 @@
 class TextureManager
 {
 private:
-	/* map of the loaded textures*/
+	/* map of the loaded textures(texture pool)*/
 	std::unordered_map<std::string, SDL_Texture*> _textures;
-	/*add new texture to the map*/
+	/*load texture and add it to the map*/
 	SDL_Texture* loadTexture(std::string pathToTexture); 
 public:
 	TextureManager() {}
 	~TextureManager() {
-		_textures.clear();
+		clearTexturePool();
 	}
 	/*returns texture from the following path*/
 	SDL_Texture* getTexture(std::string pathToTexture);
@@ -31,6 +31,9 @@ public:
 
 	/*Unloads the texture along the specified path from memory & map*/
 	void unloadTexture(std::string pathToTexture);
+
+	/*Unloads all textures from pool*/
+	void clearTexturePool();
 };
 
 
