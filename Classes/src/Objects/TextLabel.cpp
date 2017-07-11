@@ -42,7 +42,8 @@ void TextLabel::draw()
 	texr.y = Node::getPositionY() - Node::getAnchorPoint().y * texr.h;
 	
 	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(), texture, nullptr,
-			 &texr, Node::getRotation(), nullptr, SDL_FLIP_NONE);
+			 &texr, Node::getRotation(), nullptr,
+			 Node::getFlipState().getSDLFlip());
 }
 
 void TextLabel::setString(std::string _newText)

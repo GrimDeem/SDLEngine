@@ -13,14 +13,14 @@ Sprite::Sprite()
 void Sprite::draw()
 {
 	SDL_Rect texr;
-	texr.w = imageRealSize.width  * Node::getScaleX();					//SpriteSize
+	texr.w = imageRealSize.width  * Node::getScaleX();		    //SpriteSize
 	texr.h = imageRealSize.height * Node::getScaleY();
 	texr.x = Node::getPositionX() - Node::getAnchorPoint().x * texr.w;  //SpritePosition
 	texr.y = Node::getPositionY() - Node::getAnchorPoint().y * texr.h;
 
 	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(), 
-		texture2D, nullptr, &texr, Node::getRotation(), nullptr, SDL_FLIP_NONE);
-
+			 texture2D, nullptr, &texr, Node::getRotation(),
+			 nullptr, Node::getFlipState().getSDLFlip());
 	Node::draw();
 }
 

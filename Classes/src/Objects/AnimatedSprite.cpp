@@ -15,6 +15,7 @@ void AnimatedSprite::draw()
 	image.setPosition(this->getPosition());
 	image.setScale(this->getScaleX(), this->getScaleY());
 	image.setRotation(this->getRotation());
+	image.setFlipState(this->getFlipState());
 	image.draw();
 }
 

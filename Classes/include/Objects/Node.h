@@ -1,20 +1,46 @@
 #pragma once
 #ifndef __NODE_H__
-#define __NODE_H__
+#define __NODE_H__ 
 
 #include <vector>
 #include <algorithm>
 #include <cassert>
 #include <string>
+#include <SDL.h>
 #include "../Core/GlobalDefines.h"
 #include "../Core/Vec2.h"
-
 /*	Node is the base element of the Scene Graph. 
 	Elements of the Scene Graph must be Node objects or subclasses of it.
 
 	Node is drawable object
 	Node can contain other node objects (addChild)	
 */
+
+struct FlipState
+{
+	bool vertical;
+	bool horisontal;
+
+	FlipState()
+	: vertical(false)
+	, horisontal(false)
+		{ }
+	
+	SDL_RendererFlip getSDLFlip()
+		{
+			SDL_RendererFlip flip;
+			if(vertical == false && horisontal == false)
+			        flip = SDL_FLIP_NONE;
+			else if(vertical == true  && horisontal == false)
+				flip = SDL_FLIP_VERTICAL;
+			else if(vertical == false && horisontal == true )
+				flip = SDL_FLIP_HORIZONTAL;
+			else if(vertical == true  && horisontal == true )
+				flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+			return flip;
+		}
+};
+
 class Node
 {
 private:
@@ -25,6 +51,7 @@ private:
 
 	float rotation;
 
+	FlipState flip;
 	Vec2 anchorPoint;
 	int drawOrder;
 
@@ -88,6 +115,11 @@ public:
 	virtual void setRotationRecursive(float angle);
 	virtual float getRotation();
 
+	virtual void flipVertical();
+	virtual void flipHorisontal();
+	virtual FlipState getFlipState();
+	
+	virtual void setFlipState(FlipState _newFlipState);
 	virtual void setNodeKey(std::string _key);
 	virtual std::string getNodeKey();
 };

@@ -214,6 +214,25 @@ float Node::getRotation()
 	return rotation;
 }
 
+void Node::flipVertical()
+{
+	flip.vertical = !flip.vertical;
+}
+void Node::flipHorisontal()
+{
+	flip.horisontal = !flip.horisontal;
+}
+
+FlipState Node::getFlipState()
+{
+	return flip;
+}
+
+void Node::setFlipState(FlipState _newFlipState)
+{
+	flip = _newFlipState;
+}
+
 void Node::setNodeKey(std::string _key)
 {
 	this->nodeKey = _key;
