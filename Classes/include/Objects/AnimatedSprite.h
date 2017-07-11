@@ -54,6 +54,9 @@ public:
 	virtual void removeChild(Node * child) override;
 
 	virtual void initalize(AnimData data, int startingAnimNum);
+
+	virtual void setAnimFPS(int newFPS);
+	virtual int getAnimFPS();		
 };
 
 #endif // !__ANIMATED_SPRITE_H__

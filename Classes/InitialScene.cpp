@@ -20,11 +20,11 @@ InitialScene * InitialScene::create()
 
 bool InitialScene::init()
 {
-	//animatedSpriteTest();
+	animatedSpriteTest();
 	//updateTest();
 	//drawPriorityTest();
 	//drawTextLabelTest();
-	flipsTest();
+	//flipsTest();
 	return true;
 }
 
@@ -130,6 +130,7 @@ void InitialScene::animatedSpriteTest()
 	anim->initalize(data, 0);
 	this->addChild(anim, 0, "animated");
 	anim->flipHorisontal();
+	anim->setAnimFPS(40);
 }
 
 void InitialScene::flipsTest()

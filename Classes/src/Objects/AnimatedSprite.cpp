@@ -73,3 +73,13 @@ void AnimatedSprite::insertChild(Node * child)
 	Node::insertChild(child, 0, "");
 	Updatable::insertChild(child);
 }
+
+
+void AnimatedSprite::setAnimFPS(int newFPS)
+{
+	animFPS = newFPS;
+}
+int AnimatedSprite::getAnimFPS()
+{
+	return animFPS;
+}
