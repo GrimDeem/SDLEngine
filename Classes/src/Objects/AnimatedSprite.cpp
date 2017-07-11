@@ -10,15 +10,6 @@ AnimatedSprite::~AnimatedSprite()
 {
 }
 
-void AnimatedSprite::draw()
-{
-	image.setPosition(this->getPosition());
-	image.setScale(this->getScaleX(), this->getScaleY());
-	image.setRotation(this->getRotation());
-	image.setFlipState(this->getFlipState());
-	image.draw();
-}
-
 void AnimatedSprite::update(float deltaTime)
 {
 	// Update how long the current frame has been displayed
@@ -37,7 +28,7 @@ void AnimatedSprite::update(float deltaTime)
 	// relative to the first frame of this particular animation).
 	int imageNum = (animData.frameInfo[animNum].startFrame + frameNum) 
 		% animData.frameInfo[animNum].numFrames;
-	image = *(animData.images[imageNum]);
+	Sprite::setTexture((animData.images[imageNum]));
 
 	frameTime = fmod(frameTime, 1 / animFPS);
 
@@ -58,8 +49,8 @@ void AnimatedSprite::changeAnim(int newAnimNum)
 	//animTime = 0.0f;
 	// Set active image, which is just the starting frame.
 	int imageNum = animData.frameInfo[animNum].startFrame;
-	auto tmp = animData.images[imageNum];
-	image = *tmp;
+	Sprite::setTexture((animData.images[imageNum]));
+	
 }
 
 void AnimatedSprite::removeChild(Node * child)

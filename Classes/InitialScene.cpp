@@ -117,20 +117,21 @@ void InitialScene::animatedSpriteTest()
 {
 	AnimatedSprite *anim = new AnimatedSprite();
 	anim->setPosition(Vec2(200, 200));
-	std::vector<Sprite*> sprites;
+	std::vector<SDL_Texture*> images;
 	char str[256];
 	for (int idx = 0; idx < 27; idx++) {
 		sprintf(str, "../Resources/Sprites/TimAnimation/TimRun%d.png", idx);
-		sprites.push_back(new Sprite(str));
+		images.push_back(Keeper::getInstance().getTextureManager()->getTexture(str));
 		LOG(("TimRun" + std::to_string(idx) + '\n').c_str());
 	}
 	AnimData data;
-	data.images = sprites;
+	data.images = images;
 	data.frameInfo.push_back(AnimFrameData(1, 27));
 	anim->initalize(data, 0);
-	this->addChild(anim, 0, "animated");
 	anim->flipHorisontal();
 	anim->setAnimFPS(40);
+	
+	this->addChild(anim, 0, "animated");
 }
 
 void InitialScene::flipsTest()

@@ -21,15 +21,20 @@ struct AnimFrameData
 struct AnimData
 {
 	// array of images for all the animations
-	std::vector<Sprite*> images;
+	std::vector<SDL_Texture*> images;
 	// frame data for all the different animations
 	std::vector<AnimFrameData> frameInfo;
+	AnimData() {}
+	AnimData(std::vector<SDL_Texture*> _images, std::vector<AnimFrameData> _frameInfo)
+		{
+			images = _images;
+			frameInfo = _frameInfo;
+		}
 };
 
-class AnimatedSprite : public Node, public Updatable
+class AnimatedSprite : public Sprite, public Updatable
 {
 private:
-	Sprite image;
 	// All of the animation data (includes ImageFiles and FrameData)
 	AnimData animData;
 	// The particular animation that is active
@@ -49,7 +54,6 @@ public:
 	AnimatedSprite();
 	virtual ~AnimatedSprite();
 
-	virtual void draw() override;
 	virtual void update(float deltaTime) override;
 	virtual void removeChild(Node * child) override;
 
