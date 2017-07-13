@@ -9,9 +9,9 @@
 
 #include <assert.h>
 #include <string>
-#define IMG_PATH  "../Resources/Sprites/tank.bmp"
-#define IMG2_PATH "../Resources/Sprites/linux.bmp"
-#define FONT_PATH "../Resources/Fonts/DroidSans.ttf"
+#define IMG_PATH  "Resources/Sprites/tank.bmp"
+#define IMG2_PATH "Resources/Sprites/linux.bmp"
+#define FONT_PATH "Resources/Fonts/DroidSans.ttf"
 
 class InitialScene : public Scene
 {

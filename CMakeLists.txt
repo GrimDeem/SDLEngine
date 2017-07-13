@@ -11,6 +11,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin/)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -w")
 
 include_directories(${CMAKE_SOURCE_DIR}/Linux/include/SDL2)
+include_directories(${SOURCE_DIR}/include)
 link_directories(${SDL_LIBRARIES_DIR})
 
 file( GLOB HEADERS
@@ -49,3 +50,4 @@ target_link_libraries(run
 		${SDL2_NET}
 		${SDL2_TTF})
 	
+file(COPY ${CMAKE_SOURCE_DIR}/Resources  DESTINATION ${CMAKE_SOURCE_DIR}/bin/)
