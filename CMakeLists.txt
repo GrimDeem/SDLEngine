@@ -49,3 +49,4 @@ target_link_libraries(run
 		${SDL2_NET}
 		${SDL2_TTF})
 	
+file(COPY ${CMAKE_SOURCE_DIR}/Resources  DESTINATION ${CMAKE_SOURCE_DIR}/bin/)
