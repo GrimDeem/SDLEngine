@@ -242,3 +242,31 @@ std::string Node::getNodeKey()
 {
 	return nodeKey;
 }
+
+void Node::move(Vec2 delta)
+{
+	position = position + delta;
+}
+
+void Node::move(float deltaX, float deltaY)
+{
+	Node::move(Vec2(deltaX, deltaY));
+}
+
+void Node::moveX(float deltaX)
+{
+	Node::move(Vec2(deltaX, 0));
+}
+
+void Node::moveY(float deltaY)
+{
+	Node::move(Vec2(0, deltaY));
+}
+       
+void Node::moveRecursive(float deltaX, float deltaY)
+{
+	Node::move(Vec2(deltaX, deltaY));
+	for (auto &child : Node::getDrawableChildren())
+		child->moveRecursive(deltaX, deltaY);
+}
+

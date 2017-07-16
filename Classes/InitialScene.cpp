@@ -20,8 +20,8 @@ InitialScene * InitialScene::create()
 
 bool InitialScene::init()
 {
-	animatedSpriteTest();
-	//updateTest();
+	//animatedSpriteTest();
+	updateTest();
 	//drawPriorityTest();
 	//drawTextLabelTest();
 	//flipsTest();
@@ -45,15 +45,19 @@ void InitialScene::drawTextLabelTest()
 void InitialScene::updateScene(const Uint8* kbState, float dt)
 {
 	float speed = 0.1;
-	if (kbState[SDL_SCANCODE_RIGHT]) {
-		movableTank->setPosition(movableTank->getPositionX() + dt * speed, movableTank->getPositionY());
-	} else if (kbState[SDL_SCANCODE_LEFT]) {
-		movableTank->setPosition(movableTank->getPositionX() - dt * speed, movableTank->getPositionY());
+	if (kbState[SDL_SCANCODE_RIGHT] || kbState[SDL_SCANCODE_D]) {
+		//movableTank->setPosition(movableTank->getPositionX() + dt * speed, movableTank->getPositionY());
+		movableTank->moveX(dt * speed);
+	} else if (kbState[SDL_SCANCODE_LEFT] || kbState[SDL_SCANCODE_A]) {
+		//movableTank->setPosition(movableTank->getPositionX() - dt * speed, movableTank->getPositionY());
+		movableTank->moveX(-dt * speed);
 	}
-	if (kbState[SDL_SCANCODE_UP]) {
-		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() - dt * speed);
-	} else  if (kbState[SDL_SCANCODE_DOWN]) {
-		movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() + dt * speed);		
+	if (kbState[SDL_SCANCODE_UP] || kbState[SDL_SCANCODE_W]) {
+		//movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() - dt * speed);
+		movableTank->moveY(-dt * speed);
+	} else  if (kbState[SDL_SCANCODE_DOWN] || kbState[SDL_SCANCODE_S]) {
+		//movableTank->setPosition(movableTank->getPositionX(), movableTank->getPositionY() + dt * speed);
+		movableTank->moveY(dt * speed);
 	}
 }
 

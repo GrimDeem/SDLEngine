@@ -118,10 +118,16 @@ public:
 	virtual void flipVertical();
 	virtual void flipHorisontal();
 	virtual FlipState getFlipState();
-	
 	virtual void setFlipState(FlipState _newFlipState);
+
 	virtual void setNodeKey(std::string _key);
 	virtual std::string getNodeKey();
+
+	virtual void move(Vec2 delta);
+	virtual void move(float deltaX, float deltaY);
+	virtual void moveX(float deltaX);
+	virtual void moveY(float deltaY);
+	virtual void moveRecursive(float deltaX, float deltaY);		
 };
 
 #endif //!__NODE_H__

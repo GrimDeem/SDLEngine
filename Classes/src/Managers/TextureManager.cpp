@@ -27,6 +27,8 @@ SDL_Texture * TextureManager::getTexture(std::string pathToTexture)
 SDL_Texture * TextureManager::loadTexture(std::string pathToTexture)
 {
 	auto loadedTex = IMG_LoadTexture(Keeper::getInstance().getRenderer(), pathToTexture.c_str());
+	if(loadedTex == nullptr)
+		LOG(IMG_GetError());
 	_textures.insert(std::make_pair(pathToTexture, loadedTex));
 	return loadedTex;
 }

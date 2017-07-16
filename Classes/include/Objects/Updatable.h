@@ -2,6 +2,8 @@
 #ifndef __UPDATABLE_H__
 #define __UPDATABLE_H__
 
+#include <assert.h>
+
 /*
 	Updatable is auxiliary class to describe objects
 	which have to be updated each frame with delta time
