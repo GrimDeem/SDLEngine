@@ -63,6 +63,9 @@
     <ClCompile Include="..\Classes\src\Objects\AnimatedSprite.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\src\Objects\TextLabel.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\include\Objects\Node.h">
@@ -104,12 +107,21 @@
     <ClInclude Include="..\Classes\include\Objects\AnimatedSprite.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\include\Objects\TextLabel.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\img.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\Resources\tank.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Resources\Sprites\linux.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Resources\Sprites\tank.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -106,6 +106,8 @@ public:
 	virtual void setDrawOrder(int order);
 	virtual int getDrawOrder() const;
 
+	virtual void setKey(std::string key);
+
 	virtual void setAnchorPoint(Vec2 newAnchorPoint);
 	virtual void setAnchorPoint(float anchorX, float anchorY);
 	virtual Vec2 getAnchorPoint();

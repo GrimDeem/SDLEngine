@@ -20,24 +20,25 @@ InitialScene * InitialScene::create()
 
 bool InitialScene::init()
 {
-	animatedSpriteTest();
+	//animatedSpriteTest();
 	//updateTest();
 	//drawPriorityTest();
-	//drawTextLabelTest();
+	drawTextLabelTest();
 	//flipsTest();
 	return true;
 }
 
 void InitialScene::drawTextLabelTest()
 {
+	this->setKey("SCene");
 	TextLabel * label = new TextLabel(FONT_PATH, 26, "Felt");
 	label->setPosition(Vec2(100,100));
-	label->setFontPath("Resources/Fonts/MarkerFelt.ttf");
+	label->setFontPath("../Resources/Fonts/MarkerFelt.ttf");
 	label->setColor({0, 255, 133});
 	label->setAnchorPoint(Vec2(0,0));
 	this->addChild(label, 0);
 
-	TextLabel * label2 = new TextLabel("Resources/Fonts/Kurale.ttf", 26, "Kurale");
+	TextLabel * label2 = new TextLabel("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
 	label2->setPosition(Vec2(170,100));
 	this->addChild(label2, 0);
 }
@@ -59,7 +60,7 @@ void InitialScene::updateScene(const Uint8* kbState, float dt)
 
 void InitialScene::updateTest()
 {
-	movableTank = new Sprite("Resources/Sprites/TimAnimation/TimRun0.png");
+	movableTank = new Sprite("../Resources/Sprites/TimAnimation/TimRun0.png");
 	movableTank->setPosition(Vec2(60, 70));
 	movableTank->setRotation(180);
 	this->addChild(movableTank, 1, "movableTank");
@@ -120,7 +121,7 @@ void InitialScene::animatedSpriteTest()
 	std::vector<SDL_Texture*> images;
 	char str[256];
 	for (int idx = 0; idx < 27; idx++) {
-		sprintf(str, "Resources/Sprites/TimAnimation/TimRun%d.png", idx);
+		sprintf(str, "../Resources/Sprites/TimAnimation/TimRun%d.png", idx);
 		images.push_back(Keeper::getInstance().getTextureManager()->getTexture(str));
 		LOG(("TimRun" + std::to_string(idx) + '\n').c_str());
 	}
@@ -150,16 +151,16 @@ void InitialScene::flipsTest()
 	tank3->setPosition(Vec2(100, 150));
       	this->addChild(tank3, 0, "tank3");		
 	
-	TextLabel * labelDefault = new TextLabel("Resources/Fonts/Kurale.ttf", 26, "Kurale");
+	TextLabel * labelDefault = new TextLabel("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
 	labelDefault->setPosition(Vec2(170,60));
 	this->addChild(labelDefault, 0);
 	
-	TextLabel * labelFlippedV = new TextLabel("Resources/Fonts/Kurale.ttf", 26, "Kurale");
+	TextLabel * labelFlippedV = new TextLabel("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
 	labelFlippedV->setPosition(Vec2(170,100));
 	labelFlippedV->flipVertical();
 	this->addChild(labelFlippedV, 0);
 		
-	TextLabel * labelFlippedH = new TextLabel("Resources/Fonts/Kurale.ttf", 26, "Kurale");
+	TextLabel * labelFlippedH = new TextLabel("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
 	labelFlippedH->setPosition(Vec2(170,140));
 	labelFlippedH->flipHorisontal();
 	this->addChild(labelFlippedH, 0);
