@@ -68,7 +68,7 @@ void Node::removeChild(Node * childToRemove)
 	auto iter = std::find(drwChilds.begin(), drwChilds.end(), childToRemove);
 	if (iter != drwChilds.end()) {
 		drwChilds.erase(iter);
-		childToRemove->setParent(nullptr);
+		//childToRemove->setParent(nullptr);
 	}
 }
 
@@ -177,6 +177,11 @@ void Node::setDrawOrder(int order)
 int Node::getDrawOrder() const
 {
 	return drawOrder;
+}
+
+void Node::setKey(std::string key)
+{
+	nodeKey = key;
 }
 
 void Node::setAnchorPoint(Vec2 newAnchorPoint)

@@ -90,14 +90,23 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\libs\SDL\SDL2_base\include\SDL2;C:\libs\SDL\SDL2_ttf-2.0.14\include;C:\libs\SDL\SDL2_net-2.0.1\include;C:\libs\SDL\SDL2_image-2.0.1\include;C:\libs\SDL\SDL2_base\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\..\..\SDL-basedEngine\Windows\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\libs\SDL\SDL2_ttf-2.0.14\lib\x86;C:\libs\SDL\SDL2_net-2.0.1\lib\x86;C:\libs\SDL\SDL2_image-2.0.1\lib\x86;C:\libs\SDL\SDL2_base\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.\..\..\SDL-basedEngine\Windows\SDL\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;SDL2_net.lib;SDL2_ttf.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>XCOPY "$(SolutionDir)Windows\SDL\dll\*" "$(TargetDir)" /S 
+XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
+</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -159,6 +168,7 @@
     <ClCompile Include="..\Classes\src\Objects\Node.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Scene.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Sprite.cpp" />
+    <ClCompile Include="..\Classes\src\Objects\TextLabel.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +180,7 @@
     <ClInclude Include="..\Classes\include\Managers\SceneManager.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />
     <ClInclude Include="..\Classes\include\Objects\AnimatedSprite.h" />
+    <ClInclude Include="..\Classes\include\Objects\TextLabel.h" />
     <ClInclude Include="..\Classes\include\Objects\Updatable.h" />
     <ClInclude Include="..\Classes\include\Objects\Node.h" />
     <ClInclude Include="..\Classes\include\Objects\Scene.h" />
@@ -178,6 +189,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\img.bmp" />
+    <Image Include="..\Resources\Sprites\linux.bmp" />
+    <Image Include="..\Resources\Sprites\tank.bmp" />
     <Image Include="..\Resources\tank.bmp" />
   </ItemGroup>
   <ItemGroup>
