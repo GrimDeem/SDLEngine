@@ -1,13 +1,13 @@
 #include "../../include/Objects/Scene.h"
 #include <iostream>
 
-void Scene::removeChild(Node * childToRemove)
+void Scene::removeChild(NodePtr childToRemove)
 {
 	Node::removeChild(childToRemove);
 	Updatable::removeChild(childToRemove);
 }
 
-void Scene::insertChild(Node * child, int order, std::string key)
+void Scene::insertChild(NodePtr child, int order, std::string key)
 {
 	Node::insertChild(child, order, key);
 	Updatable::insertChild(child);

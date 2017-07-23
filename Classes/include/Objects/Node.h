@@ -6,9 +6,11 @@
 #include <algorithm>
 #include <cassert>
 #include <string>
+#include <memory>
 #include <SDL.h>
 #include "../Core/GlobalDefines.h"
 #include "../Core/Vec2.h"
+
 /*	Node is the base element of the Scene Graph. 
 	Elements of the Scene Graph must be Node objects or subclasses of it.
 
@@ -30,7 +32,7 @@ struct FlipState
 		{
 			SDL_RendererFlip flip;
 			if(vertical == false && horisontal == false)
-			        flip = SDL_FLIP_NONE;
+				flip = SDL_FLIP_NONE;
 			else if(vertical == true  && horisontal == false)
 				flip = SDL_FLIP_VERTICAL;
 			else if(vertical == false && horisontal == true )
@@ -41,8 +43,10 @@ struct FlipState
 		}
 };
 
-class Node
+class Node : public std::enable_shared_from_this<Node>
 {
+public:
+	typedef std::shared_ptr<Node> NodePtr;
 private:
 	Vec2 position;
 
@@ -55,34 +59,34 @@ private:
 	Vec2 anchorPoint;
 	int drawOrder;
 
-	std::vector<Node*> drwChilds;
+	std::vector<NodePtr> drwChilds;
 	Node* parent;
 
 	std::string nodeKey;
 
 protected:
 	virtual void setParent(Node* _parent);
-	virtual void insertChild(Node* child, int order, std::string key);
+	virtual void insertChild(NodePtr child, int order, std::string key);
 
 public:
 	Node();
+
+	static NodePtr create();
 	virtual ~Node() {
 		this->removeFromParent();
-		for (auto &child : Node::getDrawableChildren())
-			delete child;
 	};
 
 	virtual void draw();
 
-	virtual void addChild(Node* child);
-	virtual void addChild(Node* child, int _drawOrder);
-	virtual void addChild(Node* child, int _drawOrder, std::string key);
+	virtual void addChild(NodePtr child);
+	virtual void addChild(NodePtr child, int _drawOrder);
+	virtual void addChild(NodePtr child, int _drawOrder, std::string key);
 
-	virtual std::vector<Node*> getDrawableChildren() const;
+	virtual std::vector<NodePtr> getDrawableChildren() const;
 	virtual Node* getParent() const;
 
 	virtual void removeFromParent();
-	virtual void removeChild(Node* childToRemove);
+	virtual void removeChild(NodePtr childToRemove);
 
 	virtual void setPosition(Vec2 _position);
 	virtual void setPosition(float _x, float _y);

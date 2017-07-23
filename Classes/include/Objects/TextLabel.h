@@ -11,6 +11,8 @@
 */
 class TextLabel : public Node
 {
+public:
+	typedef std::shared_ptr<TextLabel> TextLabelPtr;
 private:
 	std::string fontPath;
 	std::string contentText;
@@ -33,6 +35,8 @@ protected:
 	
 public:
 	TextLabel(std::string _fontPath, int fsize, std::string _text);
+
+	static TextLabelPtr create(std::string _fontPath, int fsize, std::string _text);
 	virtual ~TextLabel();
 	
 	virtual void draw() override;

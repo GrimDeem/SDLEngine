@@ -48,14 +48,14 @@ private:
 
 protected:
 	virtual void changeAnim(int newAnimNum);
-	virtual void insertChild(Node * child) override;
+	virtual void insertChild(NodePtr child) override;
 
 public:
 	AnimatedSprite();
 	virtual ~AnimatedSprite();
 
 	virtual void update(float deltaTime) override;
-	virtual void removeChild(Node * child) override;
+	virtual void removeChild(NodePtr child) override;
 
 	virtual void initalize(AnimData data, int startingAnimNum);
 

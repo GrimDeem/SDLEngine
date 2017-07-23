@@ -53,13 +53,13 @@ void AnimatedSprite::changeAnim(int newAnimNum)
 	
 }
 
-void AnimatedSprite::removeChild(Node * child)
+void AnimatedSprite::removeChild(NodePtr child)
 {
 	Node::removeChild(child);
 	Updatable::removeChild(child);
 }
 
-void AnimatedSprite::insertChild(Node * child)
+void AnimatedSprite::insertChild(NodePtr child)
 {
 	Node::insertChild(child, 0, "");
 	Updatable::insertChild(child);
