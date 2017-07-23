@@ -18,6 +18,8 @@ private:
 public:
 	Sprite();
 	Sprite(std::string imgPath);
+	static std::shared_ptr<Sprite> create();
+	static std::shared_ptr<Sprite> create(std::string imgPath);
 	virtual ~Sprite();
 
 	virtual void draw() override;

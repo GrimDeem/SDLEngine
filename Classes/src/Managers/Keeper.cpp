@@ -37,9 +37,15 @@ void Keeper::initWindow(SDL_Window * _window)
 	window = _window;
 }
 
-void Keeper::replaceScene(Scene * newScene)
+SDL_Window * Keeper::getWindow()
 {
-	sceneManager->replaceScene(newScene);
+	return window;
+}
+
+void Keeper::replaceScene(std::shared_ptr<Scene> newScene)
+{
+	auto scene = std::make_shared<Scene>(*newScene);
+	sceneManager->replaceScene(scene);
 }
 
 void Keeper::drawCurrentScene()

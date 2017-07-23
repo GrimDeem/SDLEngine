@@ -6,7 +6,7 @@ Game::Game()
 {
 	initSDL();	
 	is_running = true;
-	auto scene = InitialScene::createScene();
+	auto scene = std::make_shared<Scene>(*InitialScene::createScene());
 	Keeper::getInstance().replaceScene(scene);
 }
 

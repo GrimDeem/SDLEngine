@@ -10,6 +10,16 @@ Sprite::Sprite()
 {
 }
 
+std::shared_ptr<Sprite> Sprite::create()
+{
+	return std::make_shared<Sprite>();
+}
+
+std::shared_ptr<Sprite> Sprite::create(std::string imgPath)
+{
+	return std::make_shared<Sprite>(imgPath);
+}
+
 void Sprite::draw()
 {
 	SDL_Rect texr;

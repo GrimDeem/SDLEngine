@@ -4,8 +4,10 @@ Node::Node()
 	: position(0,0)
 	, scaleX(1)
 	, scaleY(1)
+	, rotation(0)
 	, drawOrder(0)
 	, anchorPoint(0.5, 0.5)
+	, flip(false, false)
 	, parent(nullptr)
 	, nodeKey("")
 {
@@ -13,8 +15,7 @@ Node::Node()
 
 Node::NodePtr Node::create()
 {
-	auto newNode = new Node();
-	return std::make_shared<Node> (*newNode);
+	return std::make_shared<Node>();
 }
 
 void Node::draw()
@@ -77,7 +78,6 @@ void Node::removeChild(NodePtr childToRemove)
 	auto iter = std::find(drwChilds.begin(), drwChilds.end(), childToRemove);
 	if (iter != drwChilds.end()) {
 		drwChilds.erase(iter);
-		//childToRemove->setParent(nullptr);
 	}
 }
 

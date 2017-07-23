@@ -5,16 +5,14 @@ SceneManager::SceneManager():
 {
 }
 
-void SceneManager::replaceScene(Scene* newScene)
+void SceneManager::replaceScene(std::shared_ptr<Scene> newScene)
 {
 	assert(newScene != nullptr);
-	delete currentScene;
 	currentScene = newScene;
 }
 
 void SceneManager::drawCurrentScene()
 {
-	assert(currentScene != nullptr);
 	currentScene->draw();
 }
 

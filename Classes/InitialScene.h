@@ -16,7 +16,7 @@
 class InitialScene : public Scene
 {
 private:
-	Sprite* movableTank;
+	std::shared_ptr<Sprite> movableTank;
 public:
 	static Scene* createScene();
 	static InitialScene* create();

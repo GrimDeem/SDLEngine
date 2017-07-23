@@ -23,8 +23,6 @@ private:
 	Keeper(Keeper const&) = delete;		//forbid to copy and create new instances
 	Keeper& operator= (Keeper const&) = delete;
 	
-	//todo: add scenes stack
-
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 	TextureManager* texManager;
@@ -40,7 +38,7 @@ public:
 	SDL_Window* getWindow(); 
 
 	/*replaces current scene with a passed new one*/
-	void replaceScene(Scene* newScene);
+	void replaceScene(std::shared_ptr<Scene> newScene);
 	void drawCurrentScene();
 	void updateCurrentScene(float dt);
 

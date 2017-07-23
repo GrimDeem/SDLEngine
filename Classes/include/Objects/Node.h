@@ -27,6 +27,11 @@ struct FlipState
 	: vertical(false)
 	, horisontal(false)
 		{ }
+
+	FlipState(bool _vertical, bool _horisontal)
+		: vertical(_vertical)
+		, horisontal(_horisontal)
+	{ }
 	
 	SDL_RendererFlip getSDLFlip()
 		{
@@ -70,7 +75,6 @@ protected:
 
 public:
 	Node();
-
 	static NodePtr create();
 	virtual ~Node() {
 		this->removeFromParent();

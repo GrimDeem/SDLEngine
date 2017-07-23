@@ -11,10 +11,7 @@ TextLabel::TextLabel(std::string _fontPath, int fsize, std::string _text)
 
 TextLabel::TextLabelPtr TextLabel::create(std::string _fontPath, int fsize, std::string _text)
 {
-	auto newLabel = new TextLabel(_fontPath, fsize, _text);
-	return std::make_shared<TextLabel>(*newLabel);
-
-//	return std::make_shared<TextLabel>(TextLabel(_fontPath, fsize, _text));
+	return std::make_shared<TextLabel>(_fontPath, fsize, _text);
 }
 
 TextLabel::~TextLabel()

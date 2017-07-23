@@ -6,6 +6,11 @@ AnimatedSprite::AnimatedSprite()
 {
 }
 
+std::shared_ptr<AnimatedSprite> AnimatedSprite::create()
+{
+	return std::make_shared<AnimatedSprite>();
+}
+
 AnimatedSprite::~AnimatedSprite()
 {
 }
