@@ -1,6 +1,11 @@
 #include "../../include/Objects/Scene.h"
 #include <iostream>
 
+std::shared_ptr<Scene> Scene::create()
+{
+	return std::make_shared<Scene>();
+}
+
 void Scene::removeChild(NodePtr childToRemove)
 {
 	Node::removeChild(childToRemove);

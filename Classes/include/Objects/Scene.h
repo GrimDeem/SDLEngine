@@ -17,6 +17,7 @@ public:
 	Scene() 
 		: _update(nullptr)
 	{}
+	static std::shared_ptr<Scene> create();
 	virtual ~Scene() {}
 
 	virtual void removeChild(NodePtr childToRemove) override;

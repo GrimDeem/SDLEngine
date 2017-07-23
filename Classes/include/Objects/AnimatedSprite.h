@@ -52,6 +52,7 @@ protected:
 
 public:
 	AnimatedSprite();
+	static std::shared_ptr<AnimatedSprite> create();
 	virtual ~AnimatedSprite();
 
 	virtual void update(float deltaTime) override;

@@ -8,15 +8,15 @@
 class SceneManager
 {
 private:
-	Scene* currentScene;
+	std::shared_ptr<Scene> currentScene;
 public:
 	SceneManager();
 	~SceneManager() {
-		delete currentScene;
+		//delete currentScene;
 	}
 
 	/*replaces current scene with a passed new one*/
-	void replaceScene(Scene* newScene);
+	void replaceScene(std::shared_ptr<Scene> newScene);
 	
 	void drawCurrentScene();
 
