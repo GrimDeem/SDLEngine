@@ -13,8 +13,8 @@ Node::Node()
 
 Node::NodePtr Node::create()
 {
-	auto newNode = Node();
-	return std::make_shared<Node> (newNode);
+	auto newNode = new Node();
+	return std::make_shared<Node> (*newNode);
 }
 
 void Node::draw()
