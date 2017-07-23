@@ -11,26 +11,32 @@ Node::Node()
 {
 }
 
+Node::NodePtr Node::create()
+{
+	auto newNode = Node();
+	return std::make_shared<Node> (newNode);
+}
+
 void Node::draw()
 {
-	std::sort(drwChilds.begin(), drwChilds.end(), [&](Node *first, Node *second) {
+	std::sort(drwChilds.begin(), drwChilds.end(), [&](NodePtr first, NodePtr second) {
 		return first->getDrawOrder() < second->getDrawOrder();
 	});
 	for (auto &child : Node::getDrawableChildren())
 		child->draw();
 }
 
-void Node::addChild(Node * child)
+void Node::addChild(NodePtr child)
 {
 	this->addChild(child, 0, "");
 }
 
-void Node::addChild(Node * child, int _drawOrder)
+void Node::addChild(NodePtr child, int _drawOrder)
 {
 	Node::addChild(child, _drawOrder, "");
 }
 
-void Node::addChild(Node * child, int _drawOrder, std::string key)
+void Node::addChild(NodePtr child, int _drawOrder, std::string key)
 {
 	assert(child != nullptr);
 	assert(child->parent == nullptr);
@@ -38,7 +44,7 @@ void Node::addChild(Node * child, int _drawOrder, std::string key)
 	this->insertChild(child, _drawOrder, key);
 }
 
-std::vector<Node*> Node::getDrawableChildren() const
+std::vector<Node::NodePtr> Node::getDrawableChildren() const
 {
 	return drwChilds;
 }
@@ -57,10 +63,13 @@ void Node::setParent(Node* _parent)
 void Node::removeFromParent()
 {
 	if (parent != nullptr)
-		parent->removeChild(this);
+	{
+		auto thisPtr = shared_from_this();
+		parent->removeChild(thisPtr);
+	}
 }
 
-void Node::removeChild(Node * childToRemove)
+void Node::removeChild(NodePtr childToRemove)
 {
 	if (drwChilds.empty())
 		return;
@@ -72,7 +81,7 @@ void Node::removeChild(Node * childToRemove)
 	}
 }
 
-void Node::insertChild(Node * child, int order, std::string key)
+void Node::insertChild(NodePtr child, int order, std::string key)
 {
 	drwChilds.push_back(child);
 	child->setNodeKey(key);

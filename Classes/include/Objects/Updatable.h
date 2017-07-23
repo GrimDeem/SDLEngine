@@ -1,7 +1,7 @@
 #pragma once
 #ifndef __UPDATABLE_H__
 #define __UPDATABLE_H__
-
+#include "Node.h"
 /*
 	Updatable is auxiliary class to describe objects
 	which have to be updated each frame with delta time
@@ -14,17 +14,19 @@
 */
 class Updatable
 {
+public:
+	typedef std::shared_ptr<Updatable> UpdatablePtr;
 private:
-	std::vector<Updatable*> updChilds;
+	std::vector<UpdatablePtr> updChilds;
 
 protected:
 	Updatable() {}
 	~Updatable() {} //do not del or remove childs to avoid multiple del (node destructor)
-	virtual void removeChild(Node* childToRemove)
+	virtual void removeChild(Node::NodePtr childToRemove)
 	{
 		if (updChilds.empty())
 			return;
-		auto updChild = dynamic_cast<Updatable*>(childToRemove);
+		auto updChild = std::dynamic_pointer_cast<Updatable>(childToRemove);
 		if (updChild != nullptr) {
 			auto iter = std::find(updChilds.begin(), updChilds.end(), updChild);
 			if (iter != updChilds.end())
@@ -32,9 +34,9 @@ protected:
 		}
 	}
 
-	virtual void insertChild(Node * child)
+	virtual void insertChild(Node::NodePtr child)
 	{
-		auto updChild = dynamic_cast<Updatable*>(child);
+		auto updChild = std::dynamic_pointer_cast<Updatable>(child);
 		if (updChild != nullptr)
 			updChilds.push_back(updChild);
 	}
@@ -46,7 +48,7 @@ public:
 			child->update(dt);
 	}
 
-	virtual std::vector<Updatable*> getUpdatableChildren() const
+	virtual std::vector<UpdatablePtr> getUpdatableChildren() const
 	{
 		return updChilds;
 	}

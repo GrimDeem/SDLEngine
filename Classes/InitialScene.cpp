@@ -30,19 +30,21 @@ bool InitialScene::init()
 
 void InitialScene::drawTextLabelTest()
 {
-	this->setKey("SCene");
-	TextLabel * label = new TextLabel(FONT_PATH, 26, "Felt");
+	//this->setKey("SCene");
+	//auto tmp = TextLabel(FONT_PATH, 26, "Felt");
+	auto label = TextLabel::create(FONT_PATH, 26, "Felt");
 	label->setPosition(Vec2(100,100));
 	label->setFontPath("../Resources/Fonts/MarkerFelt.ttf");
 	label->setColor({0, 255, 133});
 	label->setAnchorPoint(Vec2(0,0));
+	
 	this->addChild(label, 0);
-
-	TextLabel * label2 = new TextLabel("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
+	
+	/*auto label2 = std::make_shared<TextLabel> (new TextLabel("../Resources/Fonts/Kurale.ttf", 26, "Kurale"));
 	label2->setPosition(Vec2(170,100));
-	this->addChild(label2, 0);
+	this->addChild(label2, 0);*/
 }
-
+/*
 void InitialScene::updateScene(const Uint8* kbState, float dt)
 {
 	float speed = 0.1;
@@ -167,3 +169,4 @@ void InitialScene::flipsTest()
 }
 
 
+*/

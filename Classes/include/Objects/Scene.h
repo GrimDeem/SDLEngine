@@ -11,7 +11,7 @@ class Scene : public Node, public Updatable
 {
 protected:
 	std::function<void(const Uint8*, float)> _update;
-	virtual void insertChild(Node * child, int order, std::string key) override;
+	virtual void insertChild(NodePtr child, int order, std::string key) override;
 
 public:
 	Scene() 
@@ -19,7 +19,7 @@ public:
 	{}
 	virtual ~Scene() {}
 
-	virtual void removeChild(Node* childToRemove) override;
+	virtual void removeChild(NodePtr childToRemove) override;
 	virtual void update(float dt) override;
 };
 
