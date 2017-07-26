@@ -45,10 +45,9 @@ bool Game::initSDL()
 void Game::run()
 {
 	unsigned int lastTime = 0;
-
 	while (is_running) {
 		unsigned int loopStartTime = SDL_GetTicks();
-		unsigned int deltaTime = loopStartTime - lastTime;
+		float deltaTime = loopStartTime - lastTime;
 
 		processEvents();
 		updateWorld(deltaTime);

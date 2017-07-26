@@ -64,10 +64,7 @@ void Node::setParent(Node* _parent)
 void Node::removeFromParent()
 {
 	if (parent != nullptr)
-	{
-		auto thisPtr = shared_from_this();
-		parent->removeChild(thisPtr);
-	}
+		parent->removeChild(shared_from_this());
 }
 
 void Node::removeChild(NodePtr childToRemove)
