@@ -26,7 +26,7 @@ void Scene::update(float dt)
 			_update(state, dt);
 		}
 		catch (const std::bad_function_call& e) {
-			std::cout << e.what() << '\n';
+			LOG(e.what());
 		}
 	}
 	Updatable::update(dt);
