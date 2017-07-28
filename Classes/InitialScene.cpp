@@ -20,6 +20,12 @@ InitialScene * InitialScene::create()
 
 bool InitialScene::init()
 {
+	this->setKey("Scene");
+	
+	FPSLabel = TextLabel::create(FONT_PATH, 26, "");
+	FPSLabel->setPosition(100, 400);
+	this->addChild(FPSLabel);
+
 	//animatedSpriteTest();
 	updateTest();
 	//drawPriorityTest();
@@ -28,9 +34,13 @@ bool InitialScene::init()
 	return true;
 }
 
+void InitialScene::update(float dt)
+{
+	Scene::update(dt);
+}
+
 void InitialScene::drawTextLabelTest()
 {
-	this->setKey("SCene");
 	auto label = TextLabel::create(FONT_PATH, 26, "Felt");
 	label->setPosition(Vec2(100,100));
 	label->setFontPath("../Resources/Fonts/MarkerFelt.ttf");
@@ -57,6 +67,7 @@ void InitialScene::updateScene(const Uint8* kbState, float dt)
 	} else  if (kbState[SDL_SCANCODE_DOWN] || kbState[SDL_SCANCODE_S]) {
 		movableTank->moveY(dt * speed);
 	}
+	FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
 }
 
 void InitialScene::updateTest()

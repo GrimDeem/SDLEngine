@@ -17,11 +17,12 @@ class InitialScene : public Scene
 {
 private:
 	std::shared_ptr<Sprite> movableTank;
+	std::shared_ptr<TextLabel> FPSLabel;
 public:
 	static Scene* createScene();
 	static InitialScene* create();
 	virtual bool init();
-
+	virtual void update(float dt) override;
 	void updateScene(const Uint8* kbState, float dt);
 	void updateTest();
 	void drawPriorityTest();

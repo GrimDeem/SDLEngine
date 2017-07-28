@@ -27,6 +27,7 @@ private:
 	SDL_Window* window;
 	TextureManager* texManager;
 	SceneManager* sceneManager;
+	float  framerate;
 public:
 	static Keeper& getInstance();
 	TextureManager* getTextureManager();
@@ -41,6 +42,9 @@ public:
 	void replaceScene(std::shared_ptr<Scene> newScene);
 	void drawCurrentScene();
 	void updateCurrentScene(float dt);
+
+	void setFPS(float fps);
+	float getFPS();
 
 	/*End engine, release memory, destroy window*/
 	void end(); 

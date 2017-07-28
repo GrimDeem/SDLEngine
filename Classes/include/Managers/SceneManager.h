@@ -11,11 +11,11 @@ private:
 	std::shared_ptr<Scene> currentScene;
 public:
 	SceneManager();
-	~SceneManager() {
-		//delete currentScene;
-	}
+	~SceneManager() { }
 
-	/*replaces current scene with a passed new one*/
+	/*
+	@brief replaces current scene with a passed new one
+	 */
 	void replaceScene(std::shared_ptr<Scene> newScene);
 	
 	void drawCurrentScene();

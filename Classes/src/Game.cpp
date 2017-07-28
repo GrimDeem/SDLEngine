@@ -4,8 +4,10 @@ using std::endl;
 
 Game::Game()
 {
+	initFPS();
 	initSDL();	
 	is_running = true;
+
 	auto scene = std::make_shared<Scene>(*InitialScene::createScene());
 	Keeper::getInstance().replaceScene(scene);
 }
@@ -42,33 +44,63 @@ bool Game::initSDL()
 	return true;
 }
 
-void Game::run()
+void Game::initFPS() 
 {
+	memset(frametimes, 0, sizeof(frametimes));
+	framecount = 0;
+	framespersecond = 0;
+	frametimelast = SDL_GetTicks();
+}
+
+float Game::calcFPS() 
+{
+	Uint32 frametimesindex;
+	Uint32 getticks;
+	Uint32 count;
+	Uint32 i;
+	// frametimesindex is the position in the array. It ranges from 0 to FRAME_VALUES.
+	// This value rotates back to 0 after it hits FRAME_VALUES.
+	frametimesindex = framecount % FRAME_VALUES;
+	// store the current time
+	getticks = SDL_GetTicks();
+	// save the frame time value
+	frametimes[frametimesindex] = getticks - frametimelast;
+	// save the last frame time for the next fpsthink
+	frametimelast = getticks;
+	// increment the frame count
+	framecount++;
+	if (framecount < FRAME_VALUES) 
+		count = framecount;
+	else 
+		count = FRAME_VALUES;
+	// add up all the values and divide to get the average frame time.
+	framespersecond = 0;
+	for (i = 0; i < count; i++) 
+		framespersecond += frametimes[i];
+	framespersecond /= count;
+	// now to make it an actual frames per second value...
+	framespersecond = 1000.f / framespersecond;
+	return framespersecond;
+}
+
+void Game::run()
+{ 
 	unsigned int lastTime = 0;
 	while (is_running) {
 		unsigned int loopStartTime = SDL_GetTicks();
 		float deltaTime = loopStartTime - lastTime;
-
+		Keeper::getInstance().setFPS(calcFPS());
+		
 		processEvents();
 		updateWorld(deltaTime);
 		draw();
 
-#ifdef DEBUG
-		auto _frameRate = 1000 / prevDeltaTime;
-		std::cout << "framerate - " << round(_frameRate) << std::endl;
-#endif
-#ifdef FRAME_LIMIT
-		while ((SDL_GetTicks() - lastTime) < targetFrameTime)
+		while ((SDL_GetTicks() - lastTime) < targetFrameTime)	//frame limiting
 			SDL_Delay(targetFrameTime - (SDL_GetTicks() - lastTime));
-#endif // FRAME_LIMIT
+
 		lastTime = loopStartTime;
 	}
 	clean();
-}
-
-void Game::clean()
-{
-	Keeper::getInstance().end();
 }
 
 void Game::processEvents()
@@ -96,4 +128,9 @@ void Game::draw()
 	Keeper::getInstance().drawCurrentScene();
 
 	SDL_RenderPresent(Keeper::getInstance().getRenderer());
+}
+
+void Game::clean()
+{
+	Keeper::getInstance().end();
 }

@@ -31,8 +31,8 @@ protected:
 	  -textContent
 	  -textColor
 	*/
-	virtual void updateTexture();
-	
+	virtual void updateSurface();
+	virtual void clearSurface();
 public:
 	TextLabel(std::string _fontPath, int fsize, std::string _text);
 
@@ -40,6 +40,7 @@ public:
 	virtual ~TextLabel();
 	
 	virtual void draw() override;
+
 
 	/*
 	  @brief sets new text content to a label

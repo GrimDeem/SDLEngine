@@ -3,6 +3,7 @@
 Keeper::Keeper()
 	: renderer(nullptr)
 	, window(nullptr)
+	, framerate(0)
 {
 	texManager = new TextureManager();
 	sceneManager = new SceneManager();
@@ -56,6 +57,16 @@ void Keeper::drawCurrentScene()
 void Keeper::updateCurrentScene( float dt)
 {
 	sceneManager->updateCurrentScene(dt);
+}
+
+void Keeper::setFPS(float fps)
+{
+	framerate = fps;
+}
+
+float Keeper::getFPS()
+{
+	return framerate;
 }
 
 void Keeper::end()

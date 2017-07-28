@@ -18,7 +18,7 @@
 #define WINDOW_POSITION_Y 200
 #define WINDOW_SIZE_X 1366
 #define WINDOW_SIZE_Y 768
-
+#define FRAME_VALUES 10
 class Game
 {
 public:
@@ -26,13 +26,20 @@ public:
 	void run();
 private:
 	bool initSDL();
+	void initFPS();
+	float calcFPS();
 	void processEvents();
 	void updateWorld(float dt);
 	void draw();
 	void clean();
 
 	bool is_running;
-	const float targetFrameTime = 66.6f; // for 30 fps
+	Uint32 frametimes[FRAME_VALUES]; // An array to store frame times
+	Uint32 frametimelast;  // Last calculated SDL_GetTicks
+	Uint32 framecount; 	   // total frames rendered
+	float framespersecond;
+	const float targetFrameTime = 33.f; // for 60 fps
+
 };
 
 #endif //!__GAME_H__
