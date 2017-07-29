@@ -8,7 +8,7 @@ Game::Game()
 	initSDL();	
 	is_running = true;
 
-	Keeper::getInstance().replaceScene(InitialScene::create());
+	Keeper::getInstance().runFirstScene(InitialScene::create());
 }
 
 bool Game::initSDL()

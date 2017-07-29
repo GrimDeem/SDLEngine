@@ -29,6 +29,17 @@ public:
 	void drawTextLabelTest();
 	void flipsTest();
 };
+
+class AdditionalScene : public Scene
+{
+private:
+	std::shared_ptr<Sprite> movableTank;
+	std::shared_ptr<TextLabel> FPSLabel;
+public:
+	static std::shared_ptr<AdditionalScene> create();
+	virtual bool init();
+
+};
  
 #endif // !__INITIAL_SCENE_H__
 

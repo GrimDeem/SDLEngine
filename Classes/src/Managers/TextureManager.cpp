@@ -47,7 +47,7 @@ void TextureManager::unloadTexture(std::string pathToTexture)
 
 void TextureManager::unloadTexture(SDL_Texture * texture)
 {
-	if (texture != nullptr) {
+	if (texture == nullptr) {
 		return;
 	}
 	

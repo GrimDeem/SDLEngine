@@ -38,8 +38,10 @@ public:
 	void initWindow(SDL_Window* _window);
 	SDL_Window* getWindow(); 
 
+	SceneManager* getSceneManager();
 	/*replaces current scene with a passed new one*/
-	void replaceScene(std::shared_ptr<Scene> newScene);
+	void replaceCurrentScene(std::shared_ptr<Scene> newScene);
+	void runFirstScene(std::shared_ptr<Scene> newScene);
 	void drawCurrentScene();
 	void updateCurrentScene(float dt);
 

@@ -59,6 +59,9 @@ void InitialScene::updateScene(const Uint8* kbState, float dt)
 	} else  if (kbState[SDL_SCANCODE_DOWN] || kbState[SDL_SCANCODE_S]) {
 		movableTank->moveY(dt * speed);
 	}
+
+	if (kbState[SDL_SCANCODE_N])
+		Keeper::getInstance().replaceCurrentScene(AdditionalScene::create());
 }
 
 void InitialScene::updateTest()
@@ -165,4 +168,23 @@ void InitialScene::flipsTest()
 	labelFlippedH->setPosition(Vec2(170, 140));
 	labelFlippedH->flipHorisontal();
 	this->addChild(labelFlippedH, 0);
+}
+
+
+std::shared_ptr<AdditionalScene> AdditionalScene::create()
+{
+	AdditionalScene *pRet = new(std::nothrow) AdditionalScene();
+	if (pRet && pRet->init())
+		return std::make_shared<AdditionalScene>(*pRet);
+	else
+		assert(false);
+}
+
+bool AdditionalScene::init()
+{
+	this->setKey("AdditionalScene");
+	FPSLabel = TextLabel::create(FONT_PATH, 26, "NewScene");
+	FPSLabel->setPosition(100, 400);
+	this->addChild(FPSLabel);
+	return true;
 }
