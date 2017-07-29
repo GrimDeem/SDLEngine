@@ -19,8 +19,7 @@ private:
 	std::shared_ptr<Sprite> movableTank;
 	std::shared_ptr<TextLabel> FPSLabel;
 public:
-	static Scene* createScene();
-	static InitialScene* create();
+	static std::shared_ptr<InitialScene> create();
 	virtual bool init();
 	virtual void update(float dt) override;
 	void updateScene(const Uint8* kbState, float dt);

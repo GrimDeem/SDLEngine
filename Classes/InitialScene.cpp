@@ -1,21 +1,12 @@
 #include "InitialScene.h"
 
-Scene * InitialScene::createScene()
-{
-	Scene* scene = InitialScene::create();
-	return scene;
-}
-
-InitialScene * InitialScene::create()
+std::shared_ptr<InitialScene> InitialScene::create()
 {
 	InitialScene *pRet = new(std::nothrow) InitialScene(); 
 	if (pRet && pRet->init())
-		return pRet; 
-	else 
-	{ 
-		delete pRet; 
-		return nullptr; 
-	}
+		return std::make_shared<InitialScene>(*pRet);
+	else
+		assert(false);	
 }
 
 bool InitialScene::init()
@@ -37,6 +28,7 @@ bool InitialScene::init()
 void InitialScene::update(float dt)
 {
 	Scene::update(dt);
+	FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
 }
 
 void InitialScene::drawTextLabelTest()
@@ -67,7 +59,6 @@ void InitialScene::updateScene(const Uint8* kbState, float dt)
 	} else  if (kbState[SDL_SCANCODE_DOWN] || kbState[SDL_SCANCODE_S]) {
 		movableTank->moveY(dt * speed);
 	}
-	FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
 }
 
 void InitialScene::updateTest()
@@ -148,7 +139,6 @@ void InitialScene::animatedSpriteTest()
 
 void InitialScene::flipsTest()
 {
-        //todo: fix bug (if draw labels first assertion failed and one of sprites is not drawing) wt?!
 	auto tank = Sprite::create(IMG_PATH);
 	tank->setPosition(Vec2(100, 100));
 	this->addChild(tank, 0, "tank");
@@ -160,19 +150,19 @@ void InitialScene::flipsTest()
 
 	auto tank3 = Sprite::create(IMG_PATH);
 	tank3->setPosition(Vec2(100, 150));
-      	this->addChild(tank3, 0, "tank3");		
-	
+	this->addChild(tank3, 0, "tank3");
+
 	auto labelDefault = TextLabel::create("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
-	labelDefault->setPosition(Vec2(170,60));
+	labelDefault->setPosition(Vec2(170, 60));
 	this->addChild(labelDefault, 0);
-	
+
 	auto labelFlippedV = TextLabel::create("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
-	labelFlippedV->setPosition(Vec2(170,100));
+	labelFlippedV->setPosition(Vec2(170, 100));
 	labelFlippedV->flipVertical();
 	this->addChild(labelFlippedV, 0);
-		
+
 	auto labelFlippedH = TextLabel::create("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
-	labelFlippedH->setPosition(Vec2(170,140));
+	labelFlippedH->setPosition(Vec2(170, 140));
 	labelFlippedH->flipHorisontal();
 	this->addChild(labelFlippedH, 0);
 }
