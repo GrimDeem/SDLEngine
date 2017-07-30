@@ -33,13 +33,47 @@ public:
 class AdditionalScene : public Scene
 {
 private:
-	std::shared_ptr<Sprite> movableTank;
 	std::shared_ptr<TextLabel> FPSLabel;
+	std::vector<std::shared_ptr<Sprite>> sprites;
 public:
-	static std::shared_ptr<AdditionalScene> create();
-	virtual bool init();
+	static std::shared_ptr<AdditionalScene> AdditionalScene::create()
+	{
+		AdditionalScene *pRet = new(std::nothrow) AdditionalScene();
+		if (pRet && pRet->init())
+			return std::make_shared<AdditionalScene>(*pRet);
+		else
+			assert(false);
+	}
 
+	bool AdditionalScene::init()
+	{
+		FPSLabel = TextLabel::create(FONT_PATH, 40, "");
+		FPSLabel->setPosition(100, 100);
+		FPSLabel->setColor({ 255, 0, 0 });
+		this->addChild(FPSLabel, 1);
+
+		for (int i = 0; i <= 50000; i++) {
+			auto sprite = Sprite::create(IMG2_PATH);
+			sprite->setPosition(createSpritePos());
+			sprite->setScale(0.1);
+			sprites.push_back(sprite);
+			this->addChild(sprite, -1);
+		}
+		return true;
+	}
+
+	virtual void AdditionalScene::update(float dt) override
+	{
+		for (auto sprite : sprites)
+			sprite->setPosition(createSpritePos());
+		FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
+	}
+
+	Vec2 createSpritePos() 
+	{
+		return Vec2(rand() % 1366, rand() % 768);
+	}
 };
  
-#endif // !__INITIAL_SCENE_H__
 
+#endif // !__INITIAL_SCENE_H__

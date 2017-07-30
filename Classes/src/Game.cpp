@@ -94,8 +94,8 @@ void Game::run()
 		updateWorld(deltaTime);
 		draw();
 
-		while ((SDL_GetTicks() - lastTime) < targetFrameTime)	//frame limiting
-			SDL_Delay(targetFrameTime - (SDL_GetTicks() - lastTime));
+//		while ((SDL_GetTicks() - lastTime) < targetFrameTime)	//frame limiting
+//			SDL_Delay(targetFrameTime - (SDL_GetTicks() - lastTime));
 
 		lastTime = loopStartTime;
 	}

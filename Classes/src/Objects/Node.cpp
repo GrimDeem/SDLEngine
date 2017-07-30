@@ -10,6 +10,7 @@ Node::Node()
 	, flip(false, false)
 	, parent(nullptr)
 	, nodeKey("")
+	, needsSortFlag(true)
 {
 }
 
@@ -20,9 +21,12 @@ Node::NodePtr Node::create()
 
 void Node::draw()
 {
-	std::sort(drwChilds.begin(), drwChilds.end(), [&](NodePtr first, NodePtr second) {
-		return first->getDrawOrder() < second->getDrawOrder();
-	});
+	if (this->needsSortFlag == true) {
+		std::sort(drwChilds.begin(), drwChilds.end(), [&](NodePtr first, NodePtr second) {
+			return first->getDrawOrder() < second->getDrawOrder();
+		});
+		this->needsSortFlag = false;
+	}
 	for (auto &child : Node::getDrawableChildren())
 		child->draw();
 }
@@ -84,6 +88,7 @@ void Node::insertChild(NodePtr child, int order, std::string key)
 	child->setNodeKey(key);
 	child->setDrawOrder(order);
 	child->setParent(this);
+	this->needsSort();
 }
 
 void Node::setPosition(Vec2 _position)
@@ -178,6 +183,8 @@ float Node::getScaleY() const
 void Node::setDrawOrder(int order)
 {
 	drawOrder = order;
+	if(parent != nullptr)
+		parent->needsSort();
 }
 
 int Node::getDrawOrder() const
@@ -281,3 +288,7 @@ void Node::moveRecursive(float deltaX, float deltaY)
 		child->moveRecursive(deltaX, deltaY);
 }
 
+void Node::needsSort()
+{
+	this->needsSortFlag = true;
+}

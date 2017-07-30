@@ -11,7 +11,7 @@ std::shared_ptr<InitialScene> InitialScene::create()
 
 bool InitialScene::init()
 {
-	this->setKey("Scene");
+	//this->setKey("Scene");
 	
 	FPSLabel = TextLabel::create(FONT_PATH, 26, "");
 	FPSLabel->setPosition(100, 400);
@@ -19,7 +19,7 @@ bool InitialScene::init()
 
 	//animatedSpriteTest();
 	updateTest();
-	//drawPriorityTest();
+//	drawPriorityTest();
 	//drawTextLabelTest();
 	//flipsTest();
 	return true;
@@ -60,8 +60,9 @@ void InitialScene::updateScene(const Uint8* kbState, float dt)
 		movableTank->moveY(dt * speed);
 	}
 
-	if (kbState[SDL_SCANCODE_N])
+	if (kbState[SDL_SCANCODE_N]) {
 		Keeper::getInstance().replaceCurrentScene(AdditionalScene::create());
+	}
 }
 
 void InitialScene::updateTest()
@@ -92,7 +93,7 @@ void InitialScene::drawPriorityTest()
 		auto tank3 = Sprite::create(IMG_PATH);
 		tank3->setPosition(Vec2(100, 150));
 		tank3->setScale(1.0f / 2);
-		parentNode1->addChild(tank3, 1, "tank3");
+		parentNode1->addChild(tank3, 4, "tank3");
 	}
 
 	auto parentNode2 = Node::create();
@@ -100,16 +101,17 @@ void InitialScene::drawPriorityTest()
 		auto linux = Sprite::create(IMG2_PATH);
 		linux->setPosition(Vec2(100, 100));
 		linux->setRotation(180);
-		linux->setScale(0.5);
+		linux->setScale(3);
 		parentNode2->addChild(linux, -1, "linux");
 
 		auto linux2 = Sprite::create(IMG2_PATH);
-		linux2->setPosition(Vec2(100, 200));
+		linux2->setPosition(Vec2(100, 300));
 		linux2->setRotation(180);
+		linux->flipHorisontal();
 		linux2->setScale(0.5);
 		parentNode2->addChild(linux2, -1, "linux2");
 		
-		auto tank = Sprite::create(IMG_PATH);
+		auto tank = Sprite::create(IMG2_PATH);
 		tank->setPosition(Vec2(100, 150));
 		tank->setScale(2);
 		parentNode2->addChild(tank, -1, "tank");
@@ -170,21 +172,3 @@ void InitialScene::flipsTest()
 	this->addChild(labelFlippedH, 0);
 }
 
-
-std::shared_ptr<AdditionalScene> AdditionalScene::create()
-{
-	AdditionalScene *pRet = new(std::nothrow) AdditionalScene();
-	if (pRet && pRet->init())
-		return std::make_shared<AdditionalScene>(*pRet);
-	else
-		assert(false);
-}
-
-bool AdditionalScene::init()
-{
-	this->setKey("AdditionalScene");
-	FPSLabel = TextLabel::create(FONT_PATH, 26, "NewScene");
-	FPSLabel->setPosition(100, 400);
-	this->addChild(FPSLabel);
-	return true;
-}

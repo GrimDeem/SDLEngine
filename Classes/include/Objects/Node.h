@@ -63,6 +63,7 @@ private:
 	FlipState flip;
 	Vec2 anchorPoint;
 	int drawOrder;
+	bool needsSortFlag;
 
 	std::vector<NodePtr> drwChilds;
 	Node* parent;
@@ -138,6 +139,8 @@ public:
 	virtual void moveX(float deltaX);
 	virtual void moveY(float deltaY);
 	virtual void moveRecursive(float deltaX, float deltaY);		
+
+	virtual void needsSort();
 };
 
 #endif //!__NODE_H__
