@@ -28,7 +28,7 @@ private:
 	bool initSDL();
 	void initFPS();
 	float calcFPS();
-	void processEvents();
+	void processEvents(float dt);
 	void updateWorld(float dt);
 	void draw();
 	void clean();

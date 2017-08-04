@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Managers">
       <UniqueIdentifier>{bfc217ee-c154-48fc-83af-56b5741081d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{3a3cdfb7-c9d7-49d4-a87b-a746db97c55f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{6485cda9-5e63-48ca-a7a7-ac9807271cfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\src\Objects\TextLabel.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\src\Input\KeyboardEventHolder.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\src\Input\EventHandler.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +121,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\include\Objects\TextLabel.h">
       <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\include\Input\KeyboardEventHolder.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\include\Input\EventHandler.h">
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

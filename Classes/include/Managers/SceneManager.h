@@ -17,6 +17,11 @@ public:
 	~SceneManager() { }
 
 	/*
+	@brief returns shared_ptr to current scene
+	*/
+	EventHandler getCurrentSceneEventHandler();
+
+	/*
 	@brief use only for first scene
 	 */
 	void runFirstScene(std::shared_ptr<Scene> newScene);

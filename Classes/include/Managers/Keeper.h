@@ -42,6 +42,7 @@ public:
 	/*replaces current scene with a passed new one*/
 	void replaceCurrentScene(std::shared_ptr<Scene> newScene);
 	void runFirstScene(std::shared_ptr<Scene> newScene);
+	EventHandler getEventHandler();
 	void drawCurrentScene();
 	void updateCurrentScene(float dt);
 

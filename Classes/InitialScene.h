@@ -44,15 +44,24 @@ public:
 		else
 			assert(false);
 	}
-
+	
 	bool AdditionalScene::init()
 	{
+		auto kbHolder = KeyboardEventHolder();
+		kbHolder.onKeyPressed(
+			[](SDL_KeyboardEvent *key, float dt)
+		{ 
+			if (key->keysym.sym == SDLK_ESCAPE)
+				exit(0);
+		});
+		eventHandler.addKeyboardHolder(kbHolder);
+		
 		FPSLabel = TextLabel::create(FONT_PATH, 40, "");
 		FPSLabel->setPosition(100, 100);
 		FPSLabel->setColor({ 255, 0, 0 });
 		this->addChild(FPSLabel, 1);
 
-		for (int i = 0; i <= 50000; i++) {
+		for (int i = 0; i <= 5; i++) {
 			auto sprite = Sprite::create(IMG2_PATH);
 			sprite->setPosition(createSpritePos());
 			sprite->setScale(0.1);

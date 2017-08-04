@@ -6,6 +6,11 @@ SceneManager::SceneManager()
 {
 }
 
+EventHandler SceneManager::getCurrentSceneEventHandler()
+{
+	return currentScene->getEventHandler();
+}
+
 void SceneManager::runFirstScene(std::shared_ptr<Scene> newScene)
 {
 	assert(newScene != nullptr);

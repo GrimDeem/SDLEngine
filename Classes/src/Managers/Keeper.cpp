@@ -58,6 +58,11 @@ void Keeper::runFirstScene(std::shared_ptr<Scene> newScene)
 	sceneManager->runFirstScene(newScene);
 }
 
+EventHandler Keeper::getEventHandler()
+{
+	return sceneManager->getCurrentSceneEventHandler();
+}
+
 void Keeper::drawCurrentScene()
 {
 	sceneManager->drawCurrentScene();

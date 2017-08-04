@@ -90,20 +90,21 @@ void Game::run()
 		float deltaTime = loopStartTime - lastTime;
 		Keeper::getInstance().setFPS(calcFPS());
 		
-		processEvents();
+		processEvents(deltaTime);
 		updateWorld(deltaTime);
 		draw();
 
-//		while ((SDL_GetTicks() - lastTime) < targetFrameTime)	//frame limiting
-//			SDL_Delay(targetFrameTime - (SDL_GetTicks() - lastTime));
+		while ((SDL_GetTicks() - lastTime) < targetFrameTime)	//frame limiting
+			SDL_Delay(targetFrameTime - (SDL_GetTicks() - lastTime));
 
 		lastTime = loopStartTime;
 	}
 	clean();
 }
 
-void Game::processEvents()
+void Game::processEvents(float dt)
 {
+	auto handler = Keeper::getInstance().getEventHandler();
 	SDL_Event event;
 	if (SDL_PollEvent(&event)) {
 		switch (event.type)
@@ -111,6 +112,14 @@ void Game::processEvents()
 		case SDL_QUIT:
 			is_running = false;
 			break;
+
+		case SDL_KEYDOWN:
+			handler.processKBHoldersPressed(&event.key, dt);
+			break;
+		case SDL_KEYUP:
+			handler.processKBHoldersReleased(&event.key, dt);
+			break;
+			
 		}
 	}
 }

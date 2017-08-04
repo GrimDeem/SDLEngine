@@ -1,5 +1,4 @@
 #include "../../include/Objects/Scene.h"
-#include <iostream>
 
 std::shared_ptr<Scene> Scene::create()
 {
@@ -30,4 +29,9 @@ void Scene::update(float dt)
 		}
 	}
 	Updatable::update(dt);
+}
+
+EventHandler Scene::getEventHandler()
+{
+	return eventHandler;
 }
