@@ -36,7 +36,7 @@ private:
 	std::shared_ptr<TextLabel> FPSLabel;
 	std::vector<std::shared_ptr<Sprite>> sprites;
 public:
-	static std::shared_ptr<AdditionalScene> AdditionalScene::create()
+	static std::shared_ptr<AdditionalScene> create()
 	{
 		AdditionalScene *pRet = new(std::nothrow) AdditionalScene();
 		if (pRet && pRet->init())
@@ -45,7 +45,7 @@ public:
 			assert(false);
 	}
 	
-	bool AdditionalScene::init()
+	bool init()
 	{
 		auto kbHolder = KeyboardEventHolder();
 		kbHolder.onKeyPressed(
@@ -71,7 +71,7 @@ public:
 		return true;
 	}
 
-	virtual void AdditionalScene::update(float dt) override
+	virtual void update(float dt) override
 	{
 		for (auto sprite : sprites)
 			sprite->setPosition(createSpritePos());
