@@ -1,5 +1,5 @@
-#ifndef _KB_INPUT_
-#define _KB_INPUT_
+#ifndef _KB_EVENT_HOLDER_
+#define _KB_EVENT_HOLDER_
 
 #include <SDL.h>
 #include <vector>
@@ -21,4 +21,4 @@ public:
 	virtual void processOnKeyReleased(SDL_KeyboardEvent *key, float dt);
 };
 
-#endif // !_KB_INPUT_
+#endif // !_KB_EVENT_HOLDER_

@@ -61,7 +61,7 @@ public:
 		FPSLabel->setColor({ 255, 0, 0 });
 		this->addChild(FPSLabel, 1);
 
-		for (int i = 0; i <= 5; i++) {
+		for (int i = 0; i <= 50000; i++) {
 			auto sprite = Sprite::create(IMG2_PATH);
 			sprite->setPosition(createSpritePos());
 			sprite->setScale(0.1);

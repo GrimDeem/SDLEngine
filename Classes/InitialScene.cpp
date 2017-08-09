@@ -11,8 +11,7 @@ std::shared_ptr<InitialScene> InitialScene::create()
 
 bool InitialScene::init()
 {
-	//this->setKey("Scene");
-	
+
 	FPSLabel = TextLabel::create(FONT_PATH, 26, "");
 	FPSLabel->setPosition(100, 400);
 	this->addChild(FPSLabel);

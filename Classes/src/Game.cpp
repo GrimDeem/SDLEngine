@@ -116,10 +116,22 @@ void Game::processEvents(float dt)
 		case SDL_KEYDOWN:
 			handler.processKBHoldersPressed(&event.key, dt);
 			break;
+
 		case SDL_KEYUP:
 			handler.processKBHoldersReleased(&event.key, dt);
 			break;
-			
+		
+		case SDL_MOUSEMOTION:
+			handler.processMouseHoldersMoved(&event.motion, dt);
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			handler.processMouseHoldersPressed(&event.button, dt);
+			break;
+
+		case SDL_MOUSEBUTTONUP:
+			handler.processMouseHoldersPressed(&event.button, dt);
+			break;
 		}
 	}
 }

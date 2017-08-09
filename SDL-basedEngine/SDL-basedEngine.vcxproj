@@ -163,6 +163,7 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClCompile Include="..\Classes\src\Game.cpp" />
     <ClCompile Include="..\Classes\src\Input\EventHandler.cpp" />
     <ClCompile Include="..\Classes\src\Input\KeyboardEventHolder.cpp" />
+    <ClCompile Include="..\Classes\src\Input\MouseEventHolder.cpp" />
     <ClCompile Include="..\Classes\src\Managers\Keeper.cpp" />
     <ClCompile Include="..\Classes\src\Managers\SceneManager.cpp" />
     <ClCompile Include="..\Classes\src\Managers\TextureManager.cpp" />
@@ -180,6 +181,7 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClInclude Include="..\Classes\include\Game.h" />
     <ClInclude Include="..\Classes\include\Input\EventHandler.h" />
     <ClInclude Include="..\Classes\include\Input\KeyboardEventHolder.h" />
+    <ClInclude Include="..\Classes\include\Input\MouseEventHolder.h" />
     <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
     <ClInclude Include="..\Classes\include\Managers\SceneManager.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />

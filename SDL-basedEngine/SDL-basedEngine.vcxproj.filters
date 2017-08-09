@@ -78,6 +78,9 @@
     <ClCompile Include="..\Classes\src\Input\EventHandler.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\src\Input\MouseEventHolder.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\include\Objects\Node.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\include\Input\EventHandler.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\include\Input\MouseEventHolder.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
