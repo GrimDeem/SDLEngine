@@ -52,6 +52,7 @@ class Node : public std::enable_shared_from_this<Node>
 {
 public:
 	typedef std::shared_ptr<Node> NodePtr;
+	typedef std::weak_ptr<Node> ParentPtr;
 private:
 	Vec2 position;
 
@@ -66,12 +67,12 @@ private:
 	bool needsSortFlag;
 
 	std::vector<NodePtr> drwChilds;
-	Node* parent;
+	ParentPtr parent;
 
 	std::string nodeKey;
 
 protected:
-	virtual void setParent(Node* _parent);
+	virtual void setParent(NodePtr _parent);
 	virtual void insertChild(NodePtr child, int order, std::string key);
 
 public:
@@ -88,10 +89,12 @@ public:
 	virtual void addChild(NodePtr child, int _drawOrder, std::string key);
 
 	virtual std::vector<NodePtr> getDrawableChildren() const;
-	virtual Node* getParent() const;
+	virtual Node::NodePtr getParent() const;
 
 	virtual void removeFromParent();
 	virtual void removeChild(NodePtr childToRemove);
+
+	virtual NodePtr getChildByKey(std::string childKey);
 
 	virtual void setPosition(Vec2 _position);
 	virtual void setPosition(float _x, float _y);

@@ -38,9 +38,9 @@ private:
 public:
 	static std::shared_ptr<AdditionalScene> create()
 	{
-		AdditionalScene *pRet = new(std::nothrow) AdditionalScene();
+		auto pRet = std::make_shared<AdditionalScene>(AdditionalScene());
 		if (pRet && pRet->init())
-			return std::make_shared<AdditionalScene>(*pRet);
+			return pRet;
 		else
 			assert(false);
 	}

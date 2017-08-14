@@ -8,7 +8,7 @@ Node::Node()
 	, drawOrder(0)
 	, anchorPoint(0.5, 0.5)
 	, flip(false, false)
-	, parent(nullptr)
+//	, parent(nullptr)
 	, nodeKey("")
 	, needsSortFlag(true)
 {
@@ -44,7 +44,7 @@ void Node::addChild(NodePtr child, int _drawOrder)
 void Node::addChild(NodePtr child, int _drawOrder, std::string key)
 {
 	assert(child != nullptr);
-	assert(child->parent == nullptr);
+	assert(child->getParent() == nullptr);
 
 	this->insertChild(child, _drawOrder, key);
 }
@@ -54,12 +54,15 @@ std::vector<Node::NodePtr> Node::getDrawableChildren() const
 	return drwChilds;
 }
 
-Node * Node::getParent() const
+Node::NodePtr Node::getParent() const
 {
-	return parent;
+	if (auto ptr = parent.lock())
+		return ptr;
+	else
+		return nullptr;
 }
 
-void Node::setParent(Node* _parent)
+void Node::setParent(NodePtr _parent)
 {
 	assert(_parent != nullptr);
 	parent = _parent;
@@ -67,8 +70,9 @@ void Node::setParent(Node* _parent)
 
 void Node::removeFromParent()
 {
-	if (parent != nullptr)
-		parent->removeChild(shared_from_this());
+	auto pPtr = parent.lock();
+	if (pPtr != nullptr)
+		pPtr->removeChild(shared_from_this());
 }
 
 void Node::removeChild(NodePtr childToRemove)
@@ -82,12 +86,26 @@ void Node::removeChild(NodePtr childToRemove)
 	}
 }
 
+Node::NodePtr Node::getChildByKey(std::string childKey)
+{
+	if (!childKey.empty()) {
+		auto iter = std::find_if(drwChilds.begin(), drwChilds.end(), 
+			[childKey](Node::NodePtr child)
+		{
+			return child->getNodeKey() == childKey;
+		});
+		if (iter != drwChilds.end())
+			return *iter;
+	}
+	return nullptr;
+}
+
 void Node::insertChild(NodePtr child, int order, std::string key)
 {
 	drwChilds.push_back(child);
 	child->setNodeKey(key);
 	child->setDrawOrder(order);
-	child->setParent(this);
+	child->setParent(shared_from_this());
 	this->needsSort();
 }
 
@@ -183,8 +201,9 @@ float Node::getScaleY() const
 void Node::setDrawOrder(int order)
 {
 	drawOrder = order;
-	if(parent != nullptr)
-		parent->needsSort();
+	auto pPtr = parent.lock();
+	if(pPtr != nullptr)
+		pPtr->needsSort();
 }
 
 int Node::getDrawOrder() const

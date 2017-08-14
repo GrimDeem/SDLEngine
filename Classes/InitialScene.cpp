@@ -2,11 +2,11 @@
 
 std::shared_ptr<InitialScene> InitialScene::create()
 {
-	InitialScene *pRet = new(std::nothrow) InitialScene(); 
+	auto pRet = std::make_shared<InitialScene>(InitialScene());
 	if (pRet && pRet->init())
-		return std::make_shared<InitialScene>(*pRet);
+		return pRet;
 	else
-		assert(false);	
+		assert(false);
 }
 
 bool InitialScene::init()
@@ -18,7 +18,7 @@ bool InitialScene::init()
 
 	//animatedSpriteTest();
 	updateTest();
-//	drawPriorityTest();
+	//drawPriorityTest();
 	//drawTextLabelTest();
 	//flipsTest();
 	return true;
