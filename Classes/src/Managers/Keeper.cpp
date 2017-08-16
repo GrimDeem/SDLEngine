@@ -85,8 +85,8 @@ float Keeper::getFPS()
 
 void Keeper::end()
 {
-	delete texManager;
 	delete sceneManager;
+	delete texManager;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	TTF_Quit();

@@ -3,7 +3,8 @@
 std::shared_ptr<InitialScene> InitialScene::create()
 {
 	auto pRet = std::make_shared<InitialScene>(InitialScene());
-	if (pRet && pRet->init())
+	if (pRet)
+		if( pRet->init())
 		return pRet;
 	else
 		assert(false);
@@ -11,16 +12,15 @@ std::shared_ptr<InitialScene> InitialScene::create()
 
 bool InitialScene::init()
 {
-
 	FPSLabel = TextLabel::create(FONT_PATH, 26, "");
 	FPSLabel->setPosition(100, 400);
 	this->addChild(FPSLabel);
 
-	//animatedSpriteTest();
+//	animatedSpriteTest();
 	updateTest();
-	//drawPriorityTest();
-	//drawTextLabelTest();
-	//flipsTest();
+//	drawPriorityTest();
+//	drawTextLabelTest();
+//	flipsTest();
 	return true;
 }
 

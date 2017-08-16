@@ -18,7 +18,7 @@ class InitialScene : public Scene
 private:
 	std::shared_ptr<Sprite> movableTank;
 	std::shared_ptr<TextLabel> FPSLabel;
-public:
+public: 
 	static std::shared_ptr<InitialScene> create();
 	virtual bool init();
 	virtual void update(float dt) override;
@@ -52,7 +52,7 @@ public:
 			[](SDL_KeyboardEvent *key, float dt)
 		{ 
 			if (key->keysym.sym == SDLK_ESCAPE)
-				exit(0);
+				Keeper::getInstance().end();
 		});
 		eventHandler.addKeyboardHolder(kbHolder);
 		

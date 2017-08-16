@@ -33,10 +33,10 @@ SDL_Texture * TextureManager::loadTexture(std::string pathToTexture)
 void TextureManager::unloadTexture(std::string pathToTexture)
 {
 	if (!pathToTexture.empty()) {
-		auto it = _textures.find(pathToTexture);
+		_texturesIterator it = _textures.find(pathToTexture);
 		if (it != _textures.end()) {  // if texture is finded -> return it
-			_textures.erase(pathToTexture);
 			SDL_DestroyTexture(it->second);
+			_textures.erase(it);
 		}
 	}
 }
