@@ -88,19 +88,21 @@ public:
 	virtual void addChild(NodePtr child, int _drawOrder);
 	virtual void addChild(NodePtr child, int _drawOrder, std::string key);
 
-	virtual std::vector<NodePtr> getDrawableChildren() const;
+	virtual const std::vector<NodePtr> getDrawableChildren() const;
 	virtual Node::NodePtr getParent() const;
+	virtual void removeChildren();
+	virtual void destroyChildrenRecursive();
 
 	virtual void removeFromParent();
 	virtual void removeChild(NodePtr childToRemove);
 
-	virtual NodePtr getChildByKey(std::string childKey);
+	virtual NodePtr getChildByKey(std::string childKey) const;
 
 	virtual void setPosition(Vec2 _position);
 	virtual void setPosition(float _x, float _y);
 	virtual Vec2 getPosition() const;
-	virtual float getPositionX();
-	virtual float getPositionY();
+	virtual float getPositionX() const;
+	virtual float getPositionY() const;
 
 	virtual void setScaleX(float _scaleX);
 	virtual void setScaleXRecursive(float _scaleX);
@@ -122,20 +124,20 @@ public:
 
 	virtual void setAnchorPoint(Vec2 newAnchorPoint);
 	virtual void setAnchorPoint(float anchorX, float anchorY);
-	virtual Vec2 getAnchorPoint();
+	virtual Vec2 getAnchorPoint() const;
 
 	/*sets rotation of the sprite clockwise in degrees */
 	virtual void setRotation(float angle);
 	virtual void setRotationRecursive(float angle);
-	virtual float getRotation();
+	virtual float getRotation() const;
 
 	virtual void flipVertical();
 	virtual void flipHorisontal();
-	virtual FlipState getFlipState();
+	virtual FlipState getFlipState() const;
 	virtual void setFlipState(FlipState _newFlipState);
 
 	virtual void setNodeKey(std::string _key);
-	virtual std::string getNodeKey();
+	virtual std::string getNodeKey() const;
 
 	virtual void move(Vec2 delta);
 	virtual void move(float deltaX, float deltaY);

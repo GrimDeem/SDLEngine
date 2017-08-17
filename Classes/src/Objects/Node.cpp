@@ -8,7 +8,6 @@ Node::Node()
 	, drawOrder(0)
 	, anchorPoint(0.5, 0.5)
 	, flip(false, false)
-//	, parent(nullptr)
 	, nodeKey("")
 	, needsSortFlag(true)
 {
@@ -49,9 +48,23 @@ void Node::addChild(NodePtr child, int _drawOrder, std::string key)
 	this->insertChild(child, _drawOrder, key);
 }
 
-std::vector<Node::NodePtr> Node::getDrawableChildren() const
+const std::vector<Node::NodePtr> Node::getDrawableChildren() const
 {
 	return drwChilds;
+}
+
+void Node::removeChildren()
+{
+	for (auto child : drwChilds)
+		child->setParent(nullptr);
+	drwChilds.clear();
+}
+
+void Node::destroyChildrenRecursive()
+{
+	for (auto child : drwChilds)
+		destroyChildrenRecursive();
+	removeChildren();
 }
 
 Node::NodePtr Node::getParent() const
@@ -64,7 +77,6 @@ Node::NodePtr Node::getParent() const
 
 void Node::setParent(NodePtr _parent)
 {
-	assert(_parent != nullptr);
 	parent = _parent;
 }
 
@@ -82,11 +94,12 @@ void Node::removeChild(NodePtr childToRemove)
 
 	auto iter = std::find(drwChilds.begin(), drwChilds.end(), childToRemove);
 	if (iter != drwChilds.end()) {
+		(*iter)->setParent(nullptr);
 		drwChilds.erase(iter);
 	}
 }
 
-Node::NodePtr Node::getChildByKey(std::string childKey)
+Node::NodePtr Node::getChildByKey(std::string childKey) const
 {
 	if (!childKey.empty()) {
 		auto iter = std::find_if(drwChilds.begin(), drwChilds.end(), 
@@ -124,12 +137,12 @@ Vec2 Node::getPosition() const
 	return position;
 }
 
-float Node::getPositionX()
+float Node::getPositionX() const
 {
 	return position.x;
 }
 
-float Node::getPositionY()
+float Node::getPositionY() const
 {
 	return position.y;
 }
@@ -229,7 +242,7 @@ void Node::setAnchorPoint(float anchorX, float anchorY)
 	anchorPoint = Vec2(anchorX, anchorY);
 }
 
-Vec2 Node::getAnchorPoint()
+Vec2 Node::getAnchorPoint() const
 {
 	return anchorPoint;
 }
@@ -246,7 +259,7 @@ void Node::setRotationRecursive(float angle)
 		child->setRotationRecursive(angle);
 }
 
-float Node::getRotation()
+float Node::getRotation() const
 {
 	return rotation;
 }
@@ -260,7 +273,7 @@ void Node::flipHorisontal()
 	flip.horisontal = !flip.horisontal;
 }
 
-FlipState Node::getFlipState()
+FlipState Node::getFlipState() const
 {
 	return flip;
 }
@@ -275,7 +288,7 @@ void Node::setNodeKey(std::string _key)
 	this->nodeKey = _key;
 }
 
-std::string Node::getNodeKey()
+std::string Node::getNodeKey() const
 {
 	return nodeKey;
 }

@@ -54,7 +54,7 @@ public:
 		return result;	
 	}
 
-	inline Vec2& operator+=(const Vec2& v)
+	inline void operator+=(const Vec2& v)
 	{
 		x += v.x;
 		y += v.y;
@@ -68,7 +68,7 @@ public:
 		return result;
 	}
 
-	inline Vec2& operator-=(const Vec2& v)
+	inline void operator-=(const Vec2& v)
 	{
 		x -= v.x;
 		y -= v.y;
@@ -77,31 +77,39 @@ public:
 	inline const Vec2 operator*(float s) const
 	{
 		Vec2 result(*this);
-		result.x -= s;
-		result.y -= s;
+		result.x *= s;
+		result.y *= s;
 		return result;
 	}
 
-	inline Vec2& operator*=(float s)
+	inline void operator*=(float s)
 	{
-		x -= s;
-		y -= s;
+		x *= s;
+		y *= s;
 	}
 
 	inline const Vec2 operator/(float s) const
 	{
 		Vec2 result(*this);
-		result.x -= s;
-		result.y -= s;
+		result.x /= s;
+		result.y /= s;
 		return result;
 	}
 
-	inline Vec2& operator/=(float s)
+	inline void operator/=(float s)
 	{
 		x /= s;
 		y /= s;
 	}
 };
+	
+inline bool operator==(const Vec2& lhs, const Vec2& rhs)
+{
+	if (lhs.x == rhs.x && lhs.y == rhs.y)
+		return true;
+	else
+		return false;
+}
 
 struct Size
 {

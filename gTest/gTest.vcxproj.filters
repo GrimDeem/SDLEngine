@@ -24,5 +24,8 @@
     <ClCompile Include="Sources\Objects\NodeTest.cpp">
       <Filter>Файлы исходного кода\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Vec2Test.cpp">
+      <Filter>Файлы исходного кода\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -48,7 +48,7 @@ public:
 			child->update(dt);
 	}
 
-	virtual std::vector<UpdatablePtr> getUpdatableChildren() const
+	virtual const std::vector<UpdatablePtr> getUpdatableChildren() const
 	{
 		return updChilds;
 	}
