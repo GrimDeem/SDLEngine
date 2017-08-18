@@ -76,3 +76,8 @@ void SceneManager::updateCurrentScene(float dt)
 		nextScene = nullptr;
 	}		
 }
+
+const std::unordered_map<std::string, std::shared_ptr<Scene>> SceneManager::getScenePool()
+{
+	return scenePool;
+}

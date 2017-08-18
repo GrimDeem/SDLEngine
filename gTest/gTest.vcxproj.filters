@@ -13,19 +13,22 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы исходного кода\Objects">
-      <UniqueIdentifier>{53d95edc-69d8-49ec-80fd-cf3ef33d0bad}</UniqueIdentifier>
+    <Filter Include="Файлы исходного кода\Source">
+      <UniqueIdentifier>{6024f9dc-0a9b-49ad-840f-74a410abfc16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Objects\NodeTest.cpp">
-      <Filter>Файлы исходного кода\Objects</Filter>
+    <ClCompile Include="Sources\NodeTest.cpp">
+      <Filter>Файлы исходного кода\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Vec2Test.cpp">
-      <Filter>Файлы исходного кода\Objects</Filter>
+    <ClCompile Include="Sources\SceneManagerTest.cpp">
+      <Filter>Файлы исходного кода\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Vec2Test.cpp">
+      <Filter>Файлы исходного кода\Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

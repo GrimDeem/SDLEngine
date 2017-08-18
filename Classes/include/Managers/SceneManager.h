@@ -9,6 +9,7 @@
 class SceneManager
 {
 private:
+
 	std::shared_ptr<Scene> currentScene;
 	std::shared_ptr<Scene> nextScene;
 	std::unordered_map<std::string, std::shared_ptr<Scene> > scenePool;
@@ -53,6 +54,8 @@ public:
 	
 	void drawCurrentScene();
 	void updateCurrentScene(float dt);
+
+	const std::unordered_map<std::string, std::shared_ptr<Scene>> getScenePool();
 };
 
 #endif // !__SCENE_MANAGER_H__

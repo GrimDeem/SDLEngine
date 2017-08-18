@@ -215,8 +215,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Sources\Objects\NodeTest.cpp" />
-    <ClCompile Include="Vec2Test.cpp" />
+    <ClCompile Include="Sources\NodeTest.cpp" />
+    <ClCompile Include="Sources\SceneManagerTest.cpp" />
+    <ClCompile Include="Sources\Vec2Test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
