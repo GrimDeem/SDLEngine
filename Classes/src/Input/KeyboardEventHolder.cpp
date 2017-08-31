@@ -18,6 +18,6 @@ void KeyboardEventHolder::processOnKeyPressed(SDL_KeyboardEvent *key, float dt)
 
 void KeyboardEventHolder::processOnKeyReleased(SDL_KeyboardEvent *key, float dt)
 {
-	for (auto callback : onKeyPressedCB)
+	for (auto callback : onKeyReleasedCB)
 		callback(key, dt);
 }

@@ -249,3 +249,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# lib file for gTest
+./Test/SDL-basedEngine.lib
