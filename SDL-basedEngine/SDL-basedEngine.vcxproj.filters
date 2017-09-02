@@ -136,20 +136,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resources\img.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\Resources\tank.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\Resources\Sprites\linux.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\Resources\Sprites\tank.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
 </Project>

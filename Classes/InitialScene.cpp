@@ -16,12 +16,49 @@ bool InitialScene::init()
 	FPSLabel->setPosition(100, 400);
 	this->addChild(FPSLabel);
 
-//	animatedSpriteTest();
-	updateTest();
-//	drawPriorityTest();
-//	drawTextLabelTest();
-//	flipsTest();
+	animatedSpriteTest();
 	return true;
+}
+
+void InitialScene::animatedSpriteTest()
+{
+	aSprite = AnimatedSprite::create();
+	aSprite->setPosition(40, 40);
+	aSprite->setScale(2);
+
+	std::vector<SDL_Texture*> images;
+	char str[256];
+	for (int idx = 1; idx <= 5; idx++) {
+		sprintf(str, "../Resources/Sprites/BeardMan/idle%d.png", idx);
+		images.push_back(Keeper::getInstance().getTextureManager()->getTexture(str));
+		LOG(("idle" + std::to_string(idx) + '\n').c_str());
+	}
+	aSprite->addAnimation("idle", images);
+	aSprite->animateLooped("idle");
+
+	images.clear();
+	images.push_back(Keeper::getInstance().getTextureManager()->getTexture("../Resources/Sprites/BeardMan/attack1.png"));
+	images.push_back(Keeper::getInstance().getTextureManager()->getTexture("../Resources/Sprites/BeardMan/attack2.png"));
+	aSprite->addAnimation("attack", images);
+
+	images.clear();
+	images.push_back(Keeper::getInstance().getTextureManager()->getTexture("../Resources/Sprites/BeardMan/onhit1.png"));
+	images.push_back(Keeper::getInstance().getTextureManager()->getTexture("../Resources/Sprites/BeardMan/onhit2.png"));
+	aSprite->addAnimation("onhit", images);
+
+	this->addChild(aSprite);
+
+	KeyboardEventHolder test = KeyboardEventHolder();
+	test.onKeyPressed([this](SDL_KeyboardEvent *key, float dt)
+	{
+		if (key->keysym.sym == SDLK_w) {
+			aSprite->animate("attack", "idle");
+		}
+		if (key->keysym.sym == SDLK_s) {
+			aSprite->animate("onhit", "idle");
+		}
+	});
+	eventHandler.addKeyboardHolder(test);
 }
 
 void InitialScene::update(float dt)
@@ -29,145 +66,3 @@ void InitialScene::update(float dt)
 	Scene::update(dt);
 	FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
 }
-
-void InitialScene::drawTextLabelTest()
-{
-	auto label = TextLabel::create(FONT_PATH, 26, "Felt");
-	label->setPosition(Vec2(100,100));
-	label->setFontPath("../Resources/Fonts/MarkerFelt.ttf");
-	label->setColor({0, 255, 133});
-	label->setAnchorPoint(Vec2(0,0));
-	
-	this->addChild(label, 0);
-	
-	auto label2 = std::make_shared<TextLabel> ("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
-	label2->setPosition(Vec2(170,100));
-	this->addChild(label2, 0);
-}
-
-void InitialScene::updateScene(const Uint8* kbState, float dt)
-{
-	float speed = 0.1;
-	if (kbState[SDL_SCANCODE_RIGHT] || kbState[SDL_SCANCODE_D]) {
-		movableTank->moveX(dt * speed);
-	} else if (kbState[SDL_SCANCODE_LEFT] || kbState[SDL_SCANCODE_A]) {
-		movableTank->moveX(-dt * speed);
-	}
-	if (kbState[SDL_SCANCODE_UP] || kbState[SDL_SCANCODE_W]) {
-		movableTank->moveY(-dt * speed);
-	} else  if (kbState[SDL_SCANCODE_DOWN] || kbState[SDL_SCANCODE_S]) {
-		movableTank->moveY(dt * speed);
-	}
-
-	if (kbState[SDL_SCANCODE_N]) {
-		Keeper::getInstance().replaceCurrentScene(AdditionalScene::create());
-	}
-}
-
-void InitialScene::updateTest()
-{
-	movableTank = Sprite::create("../Resources/Sprites/TimAnimation/TimRun0.png");
-	movableTank->setPosition(Vec2(60, 70));
-	this->addChild(movableTank, 1, "movableTank");
-
-	_update = std::bind(&InitialScene::updateScene, this, std::placeholders::_1, std::placeholders::_2);
-}
-
-void InitialScene::drawPriorityTest()
-{
-	auto parentNode1 = Node::create();
-	{
-		auto tank = Sprite::create(IMG_PATH);
-		tank->setPosition(Vec2(100, 100));
-		tank->setRotation(270);
-		tank->setScale(2);
-		parentNode1->addChild(tank, 1, "tank");
-
-		auto tank2 = Sprite::create(IMG_PATH);
-		tank2->setPosition(Vec2(100, 200));
-		tank2->setRotation(270);
-		tank2->setScale(2);
-		parentNode1->addChild(tank2, 1, "tank2");
-
-		auto tank3 = Sprite::create(IMG_PATH);
-		tank3->setPosition(Vec2(100, 150));
-		tank3->setScale(1.0f / 2);
-		parentNode1->addChild(tank3, 4, "tank3");
-	}
-
-	auto parentNode2 = Node::create();
-	{
-		auto linux = Sprite::create(IMG2_PATH);
-		linux->setPosition(Vec2(100, 100));
-		linux->setRotation(180);
-		linux->setScale(3);
-		parentNode2->addChild(linux, -1, "linux");
-
-		auto linux2 = Sprite::create(IMG2_PATH);
-		linux2->setPosition(Vec2(100, 300));
-		linux2->setRotation(180);
-		linux->flipHorisontal();
-		linux2->setScale(0.5);
-		parentNode2->addChild(linux2, -1, "linux2");
-		
-		auto tank = Sprite::create(IMG2_PATH);
-		tank->setPosition(Vec2(100, 150));
-		tank->setScale(2);
-		parentNode2->addChild(tank, -1, "tank");
-	}
-
-	this->addChild(parentNode1, 0, "parentNode1");
-	this->addChild(parentNode2, -1, "parentNode2");
-}
-
-void InitialScene::animatedSpriteTest()
-{
-	auto anim = AnimatedSprite::create();
-	anim->setPosition(Vec2(200, 200));
-	std::vector<SDL_Texture*> images;
-	char str[256];
-	for (int idx = 0; idx < 27; idx++) {
-		sprintf(str, "../Resources/Sprites/TimAnimation/TimRun%d.png", idx);
-		images.push_back(Keeper::getInstance().getTextureManager()->getTexture(str));
-		LOG(("TimRun" + std::to_string(idx) + '\n').c_str());
-	}
-	AnimData data;
-	data.images = images;
-	data.frameInfo.push_back(AnimFrameData(1, 27));
-	anim->initalize(data, 0);
-	anim->flipHorisontal();
-	anim->setAnimFPS(40);
-	
-	this->addChild(anim, 0, "animated");
-}
-
-void InitialScene::flipsTest()
-{
-	auto tank = Sprite::create(IMG_PATH);
-	tank->setPosition(Vec2(100, 100));
-	this->addChild(tank, 0, "tank");
-
-	auto tank2 = Sprite::create(IMG_PATH);
-	tank2->setPosition(Vec2(100, 200));
-	tank2->flipHorisontal();
-	this->addChild(tank2, 1, "tank2");
-
-	auto tank3 = Sprite::create(IMG_PATH);
-	tank3->setPosition(Vec2(100, 150));
-	this->addChild(tank3, 0, "tank3");
-
-	auto labelDefault = TextLabel::create("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
-	labelDefault->setPosition(Vec2(170, 60));
-	this->addChild(labelDefault, 0);
-
-	auto labelFlippedV = TextLabel::create("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
-	labelFlippedV->setPosition(Vec2(170, 100));
-	labelFlippedV->flipVertical();
-	this->addChild(labelFlippedV, 0);
-
-	auto labelFlippedH = TextLabel::create("../Resources/Fonts/Kurale.ttf", 26, "Kurale");
-	labelFlippedH->setPosition(Vec2(170, 140));
-	labelFlippedH->flipHorisontal();
-	this->addChild(labelFlippedH, 0);
-}
-

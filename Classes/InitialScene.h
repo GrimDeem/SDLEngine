@@ -16,73 +16,15 @@
 class InitialScene : public Scene
 {
 private:
-	std::shared_ptr<Sprite> movableTank;
+	std::shared_ptr<AnimatedSprite> aSprite;
 	std::shared_ptr<TextLabel> FPSLabel;
 public: 
 	static std::shared_ptr<InitialScene> create();
 	virtual bool init();
 	virtual void update(float dt) override;
-	void updateScene(const Uint8* kbState, float dt);
-	void updateTest();
-	void drawPriorityTest();
+
 	void animatedSpriteTest();
-	void drawTextLabelTest();
-	void flipsTest();
-};
 
-class AdditionalScene : public Scene
-{
-private:
-	std::shared_ptr<TextLabel> FPSLabel;
-	std::vector<std::shared_ptr<Sprite>> sprites;
-public:
-	static std::shared_ptr<AdditionalScene> create()
-	{
-		auto pRet = std::make_shared<AdditionalScene>(AdditionalScene());
-		if (pRet && pRet->init())
-			return pRet;
-		else
-			assert(false);
-	}
-	
-	bool init()
-	{
-		auto kbHolder = KeyboardEventHolder();
-		kbHolder.onKeyPressed(
-			[](SDL_KeyboardEvent *key, float dt)
-		{ 
-			if (key->keysym.sym == SDLK_ESCAPE)
-				Keeper::getInstance().end();
-		});
-		eventHandler.addKeyboardHolder(kbHolder);
-		
-		FPSLabel = TextLabel::create(FONT_PATH, 40, "");
-		FPSLabel->setPosition(100, 100);
-		FPSLabel->setColor({ 255, 0, 0 });
-		this->addChild(FPSLabel, 1);
-
-		for (int i = 0; i <= 50000; i++) {
-			auto sprite = Sprite::create(IMG2_PATH);
-			sprite->setPosition(createSpritePos());
-			sprite->setScale(0.1);
-			sprites.push_back(sprite);
-			this->addChild(sprite, -1);
-		}
-		return true;
-	}
-
-	virtual void update(float dt) override
-	{
-		for (auto sprite : sprites)
-			sprite->setPosition(createSpritePos());
-		FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
-	}
-
-	Vec2 createSpritePos() 
-	{
-		return Vec2(rand() % 1366, rand() % 768);
-	}
-};
- 
+}; 
 
 #endif // !__INITIAL_SCENE_H__
