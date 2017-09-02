@@ -270,12 +270,6 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClInclude Include="..\Classes\InitialScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resources\img.bmp" />
-    <Image Include="..\Resources\Sprites\linux.bmp" />
-    <Image Include="..\Resources\Sprites\tank.bmp" />
-    <Image Include="..\Resources\tank.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
