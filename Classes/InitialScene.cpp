@@ -15,9 +15,21 @@ bool InitialScene::init()
 	FPSLabel = TextLabel::create(FONT_PATH, 26, "");
 	FPSLabel->setPosition(100, 400);
 	this->addChild(FPSLabel);
+	
+	auto spr = Sprite::create("../Resources/Sprites/BeardMan/idle1.png");
+	spr->setPosition(20, 20);
+	this->addChild(spr);
 
 	animatedSpriteTest();
+	aSpriteEvents();
+	Camera::getInstance().setTarget(aSprite);
 	return true;
+}
+
+void InitialScene::update(float dt)
+{
+	Scene::update(dt);
+	FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
 }
 
 void InitialScene::animatedSpriteTest()
@@ -61,8 +73,25 @@ void InitialScene::animatedSpriteTest()
 	eventHandler.addKeyboardHolder(test);
 }
 
-void InitialScene::update(float dt)
+void InitialScene::aSpriteEvents()
 {
-	Scene::update(dt);
-	FPSLabel->setString(std::to_string(round(Keeper::getInstance().getFPS())));
+	KeyboardEventHolder moveWarrior = KeyboardEventHolder();
+	moveWarrior.onKeyPressed([this](SDL_KeyboardEvent *key, float dt)
+	{
+		auto kbButton = key->keysym.sym;
+		float speed = 10;
+		if (kbButton == SDLK_w || kbButton == SDLK_UP) {
+			aSprite->moveY(-speed);
+		}
+		else if (kbButton == SDLK_a || kbButton == SDLK_LEFT) {
+			aSprite->moveX(-speed);
+		}
+		else if (kbButton == SDLK_s || kbButton == SDLK_DOWN) {
+			aSprite->moveY(speed);
+		}
+		else if (kbButton == SDLK_d || kbButton == SDLK_RIGHT) {
+			aSprite->moveX(speed);
+		}
+	});
+	eventHandler.addKeyboardHolder(moveWarrior);
 }

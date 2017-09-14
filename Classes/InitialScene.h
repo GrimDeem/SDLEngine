@@ -24,7 +24,7 @@ public:
 	virtual void update(float dt) override;
 
 	void animatedSpriteTest();
-
+	void aSpriteEvents();
 }; 
 
 #endif // !__INITIAL_SCENE_H__

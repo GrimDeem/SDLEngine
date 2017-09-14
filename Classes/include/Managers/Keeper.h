@@ -10,6 +10,8 @@
 #include "TextureManager.h"
 #include "SceneManager.h"
 
+#include "../Objects/Camera.h"
+
 /*  Keeper is the main class of the game engine
 	Stores an unique entities such as TextureManager,
 	SceneManager, renderer and provides access to them.
@@ -30,22 +32,37 @@ private:
 	float  framerate;
 public:
 	static Keeper& getInstance();
+
+	/*
+	TMGR
+	*/
 	TextureManager* getTextureManager();
 
+	/*
+	Renderer
+	*/
 	void initRenderer(SDL_Renderer* _renderer);
 	SDL_Renderer* getRenderer();
 
+	/*
+	Window
+	*/
 	void initWindow(SDL_Window* _window);
 	SDL_Window* getWindow(); 
 
+	/*
+	SMGR
+	*/
 	SceneManager* getSceneManager();
-	/*replaces current scene with a passed new one*/
 	void replaceCurrentScene(std::shared_ptr<Scene> newScene);
 	void runFirstScene(std::shared_ptr<Scene> newScene);
 	EventHandler getEventHandler();
 	void drawCurrentScene();
 	void updateCurrentScene(float dt);
 
+	/*
+	FPS
+	*/
 	void setFPS(float fps);
 	float getFPS();
 

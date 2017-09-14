@@ -1,4 +1,5 @@
 #include "../../include/Objects/Node.h"
+#include "../../include/Objects/Camera.h"
 
 Node::Node()
 	: position(0,0)

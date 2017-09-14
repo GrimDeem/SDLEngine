@@ -18,6 +18,8 @@
 	Node can contain other node objects (addChild)	
 */
 
+class Camera;
+
 struct FlipState
 {
 	bool vertical;

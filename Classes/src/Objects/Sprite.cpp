@@ -25,8 +25,8 @@ void Sprite::draw()
 	SDL_Rect texr;
 	texr.w = imageRealSize.width  * Node::getScaleX();		    //SpriteSize
 	texr.h = imageRealSize.height * Node::getScaleY();
-	texr.x = Node::getPositionX() - Node::getAnchorPoint().x * texr.w;  //SpritePosition
-	texr.y = Node::getPositionY() - Node::getAnchorPoint().y * texr.h;
+	texr.x = Node::getPositionX() - Node::getAnchorPoint().x * texr.w - Camera::getInstance().getPosition().x;  //SpritePosition
+	texr.y = Node::getPositionY() - Node::getAnchorPoint().y * texr.h - Camera::getInstance().getPosition().y;
 
 	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(), 
 			 texture2D, nullptr, &texr, Node::getRotation(),

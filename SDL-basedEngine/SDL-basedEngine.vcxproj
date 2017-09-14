@@ -240,10 +240,12 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClCompile Include="..\Classes\src\Input\EventHandler.cpp" />
     <ClCompile Include="..\Classes\src\Input\KeyboardEventHolder.cpp" />
     <ClCompile Include="..\Classes\src\Input\MouseEventHolder.cpp" />
+    <ClCompile Include="..\Classes\src\Managers\CameraManager.cpp" />
     <ClCompile Include="..\Classes\src\Managers\Keeper.cpp" />
     <ClCompile Include="..\Classes\src\Managers\SceneManager.cpp" />
     <ClCompile Include="..\Classes\src\Managers\TextureManager.cpp" />
     <ClCompile Include="..\Classes\src\Objects\AnimatedSprite.cpp" />
+    <ClCompile Include="..\Classes\src\Objects\Camera.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Node.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Scene.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Sprite.cpp" />
@@ -258,10 +260,12 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClInclude Include="..\Classes\include\Input\EventHandler.h" />
     <ClInclude Include="..\Classes\include\Input\KeyboardEventHolder.h" />
     <ClInclude Include="..\Classes\include\Input\MouseEventHolder.h" />
+    <ClInclude Include="..\Classes\include\Managers\CameraManager.h" />
     <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
     <ClInclude Include="..\Classes\include\Managers\SceneManager.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />
     <ClInclude Include="..\Classes\include\Objects\AnimatedSprite.h" />
+    <ClInclude Include="..\Classes\include\Objects\Camera.h" />
     <ClInclude Include="..\Classes\include\Objects\TextLabel.h" />
     <ClInclude Include="..\Classes\include\Objects\Updatable.h" />
     <ClInclude Include="..\Classes\include\Objects\Node.h" />
