@@ -240,7 +240,6 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClCompile Include="..\Classes\src\Input\EventHandler.cpp" />
     <ClCompile Include="..\Classes\src\Input\KeyboardEventHolder.cpp" />
     <ClCompile Include="..\Classes\src\Input\MouseEventHolder.cpp" />
-    <ClCompile Include="..\Classes\src\Managers\CameraManager.cpp" />
     <ClCompile Include="..\Classes\src\Managers\Keeper.cpp" />
     <ClCompile Include="..\Classes\src\Managers\SceneManager.cpp" />
     <ClCompile Include="..\Classes\src\Managers\TextureManager.cpp" />
