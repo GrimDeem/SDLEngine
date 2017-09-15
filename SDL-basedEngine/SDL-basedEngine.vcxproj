@@ -243,6 +243,7 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClCompile Include="..\Classes\src\Managers\Keeper.cpp" />
     <ClCompile Include="..\Classes\src\Managers\SceneManager.cpp" />
     <ClCompile Include="..\Classes\src\Managers\TextureManager.cpp" />
+    <ClCompile Include="..\Classes\src\Managers\WindowManager.cpp" />
     <ClCompile Include="..\Classes\src\Objects\AnimatedSprite.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Camera.cpp" />
     <ClCompile Include="..\Classes\src\Objects\Node.cpp" />
@@ -263,6 +264,7 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
     <ClInclude Include="..\Classes\include\Managers\SceneManager.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />
+    <ClInclude Include="..\Classes\include\Managers\WindowManager.h" />
     <ClInclude Include="..\Classes\include\Objects\AnimatedSprite.h" />
     <ClInclude Include="..\Classes\include\Objects\Camera.h" />
     <ClInclude Include="..\Classes\include\Objects\TextLabel.h" />

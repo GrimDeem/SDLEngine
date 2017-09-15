@@ -18,7 +18,7 @@
 	Node can contain other node objects (addChild)	
 */
 
-class Camera;
+//class Camera;
 
 struct FlipState
 {

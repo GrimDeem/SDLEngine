@@ -139,7 +139,7 @@ void Game::processEvents(float dt)
 void Game::updateWorld(float dt) //1 dt = 1ms
 {
 	Keeper::getInstance().updateCurrentScene(dt);
-	Camera::getInstance().updateCameraPosition();
+	Keeper::getInstance().getCamera()->updateCameraPosition();
 }
 
 void Game::draw()

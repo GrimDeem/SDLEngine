@@ -22,7 +22,7 @@ bool InitialScene::init()
 
 	animatedSpriteTest();
 	aSpriteEvents();
-	Camera::getInstance().setTarget(aSprite);
+	Keeper::getInstance().getCamera()->setTargetNode(aSprite);
 	return true;
 }
 

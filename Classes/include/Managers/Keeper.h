@@ -25,6 +25,7 @@ private:
 	Keeper(Keeper const&) = delete;		//forbid to copy and create new instances
 	Keeper& operator= (Keeper const&) = delete;
 	
+	Camera* camera;
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 	TextureManager* texManager;
@@ -65,6 +66,11 @@ public:
 	*/
 	void setFPS(float fps);
 	float getFPS();
+
+	/*
+	Camera
+	*/
+	Camera* getCamera();
 
 	/*End engine, release memory, destroy window*/
 	void end(); 

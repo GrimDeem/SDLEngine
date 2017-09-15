@@ -7,6 +7,7 @@ Keeper::Keeper()
 {
 	texManager = new TextureManager();
 	sceneManager = new SceneManager();
+	camera = new Camera(1366, 768);
 }
 
 Keeper & Keeper::getInstance()
@@ -81,6 +82,11 @@ void Keeper::setFPS(float fps)
 float Keeper::getFPS()
 {
 	return framerate;
+}
+
+Camera* Keeper::getCamera()
+{
+	return camera;
 }
 
 void Keeper::end()

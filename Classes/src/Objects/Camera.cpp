@@ -1,15 +1,20 @@
 #include "../../include/Objects/Camera.h"
 #include "../../include/Objects/Node.h"
 
-
-void Camera::setTarget(NodePtr targetNode)
+Camera::Camera(int sizeX, int sizeY)
+	: position(0, 0)
 {
-	this->target = targetNode;
+	cameraSize = Size(sizeX, sizeY);
+}
+
+void Camera::setTargetNode(NodePtr targetNode)
+{
+	this->targetNode = targetNode;
 }
 
 Camera::NodePtr Camera::getTargetNode()
 {
-	return target;
+	return targetNode;
 }
 
 Vec2 Camera::getPosition()
@@ -19,21 +24,12 @@ Vec2 Camera::getPosition()
 
 void Camera::updateCameraPosition()
 {
-	if (target != nullptr) {
-		setPosition(target->getPosition());
-
+	if (targetNode != nullptr) {
 		//Center the camera over the target
-		this->position.x = target->getPosition().x - cameraSize.width / 2;
-		this->position.y = target->getPosition().y - cameraSize.height / 2;
-
+		setPosition(Vec2(targetNode->getPosition().x - cameraSize.width / 2,
+						 targetNode->getPosition().y - cameraSize.height / 2));
 		//Create camera bounds here
 	}
-}
-
-Camera::Camera(int sizeX, int sizeY)
-	: position(0, 0)
-{	
-	cameraSize = Size( sizeX, sizeY);
 }
 
 void Camera::setPosition(Vec2 newPos)

@@ -11,21 +11,13 @@ private:
 	typedef std::shared_ptr<Node> NodePtr;
 	Vec2 position;
 	Size cameraSize;
-	NodePtr target;
+	NodePtr targetNode;
 	
-	
-	Camera(int sizeX, int sizeY);
-	Camera(Camera const&) = delete;		//forbid to copy and create new instances
-	Camera& operator= (Camera const&) = delete;
 	void setPosition(Vec2 newPos);
 public:
-	static Camera& getInstance()
-	{
-		static Camera cam(1366, 768);
-		return cam;
-	}
-
-	void setTarget(NodePtr targetNode);
+	Camera(int sizeX, int sizeY);
+	
+	void setTargetNode(NodePtr targetNode);
 	NodePtr getTargetNode();
 	
 	Vec2 getPosition();
