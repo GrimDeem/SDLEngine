@@ -1,4 +1,4 @@
-#include "../../include/Input/EventHandler.h"
+#include "Input/EventHandler.h"
 
 void EventHandler::addKeyboardHolder(KeyboardEventHolder newHolder)
 {

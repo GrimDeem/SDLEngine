@@ -124,7 +124,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\..\..\SDL-basedEngine\Windows\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\..\..\SDL-basedEngine\Windows\SDL\include;D:\Codes\SDL\SDL-basedEngine\Classes\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -260,7 +260,6 @@ XCOPY "$(SolutionDir)Resources" "$(TargetDir)Resources\" /S /Y
     <ClInclude Include="..\Classes\include\Input\EventHandler.h" />
     <ClInclude Include="..\Classes\include\Input\KeyboardEventHolder.h" />
     <ClInclude Include="..\Classes\include\Input\MouseEventHolder.h" />
-    <ClInclude Include="..\Classes\include\Managers\CameraManager.h" />
     <ClInclude Include="..\Classes\include\Managers\Keeper.h" />
     <ClInclude Include="..\Classes\include\Managers\SceneManager.h" />
     <ClInclude Include="..\Classes\include\Managers\TextureManager.h" />

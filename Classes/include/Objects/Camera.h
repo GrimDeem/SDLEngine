@@ -1,7 +1,7 @@
 #ifndef _CAMERA_
 #define _CAMERA_
 
-#include "../Core/Vec2.h"
+#include "Core/Vec2.h"
 #include <memory>
 class Node;
 

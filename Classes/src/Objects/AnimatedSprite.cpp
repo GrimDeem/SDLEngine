@@ -1,4 +1,4 @@
-#include "../../include/Objects/AnimatedSprite.h"
+#include "Objects/AnimatedSprite.h"
 
 AnimatedSprite::AnimatedSprite()
 	: animFPS(24)

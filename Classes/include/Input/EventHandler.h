@@ -2,8 +2,8 @@
 #define _EVENT_HANDLER_H_
 
 #include <vector>
-#include "KeyboardEventHolder.h"
-#include "MouseEventHolder.h"
+#include "Input/KeyboardEventHolder.h"
+#include "Input/MouseEventHolder.h"
 
 class EventHandler
 {

@@ -1,4 +1,4 @@
-#include "../../include/Objects/Scene.h"
+#include "Objects/Scene.h"
 
 std::shared_ptr<Scene> Scene::create()
 {

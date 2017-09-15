@@ -3,8 +3,8 @@
 #define __ANIMATED_SPRITE_H__
 
 #include <unordered_map>
-#include "Sprite.h"
-#include "Updatable.h"
+#include "Objects/Sprite.h"
+#include "Objects/Updatable.h"
 
 
 class AnimatedSprite : public Sprite, public Updatable

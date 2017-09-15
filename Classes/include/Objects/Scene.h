@@ -4,9 +4,9 @@
 
 #include <functional>
 #include <SDL.h>
-#include "Node.h"
-#include "Updatable.h"
-#include "../Input/EventHandler.h"
+#include "Objects/Node.h"
+#include "Objects/Updatable.h"
+#include "Input/EventHandler.h"
 
 class Scene : public Node, public Updatable
 {

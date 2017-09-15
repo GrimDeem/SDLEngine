@@ -4,7 +4,7 @@
 
 #include "Node.h"
 #include "SDL_image.h"
-#include "../Managers/Keeper.h"
+#include "Managers/Keeper.h"
 
 /*
 	Sprite is a 2d image.

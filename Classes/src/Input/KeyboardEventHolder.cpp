@@ -1,4 +1,4 @@
-#include "../../include/Input/KeyboardEventHolder.h"
+#include "Input/KeyboardEventHolder.h"
 
 void KeyboardEventHolder::onKeyPressed(kbCallback callback)
 {

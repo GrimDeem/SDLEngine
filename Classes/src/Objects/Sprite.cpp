@@ -1,4 +1,4 @@
-#include "../../include/Objects/Sprite.h"
+#include "Objects/Sprite.h"
 
 Sprite::Sprite(std::string pathToImg)
 	: path(pathToImg)

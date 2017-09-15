@@ -1,7 +1,7 @@
 #ifndef WINDOW_MANAGER
 #define WINDOW_MANAGER
 
-#include "../Core/Vec2.h"
+#include "Core/Vec2.h"
 #include <SDL_render.h>
 #include <SDL_main.h>
 

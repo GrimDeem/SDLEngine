@@ -1,7 +1,8 @@
 #pragma once
 #ifndef __UPDATABLE_H__
 #define __UPDATABLE_H__
-#include "Node.h"
+
+#include "Objects/Node.h"
 /*
 	Updatable is auxiliary class to describe objects
 	which have to be updated each frame with delta time

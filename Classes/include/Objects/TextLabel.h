@@ -2,9 +2,9 @@
 #ifndef __TEXT_LABEL_H__
 #define __TEXT_LABEL_H__
 
-#include "Node.h"
 #include "SDL_ttf.h"
-#include "../Managers/Keeper.h"
+#include "Objects/Node.h"
+#include "Managers/Keeper.h"
 
 /*
 TextLabel is a simple text rendered on surface.

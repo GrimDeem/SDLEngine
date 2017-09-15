@@ -3,7 +3,7 @@
 #define __SCENE_MANAGER_H__
 
 #include <unordered_map>
-#include "../Objects/Scene.h"
+#include "Objects/Scene.h"
 
 /*SceneManager is entity responsible for scene switching and storage*/
 class SceneManager

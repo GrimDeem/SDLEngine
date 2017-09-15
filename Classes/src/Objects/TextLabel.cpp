@@ -1,4 +1,4 @@
-#include "../../include/Objects/TextLabel.h"
+#include "Objects/TextLabel.h"
 
 TextLabel::TextLabel(std::string _fontPath, int fsize, std::string _text)
 	: fontPath(_fontPath)

@@ -1,4 +1,4 @@
-#include "../../include/Input/MouseEventHolder.h"
+#include "Input/MouseEventHolder.h"
 
 void MouseEventHolder::onButtonPressed(mouseBtnCallback callback)
 {

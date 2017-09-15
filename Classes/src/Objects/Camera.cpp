@@ -1,5 +1,5 @@
-#include "../../include/Objects/Camera.h"
-#include "../../include/Objects/Node.h"
+#include "Objects/Camera.h"
+#include "Objects/Node.h"
 
 Camera::Camera(Size size)
 {

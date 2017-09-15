@@ -8,7 +8,7 @@
 #define LOG(...)       do {} while (0)
 
 #elif LOGGING >= 1
-#include "Logger.h"
+#include "Core/Logger.h"
 #define LOG(string, ...)  log(string, ##__VA_ARGS__);
 #endif
 

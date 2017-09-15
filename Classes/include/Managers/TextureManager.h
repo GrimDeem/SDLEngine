@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <SDL_image.h>
-#include "../Managers/Keeper.h"
+#include "Managers/Keeper.h"
 
 /*	TextureManager is the class, which load, unload,  
 	store and provide access to all texures in engine

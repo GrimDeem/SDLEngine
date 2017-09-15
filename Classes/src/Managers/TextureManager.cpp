@@ -1,4 +1,4 @@
-#include "../../include/Managers/TextureManager.h"
+#include "Managers/TextureManager.h"
 
 #if __TM_LOG__ >= 1
 void logListOfTextures(std::unordered_map<std::string, SDL_Texture*> _textures) {

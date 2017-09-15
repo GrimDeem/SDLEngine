@@ -1,6 +1,4 @@
-#include "../include/Game.h"
-using std::cerr;
-using std::endl;
+#include "Game.h"
 
 Game::Game()
 {
