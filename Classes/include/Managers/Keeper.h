@@ -8,6 +8,7 @@
 #include <SDL_ttf.h>
 
 #include "TextureManager.h"
+#include "WindowManager.h"
 #include "SceneManager.h"
 
 #include "../Objects/Camera.h"
@@ -25,11 +26,12 @@ private:
 	Keeper(Keeper const&) = delete;		//forbid to copy and create new instances
 	Keeper& operator= (Keeper const&) = delete;
 	
-	Camera* camera;
+	WindowManager* winManager;
 	SDL_Renderer* renderer;
-	SDL_Window* window;
 	TextureManager* texManager;
 	SceneManager* sceneManager;
+	Camera* camera;
+
 	float  framerate;
 public:
 	static Keeper& getInstance();
@@ -48,8 +50,7 @@ public:
 	/*
 	Window
 	*/
-	void initWindow(SDL_Window* _window);
-	SDL_Window* getWindow(); 
+	WindowManager* getWindowManager();
 
 	/*
 	SMGR

@@ -15,7 +15,9 @@ private:
 	std::unordered_map<std::string, std::shared_ptr<Scene> > scenePool;
 public:
 	SceneManager();
-	~SceneManager() { }
+	~SceneManager() {
+		scenePool.clear();
+	}
 
 	/*
 	@brief returns shared_ptr to current scene

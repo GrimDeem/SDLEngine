@@ -23,23 +23,16 @@ bool Game::initSDL()
 		exit(1);
 	}
 	
-	SDL_Window* window = SDL_CreateWindow(
-		WINDOW_TITLE,
-		WINDOW_POSITION_X,
-		WINDOW_POSITION_Y,
-		WINDOW_SIZE_X,
-		WINDOW_SIZE_Y,
-		SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
-
+	SDL_Window* window = Keeper::getInstance().getWindowManager()->createWindow();
 	if (!window) {
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Cant create window", NULL);
 		exit(1);
 	}
+
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 	Keeper::getInstance().initRenderer(renderer);
-	Keeper::getInstance().initWindow(window);
 	return true;
 }
 

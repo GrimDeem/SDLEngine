@@ -15,6 +15,7 @@ private:
 	
 	void setPosition(Vec2 newPos);
 public:
+	Camera(Size size);
 	Camera(int sizeX, int sizeY);
 	
 	void setTargetNode(NodePtr targetNode);

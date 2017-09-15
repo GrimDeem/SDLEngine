@@ -8,11 +8,6 @@
 #include "Managers/Keeper.h"
 #include "../InitialScene.h"
 
-//#define DEBUG
-#ifdef DEBUG
-#include <iostream>
-#endif 
-
 #define FRAME_VALUES 10
 class Game
 {
@@ -34,7 +29,6 @@ private:
 	Uint32 framecount; 	   // total frames rendered
 	float framespersecond;
 	const float targetFrameTime = 33.f; // for 60 fps
-
 };
 
 #endif //!__GAME_H__

@@ -1,6 +1,11 @@
 #include "../../include/Objects/Camera.h"
 #include "../../include/Objects/Node.h"
 
+Camera::Camera(Size size)
+{
+	cameraSize = size;
+}
+
 Camera::Camera(int sizeX, int sizeY)
 	: position(0, 0)
 {
