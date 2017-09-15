@@ -3,7 +3,6 @@
 
 #include "Core/Vec2.h"
 #include <SDL_render.h>
-#include <SDL_main.h>
 
 #define WINDOW_TITLE "SDL_Game"
 #define WINDOW_POSITION_X 200
