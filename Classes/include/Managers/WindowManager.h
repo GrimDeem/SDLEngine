@@ -13,9 +13,9 @@
 class WindowManager
 {
 private:
-	SDL_Window* instance;
-	Size windowSize;
-	Vec2 position;
+	SDL_Window* m_instance;
+	Size m_windowSize;
+	Vec2 m_position;
 
 private:
 	void destroyWindow();

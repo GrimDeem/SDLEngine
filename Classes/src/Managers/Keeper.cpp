@@ -1,13 +1,13 @@
 #include "Managers/Keeper.h"
 
 Keeper::Keeper()
-	: renderer(nullptr)
-	, framerate(0)
+	: m_renderer(nullptr)
+	, m_framerate(0)
 {
-	winManager = new WindowManager();
-	texManager = new TextureManager();
-	sceneManager = new SceneManager();
-	camera = new Camera(winManager->getWindowSize());
+	m_windowMgr = new WindowManager();
+	m_textureMgr = new TextureManager();
+	m_sceneMgr = new SceneManager();
+	m_camera = new Camera(m_windowMgr->getWindowSize());
 }
 
 Keeper & Keeper::getInstance()
@@ -18,79 +18,79 @@ Keeper & Keeper::getInstance()
 
 TextureManager* Keeper::getTextureManager()
 {
-	return texManager;
+	return m_textureMgr;
 }
 
 void Keeper::initRenderer(SDL_Renderer* _renderer)
 {
 	assert(_renderer != nullptr);
-	renderer = _renderer;
+	m_renderer = _renderer;
 }
 
 SDL_Renderer* Keeper::getRenderer()
 {
-	assert(renderer != nullptr);
-	return renderer;
+	assert(m_renderer != nullptr);
+	return m_renderer;
 }
 
 WindowManager * Keeper::getWindowManager()
 {
-	return winManager;
+	return m_windowMgr;
 }
 
 SceneManager * Keeper::getSceneManager()
 {
-	return sceneManager;
+	return m_sceneMgr;
 }
 
-void Keeper::replaceCurrentScene(std::shared_ptr<Scene> newScene)
+void Keeper::replaceCurrentScene(std::shared_ptr<Scene> _newScene)
 {
-	sceneManager->replaceCurrentScene(newScene);
+	m_sceneMgr->replaceCurrentScene(_newScene);
 }
 
-void Keeper::runFirstScene(std::shared_ptr<Scene> newScene)
+void Keeper::runFirstScene(std::shared_ptr<Scene> _newScene)
 {
-	sceneManager->runFirstScene(newScene);
+	m_sceneMgr->runFirstScene(_newScene);
 }
 
 EventHandler Keeper::getEventHandler()
 {
-	return sceneManager->getCurrentSceneEventHandler();
+	return m_sceneMgr->getCurrentSceneEventHandler();
 }
 
 void Keeper::drawCurrentScene()
 {
-	sceneManager->drawCurrentScene();
+	m_sceneMgr->drawCurrentScene();
 }
 
-void Keeper::updateCurrentScene(float dt)
+void Keeper::updateCurrentScene(float _dt)
 {
-	sceneManager->updateCurrentScene(dt);
+	m_sceneMgr->updateCurrentScene(_dt);
 }
 
-void Keeper::setFPS(float fps)
+void Keeper::setFPS(float _fps)
 {
-	framerate = fps;
+	m_framerate = _fps;
 }
 
 float Keeper::getFPS()
 {
-	return framerate;
+	return m_framerate;
 }
 
 Camera* Keeper::getCamera()
 {
-	return camera;
+	return m_camera;
 }
 
 void Keeper::end()
 {
-	delete camera;
-	delete sceneManager;
-	delete texManager;
-	delete winManager;
+	delete m_camera;
+	delete m_sceneMgr;
+	delete m_textureMgr;
+	delete m_windowMgr;
 
-	SDL_DestroyRenderer(renderer);
+	SDL_DestroyRenderer(m_renderer);
 	TTF_Quit();
 	SDL_Quit();
 }

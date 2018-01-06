@@ -1,5 +1,9 @@
 #include "Managers/TextureManager.h"
 
+TextureManager::~TextureManager() {
+	clearTexturePool();
+}
+
 #if __TM_LOG__ >= 1
 void logListOfTextures(std::unordered_map<std::string, SDL_Texture*> _textures) {
 	LOG("List of textures: \n");
@@ -9,54 +13,54 @@ void logListOfTextures(std::unordered_map<std::string, SDL_Texture*> _textures) 
 }
 #endif // !__TM_LOG__
 
-SDL_Texture * TextureManager::getTexture(std::string pathToTexture)
+SDL_Texture * TextureManager::getTexture(const std::string& _pathToTexture)
 {
-	if (!pathToTexture.empty()) {
-		auto it = _textures.find(pathToTexture);
-		if (it != _textures.end())
+	if (!_pathToTexture.empty()) {
+		auto it = m_textures.find(_pathToTexture);
+		if (it != m_textures.end())
 			return it->second;	// if texture is finded -> return it
 		else
-			return loadTexture(pathToTexture);  //else -> add to map and return
+			return loadTexture(_pathToTexture);  //else -> add to map and return
 	}
 	assert(false);
 }
 
-SDL_Texture * TextureManager::loadTexture(std::string pathToTexture)
+SDL_Texture * TextureManager::loadTexture(const std::string& _pathToTexture)
 {
-	auto loadedTex = IMG_LoadTexture(Keeper::getInstance().getRenderer(), pathToTexture.c_str());
+	auto loadedTex = IMG_LoadTexture(Keeper::getInstance().getRenderer(), _pathToTexture.c_str());
 	if(loadedTex == nullptr)
 		LOG(IMG_GetError());
-	_textures.insert(std::make_pair(pathToTexture, loadedTex));
+	m_textures.insert(std::make_pair(_pathToTexture, loadedTex));
 	return loadedTex;
 }
 
-void TextureManager::unloadTexture(std::string pathToTexture)
+void TextureManager::unloadTexture(const std::string& _pathToTexture)
 {
-	if (!pathToTexture.empty()) {
-		_texturesIterator it = _textures.find(pathToTexture);
-		if (it != _textures.end()) {  // if texture is finded -> return it
+	if (!_pathToTexture.empty()) {
+		_texturesIterator it = m_textures.find(_pathToTexture);
+		if (it != m_textures.end()) {  // if texture is finded -> return it
 			SDL_DestroyTexture(it->second);
-			_textures.erase(it);
+			m_textures.erase(it);
 		}
 	}
 }
 
-void TextureManager::unloadTexture(SDL_Texture * texture)
+void TextureManager::unloadTexture(SDL_Texture * _texture)
 {
-	if (texture != nullptr) {
-		auto it = std::find_if(_textures.begin(), _textures.end(),
-			[&texture](const std::unordered_map<std::string, SDL_Texture*>::value_type& value)
+	if (_texture != nullptr) {
+		auto it = std::find_if(m_textures.begin(), m_textures.end(),
+			[&_texture](const std::unordered_map<std::string, SDL_Texture*>::value_type& value)
 		{
-			return value.second == texture;
+			return value.second == _texture;
 		});
-		if (it != _textures.end())
+		if (it != m_textures.end())
 			unloadTexture(it->first);
 	}
 }
 
 void TextureManager::clearTexturePool()
 {
-	for(auto& tex : _textures)
+	for(auto& tex : m_textures)
 		SDL_DestroyTexture(tex.second);
-	_textures.clear();
+	m_textures.clear();
 }

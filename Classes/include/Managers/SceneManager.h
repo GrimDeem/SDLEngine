@@ -10,52 +10,50 @@ class SceneManager
 {
 private:
 
-	std::shared_ptr<Scene> currentScene;
-	std::shared_ptr<Scene> nextScene;
-	std::unordered_map<std::string, std::shared_ptr<Scene> > scenePool;
+	std::shared_ptr<Scene> m_currentScene;
+	std::shared_ptr<Scene> m_nextScene;
+	std::unordered_map<std::string, std::shared_ptr<Scene>> m_scenePool;
 public:
 	SceneManager();
-	~SceneManager() {
-		scenePool.clear();
-	}
+	~SceneManager();
 
 	/*
-	@brief returns shared_ptr to current scene
+	@brief returns event handler of current scene
 	*/
 	EventHandler getCurrentSceneEventHandler();
 
 	/*
 	@brief use only for first scene
 	 */
-	void runFirstScene(std::shared_ptr<Scene> newScene);
+	void runFirstScene(std::shared_ptr<Scene> _newScene);
 
 	/*
-	@brief adds scene to poll with tag
+	@brief adds scene to pool with tag
 	 */
-	void addSceneToPool(std::string sceneTag, std::shared_ptr<Scene> newScene);
+	void addSceneToPool(const std::string& _sceneTag, std::shared_ptr<Scene> _newScene);
 	
 	/*
 	@brief search scene by tag in scene pool and return shared_ptr on it
 	 */
-	std::shared_ptr<Scene> getSceneFromPool(std::string sceneTag);
+	std::shared_ptr<Scene> getSceneFromPool(const std::string& _sceneTag);
 
 	/*
 	@brief remove scene with passed tag from pool (if it exists)
 	 */
-	void removeSceneFromPool(std::string sceneTag);
+	void removeSceneFromPool(const std::string& _sceneTag);
 	
 	/*
 	@brief remove passed scene from pool (if it exists)
 	*/
-	void removeSceneFromPool(std::shared_ptr<Scene> sceneToRemove);
+	void removeSceneFromPool(std::shared_ptr<Scene> _sceneToRemove);
 
 	/*
 	@brief replaces current scene with a passed new one
 	 */
-	void replaceCurrentScene(std::shared_ptr<Scene> newScene);
+	void replaceCurrentScene(std::shared_ptr<Scene> _newScene);
 	
 	void drawCurrentScene();
-	void updateCurrentScene(float dt);
+	void updateCurrentScene(float _dt);
 
 	const std::unordered_map<std::string, std::shared_ptr<Scene>> getScenePool();
 };

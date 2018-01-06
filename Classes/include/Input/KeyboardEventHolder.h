@@ -8,17 +8,17 @@
 class KeyboardEventHolder
 {
 private:
-	typedef std::function<void(SDL_KeyboardEvent *key, float dt)> kbCallback;
-	std::vector <kbCallback> onKeyPressedCB;
-	std::vector <kbCallback> onKeyReleasedCB;
+	typedef std::function<void(SDL_KeyboardEvent* _event, float _dt)> kbCallback;
+	std::vector <kbCallback> m_onKeyPressedCB;
+	std::vector <kbCallback> m_onKeyReleasedCB;
 public:
-	KeyboardEventHolder() {}
-	virtual ~KeyboardEventHolder() {}
-	virtual void onKeyPressed(kbCallback callback);
-	virtual void onKeyReleased(kbCallback callback);
+	KeyboardEventHolder() = default;
+	virtual ~KeyboardEventHolder() = default;
+	virtual void onKeyPressed(kbCallback _callback);
+	virtual void onKeyReleased(kbCallback _callback);
 
-	virtual void processOnKeyPressed(SDL_KeyboardEvent *key, float dt);
-	virtual void processOnKeyReleased(SDL_KeyboardEvent *key, float dt);
+	virtual void processOnKeyPressed(SDL_KeyboardEvent* _event, float _dt);
+	virtual void processOnKeyReleased(SDL_KeyboardEvent* _event, float _dt);
 };
 
 #endif // !_KB_EVENT_HOLDER_

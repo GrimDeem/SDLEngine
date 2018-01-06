@@ -1,34 +1,34 @@
 #include "Input/MouseEventHolder.h"
 
-void MouseEventHolder::onButtonPressed(mouseBtnCallback callback)
+void MouseEventHolder::onButtonPressed(mouseBtnCallback _callback)
 {
-	onButtonPressedCB.push_back(callback);
+	m_onButtonPressedCB.push_back(_callback);
 }
 
-void MouseEventHolder::onButtonReleased(mouseBtnCallback callback)
+void MouseEventHolder::onButtonReleased(mouseBtnCallback _callback)
 {
-	onButtonReleasedCB.push_back(callback);
+	m_onButtonReleasedCB.push_back(_callback);
 }
 
-void MouseEventHolder::onMouseMoved(mouseMotionCallback callback)
+void MouseEventHolder::onMouseMoved(mouseMotionCallback _callback)
 {
-	onMouseMovedCB.push_back(callback);
+	m_onMouseMovedCB.push_back(_callback);
 }
 
-void MouseEventHolder::processOnButtonPressed(SDL_MouseButtonEvent * mEvent, float dt)
+void MouseEventHolder::processOnButtonPressed(SDL_MouseButtonEvent* _mEvent, float _dt)
 {
-	for (auto callback : onButtonPressedCB)
-		callback(mEvent, dt);
+	for (auto callback : m_onButtonPressedCB)
+		callback(_mEvent, _dt);
 }
 
-void MouseEventHolder::processOnButtonReleased(SDL_MouseButtonEvent * mEvent, float dt)
+void MouseEventHolder::processOnButtonReleased(SDL_MouseButtonEvent* _mEvent, float _dt)
 {
-	for (auto callback : onButtonReleasedCB)
-		callback(mEvent, dt);
+	for (auto callback : m_onButtonReleasedCB)
+		callback(_mEvent, _dt);
 }
 
-void MouseEventHolder::processOnMouseMoved(SDL_MouseMotionEvent * mEvent, float dt)
+void MouseEventHolder::processOnMouseMoved(SDL_MouseMotionEvent* _mEvent, float _dt)
 {
-	for (auto callback : onMouseMovedCB)
-		callback(mEvent, dt);
+	for (auto callback : m_onMouseMovedCB)
+		callback(_mEvent, _dt);
 }

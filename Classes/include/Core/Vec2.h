@@ -2,7 +2,7 @@
 #ifndef __CORE_VECTOR_H__
 #define __CORE_VECTOR_H__
 
-class Vec2
+struct Vec2
 {
 public:
 	/**
@@ -29,86 +29,85 @@ public:
 	* @param x The _x coordinate.
 	* @param y The _y coordinate.
 	*/
-	Vec2(float x, float y) 
-		: x(x), y(y)
+	Vec2(float _x, float _y)
+		: x(_x), y(_y)
 	{ }
 	
 	/**
 	* @brief Constructs a new vector that is a copy of the specified vector.
 	*
-	* @param copy The vector to copy.
+	* @param _copy The vector to copy.
 	*/	
-	Vec2(const Vec2& copy)
+	Vec2(const Vec2& _copy)
 	{
-		x = copy.x;
-		y = copy.y;
+		x = _copy.x;
+		y = _copy.y;
 	}
 
 	~Vec2() {}
 
-	inline const Vec2 operator+(const Vec2& v) const
+	inline const Vec2 operator+(const Vec2& _another) const
 	{
 		Vec2 result(*this);
-		result.x += v.x;
-		result.y += v.y;
+		result.x += _another.x;
+		result.y += _another.y;
 		return result;	
 	}
 
-	inline void operator+=(const Vec2& v)
+	inline void operator+=(const Vec2& _another)
 	{
-		x += v.x;
-		y += v.y;
+		x += _another.x;
+		y += _another.y;
 	}
 
-	inline const Vec2 operator-(const Vec2& v) const
+	inline const Vec2 operator-(const Vec2& _another) const
 	{
 		Vec2 result(*this);
-		result.x -= v.x;
-		result.y -= v.y;
+		result.x -= _another.x;
+		result.y -= _another.y;
 		return result;
 	}
 
-	inline void operator-=(const Vec2& v)
+	inline void operator-=(const Vec2& _another)
 	{
-		x -= v.x;
-		y -= v.y;
+		x -= _another.x;
+		y -= _another.y;
 	}
 
-	inline const Vec2 operator*(float s) const
+	inline const Vec2 operator*(float _factor) const
 	{
 		Vec2 result(*this);
-		result.x *= s;
-		result.y *= s;
+		result.x *= _factor;
+		result.y *= _factor;
 		return result;
 	}
 
-	inline void operator*=(float s)
+	inline void operator*=(float _factor)
 	{
-		x *= s;
-		y *= s;
+		x *= _factor;
+		y *= _factor;
 	}
 
-	inline const Vec2 operator/(float s) const
+	inline const Vec2 operator/(float _divider) const
 	{
 		Vec2 result(*this);
-		result.x /= s;
-		result.y /= s;
+		result.x /= _divider;
+		result.y /= _divider;
 		return result;
 	}
 
-	inline void operator/=(float s)
+	inline void operator/=(float _divider)
 	{
-		x /= s;
-		y /= s;
+		x /= _divider;
+		y /= _divider;
 	}
 };
 	
-inline bool operator==(const Vec2& lhs, const Vec2& rhs)
+inline bool operator==(const Vec2& _lhs, const Vec2& _rhs)
 {
-	if (lhs.x == rhs.x && lhs.y == rhs.y)
+	if (_lhs.x == _rhs.x && _lhs.y == _rhs.y)
 		return true;
-	else
-		return false;
+	return false;
 }
 
 struct Size

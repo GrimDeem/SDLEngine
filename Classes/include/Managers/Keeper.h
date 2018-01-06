@@ -26,13 +26,13 @@ private:
 	Keeper(Keeper const&) = delete;		//forbid to copy and create new instances
 	Keeper& operator= (Keeper const&) = delete;
 	
-	WindowManager* winManager;
-	SDL_Renderer* renderer;
-	TextureManager* texManager;
-	SceneManager* sceneManager;
-	Camera* camera;
+	WindowManager* m_windowMgr;
+	SDL_Renderer* m_renderer;
+	TextureManager* m_textureMgr;
+	SceneManager* m_sceneMgr;
+	Camera* m_camera;
 
-	float  framerate;
+	float  m_framerate;
 public:
 	static Keeper& getInstance();
 
@@ -56,11 +56,11 @@ public:
 	SMGR
 	*/
 	SceneManager* getSceneManager();
-	void replaceCurrentScene(std::shared_ptr<Scene> newScene);
-	void runFirstScene(std::shared_ptr<Scene> newScene);
+	void replaceCurrentScene(std::shared_ptr<Scene> _newScene);
+	void runFirstScene(std::shared_ptr<Scene> _newScene);
 	EventHandler getEventHandler();
 	void drawCurrentScene();
-	void updateCurrentScene(float dt);
+	void updateCurrentScene(float _dt);
 
 	/*
 	FPS

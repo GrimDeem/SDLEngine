@@ -8,7 +8,8 @@
 #include <SDL_image.h>
 #include "Managers/Keeper.h"
 
-/*	TextureManager is the class, which load, unload,  
+/*
+	TextureManager is the class, which load, unload,
 	store and provide access to all texures in engine
 */
 class TextureManager
@@ -16,22 +17,20 @@ class TextureManager
 private:
 	typedef std::unordered_map<std::string, SDL_Texture*>::iterator _texturesIterator;
 	/* map of the loaded textures(texture pool)*/
-	std::unordered_map<std::string, SDL_Texture*> _textures;
+	std::unordered_map<std::string, SDL_Texture*> m_textures;
 	/*load texture and add it to the map*/
-	SDL_Texture* loadTexture(std::string pathToTexture); 
+	SDL_Texture* loadTexture(const std::string& _pathToTexture);
 public:
-	TextureManager() {}
-	~TextureManager() {
-		clearTexturePool();
-	}
+	TextureManager() = default;
+	~TextureManager();
 	/*returns texture from the following path*/
-	SDL_Texture* getTexture(std::string pathToTexture);
+	SDL_Texture* getTexture(const std::string& _pathToTexture);
 
 	/*unloads passed texture from memory & map*/
-	void unloadTexture(SDL_Texture* texture);
+	void unloadTexture(SDL_Texture* _texture);
 
 	/*Unloads the texture along the specified path from memory & map*/
-	void unloadTexture(std::string pathToTexture);
+	void unloadTexture(const std::string& _pathToTexture);
 
 	/*Unloads all textures from pool*/
 	void clearTexturePool();

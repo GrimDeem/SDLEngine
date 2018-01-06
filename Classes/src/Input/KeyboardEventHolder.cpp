@@ -1,23 +1,23 @@
 #include "Input/KeyboardEventHolder.h"
 
-void KeyboardEventHolder::onKeyPressed(kbCallback callback)
+void KeyboardEventHolder::onKeyPressed(kbCallback _callback)
 {
-	onKeyPressedCB.push_back(callback);
+	m_onKeyPressedCB.push_back(_callback);
 }
 
-void KeyboardEventHolder::onKeyReleased(kbCallback callback)
+void KeyboardEventHolder::onKeyReleased(kbCallback _callback)
 {
-	onKeyReleasedCB.push_back(callback);
+	m_onKeyReleasedCB.push_back(_callback);
 }
 
-void KeyboardEventHolder::processOnKeyPressed(SDL_KeyboardEvent *key, float dt)
+void KeyboardEventHolder::processOnKeyPressed(SDL_KeyboardEvent* _event, float _dt)
 {
-	for (auto callback : onKeyPressedCB)
-		callback(key, dt);
+	for (auto callback : m_onKeyPressedCB)
+		callback(_event, _dt);
 }
 
-void KeyboardEventHolder::processOnKeyReleased(SDL_KeyboardEvent *key, float dt)
+void KeyboardEventHolder::processOnKeyReleased(SDL_KeyboardEvent* _event, float _dt)
 {
-	for (auto callback : onKeyReleasedCB)
-		callback(key, dt);
+	for (auto callback : m_onKeyReleasedCB)
+		callback(_event, _dt);
 }

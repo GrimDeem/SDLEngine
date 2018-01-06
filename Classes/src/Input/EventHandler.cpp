@@ -1,41 +1,41 @@
 #include "Input/EventHandler.h"
 
-void EventHandler::addKeyboardHolder(KeyboardEventHolder newHolder)
+void EventHandler::addKeyboardHolder(KeyboardEventHolder _newHolder)
 {
-	kbHolders.push_back(newHolder);
+	m_keyboardHolders.push_back(_newHolder);
 }
 
-void EventHandler::processKBHoldersPressed(SDL_KeyboardEvent *key, float dt)
+void EventHandler::processKBHoldersPressed(SDL_KeyboardEvent* _event, float _dt)
 {
-	for (auto holder : kbHolders)
-		holder.processOnKeyPressed(key, dt);
+	for (auto holder : m_keyboardHolders)
+		holder.processOnKeyPressed(_event, _dt);
 }
 
-void EventHandler::processKBHoldersReleased(SDL_KeyboardEvent *key, float dt)
+void EventHandler::processKBHoldersReleased(SDL_KeyboardEvent* _event, float _dt)
 {
-	for (auto holder : kbHolders)
-		holder.processOnKeyReleased(key, dt);
+	for (auto holder : m_keyboardHolders)
+		holder.processOnKeyReleased(_event, _dt);
 }
 
-void EventHandler::addMouseHolder(MouseEventHolder newHolder)
+void EventHandler::addMouseHolder(MouseEventHolder _newHolder)
 {
-	mouseHolders.push_back(newHolder);
+	m_mouseHolders.push_back(_newHolder);
 }
 
-void EventHandler::processMouseHoldersPressed(SDL_MouseButtonEvent *key, float dt)
+void EventHandler::processMouseHoldersPressed(SDL_MouseButtonEvent* _event, float _dt)
 {
-	for (auto holder : mouseHolders)
-		holder.processOnButtonPressed(key, dt);
+	for (auto holder : m_mouseHolders)
+		holder.processOnButtonPressed(_event, _dt);
 }
 
-void EventHandler::processMouseHoldersReleased(SDL_MouseButtonEvent * key, float dt)
+void EventHandler::processMouseHoldersReleased(SDL_MouseButtonEvent* _event, float _dt)
 {
-	for (auto holder : mouseHolders)
-		holder.processOnButtonReleased(key, dt);
+	for (auto holder : m_mouseHolders)
+		holder.processOnButtonReleased(_event, _dt);
 }
 
-void EventHandler::processMouseHoldersMoved(SDL_MouseMotionEvent * key, float dt)
+void EventHandler::processMouseHoldersMoved(SDL_MouseMotionEvent* _event, float _dt)
 {
-	for (auto holder : mouseHolders)
-		holder.processOnMouseMoved(key, dt);
+	for (auto holder : m_mouseHolders)
+		holder.processOnMouseMoved(_event, _dt);
 }
