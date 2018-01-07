@@ -28,26 +28,26 @@ struct FlipState
 	FlipState()
 	: vertical(false)
 	, horisontal(false)
-		{ }
+	{ }
 
 	FlipState(bool _vertical, bool _horisontal)
-		: vertical(_vertical)
-		, horisontal(_horisontal)
+	: vertical(_vertical)
+	, horisontal(_horisontal)
 	{ }
 	
-	SDL_RendererFlip getSDLFlip()
-		{
-			SDL_RendererFlip flip;
-			if(vertical == false && horisontal == false)
-				flip = SDL_FLIP_NONE;
-			else if(vertical == true  && horisontal == false)
-				flip = SDL_FLIP_VERTICAL;
-			else if(vertical == false && horisontal == true )
-				flip = SDL_FLIP_HORIZONTAL;
-			else if(vertical == true  && horisontal == true )
-				flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
-			return flip;
-		}
+	SDL_RendererFlip getSDLFlip() const
+	{
+		SDL_RendererFlip flip;
+		if(vertical == false && horisontal == false)
+			flip = SDL_FLIP_NONE;
+		else if(vertical == true  && horisontal == false)
+			flip = SDL_FLIP_VERTICAL;
+		else if(vertical == false && horisontal == true )
+			flip = SDL_FLIP_HORIZONTAL;
+		else if(vertical == true  && horisontal == true )
+			flip = (SDL_RendererFlip)(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
+		return flip;
+	}
 };
 
 class Node : public std::enable_shared_from_this<Node>
@@ -56,53 +56,51 @@ public:
 	typedef std::shared_ptr<Node> NodePtr;
 	typedef std::weak_ptr<Node> ParentPtr;
 private:
-	Vec2 position;
+	Vec2 m_position;
 
-	float scaleX;
-	float scaleY;
+	float m_scaleX;
+	float m_scaleY;
 
-	float rotation;
+	float m_rotation;
 
-	FlipState flip;
-	Vec2 anchorPoint;
-	int drawOrder;
-	bool needsSortFlag;
+	FlipState m_flip;
+	Vec2 m_anchorPoint;
+	int m_drawOrder;
+	bool m_needsSortFlag;
 
-	std::vector<NodePtr> drwChilds;
-	ParentPtr parent;
+	std::vector<NodePtr> m_drwChilds;
+	ParentPtr m_parent;
 
-	std::string nodeKey;
+	std::string m_nodeKey;
 
 protected:
 	virtual void setParent(NodePtr _parent);
-	virtual void insertChild(NodePtr child, int order, std::string key);
+	virtual void insertChild(NodePtr _child, int _order, const std::string& _key);
 
 public:
 	Node();
 	static NodePtr create();
-	virtual ~Node() {
-		this->removeFromParent();
-	};
+	virtual ~Node();
 
 	virtual void draw();
 
-	virtual void addChild(NodePtr child);
-	virtual void addChild(NodePtr child, int _drawOrder);
-	virtual void addChild(NodePtr child, int _drawOrder, std::string key);
+	virtual void addChild(NodePtr _child);
+	virtual void addChild(NodePtr _child, int _drawOrder);
+	virtual void addChild(NodePtr _child, int _drawOrder, const std::string& _key);
 
-	virtual const std::vector<NodePtr> getDrawableChildren() const;
+	virtual const std::vector<NodePtr>& getDrawableChildren() const;
 	virtual Node::NodePtr getParent() const;
 	virtual void removeChildren();
 	virtual void destroyChildrenRecursive();
 
 	virtual void removeFromParent();
-	virtual void removeChild(NodePtr childToRemove);
+	virtual void removeChild(NodePtr _childToRemove);
 
-	virtual NodePtr getChildByKey(std::string childKey) const;
+	virtual NodePtr getChildByKey(const std::string& _childKey) const;
 
-	virtual void setPosition(Vec2 _position);
+	virtual void setPosition(const Vec2& _position);
 	virtual void setPosition(float _x, float _y);
-	virtual Vec2 getPosition() const;
+	virtual const Vec2& getPosition() const;
 	virtual float getPositionX() const;
 	virtual float getPositionY() const;
 
@@ -119,33 +117,33 @@ public:
 	virtual float getScaleX() const;
 	virtual float getScaleY() const;
 
-	virtual void setDrawOrder(int order);
+	virtual void setDrawOrder(int _order);
 	virtual int getDrawOrder() const;
 
-	virtual void setKey(std::string key);
+	virtual void setKey(const std::string& _key);
 
-	virtual void setAnchorPoint(Vec2 newAnchorPoint);
-	virtual void setAnchorPoint(float anchorX, float anchorY);
-	virtual Vec2 getAnchorPoint() const;
+	virtual void setAnchorPoint(const Vec2& _newAnchorPoint);
+	virtual void setAnchorPoint(float _anchorX, float _anchorY);
+	virtual const Vec2& getAnchorPoint() const;
 
 	/*sets rotation of the sprite clockwise in degrees */
-	virtual void setRotation(float angle);
-	virtual void setRotationRecursive(float angle);
+	virtual void setRotation(float _angle);
+	virtual void setRotationRecursive(float _angle);
 	virtual float getRotation() const;
 
 	virtual void flipVertical();
 	virtual void flipHorisontal();
-	virtual FlipState getFlipState() const;
-	virtual void setFlipState(FlipState _newFlipState);
+	virtual const FlipState& getFlipState() const;
+	virtual void setFlipState(const FlipState& _newFlipState);
 
-	virtual void setNodeKey(std::string _key);
-	virtual std::string getNodeKey() const;
+	virtual void setNodeKey(const std::string& _key);
+	virtual const std::string& getNodeKey() const;
 
-	virtual void move(Vec2 delta);
-	virtual void move(float deltaX, float deltaY);
-	virtual void moveX(float deltaX);
-	virtual void moveY(float deltaY);
-	virtual void moveRecursive(float deltaX, float deltaY);		
+	virtual void move(const Vec2& _delta);
+	virtual void move(float _deltaX, float _deltaY);
+	virtual void moveX(float _deltaX);
+	virtual void moveY(float _deltaY);
+	virtual void moveRecursive(float _deltaX, float _deltaY);		
 
 	virtual void needsSort();
 };

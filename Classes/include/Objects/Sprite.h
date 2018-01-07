@@ -12,20 +12,21 @@
 class Sprite : public Node
 {
 private: 
-	SDL_Texture *texture2D; //texture to draw
-	std::string path;
-	Size imageRealSize; // texture width & height
+	SDL_Texture* m_texture2D; //texture to draw
+	std::string m_path;
+	Size m_imageRealSize; // texture width & height
+
 public:
-	Sprite();
-	Sprite(std::string imgPath);
+	Sprite() = default;
+	Sprite(const std::string& _imgPath);
 	static std::shared_ptr<Sprite> create();
-	static std::shared_ptr<Sprite> create(std::string imgPath);
+	static std::shared_ptr<Sprite> create(const std::string& _imgPath);
 	virtual ~Sprite();
 
 	virtual void draw() override;
-	virtual Size getContentSize();
-	virtual void setTexture(std::string imgPath);
-	virtual void setTexture(SDL_Texture *texture);
+	virtual const Size& getContentSize() const;
+	virtual void setTexture(const std::string& _imgPath);
+	virtual void setTexture(SDL_Texture* _texture);
 };
 
 

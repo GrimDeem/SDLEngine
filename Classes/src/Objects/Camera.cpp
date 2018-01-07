@@ -1,64 +1,64 @@
 #include "Objects/Camera.h"
 #include "Objects/Node.h"
 
-Camera::Camera(Size size)
+Camera::Camera(const Size& _size)
 {
-	cameraSize = size;
-	boundsEnabled = false;
+	m_cameraSize = _size;
+	m_boundsEnabled = false;
 }
 
-Camera::Camera(int sizeX, int sizeY)
-	: position(0, 0)
+Camera::Camera(int _sizeX, int _sizeY)
+	: m_position(0, 0)
 {
-	cameraSize = Size(sizeX, sizeY);
-	boundsEnabled = false;
+	m_cameraSize = Size(_sizeX, _sizeY);
+	m_boundsEnabled = false;
 }
 
-void Camera::setTargetNode(NodePtr targetNode)
+void Camera::setTargetNode(NodePtr _targetNode)
 {
-	this->targetNode = targetNode;
+	this->m_targetNode = _targetNode;
 }
 
 Camera::NodePtr Camera::getTargetNode()
 {
-	return targetNode;
+	return m_targetNode;
 }
 
-void Camera::setPosition(Vec2 newPos)
+void Camera::setPosition(const Vec2& _newPos)
 {
-	position = newPos;
+	m_position = _newPos;
 }
 
-Vec2 Camera::getPosition()
+const Vec2& Camera::getPosition()
 {
-	return position;
+	return m_position;
 }
 
 void Camera::updateCameraPosition()
 {
-	if (targetNode != nullptr) {
+	if (m_targetNode != nullptr) {
 		//Center the camera over the target
-		setPosition(Vec2(targetNode->getPosition().x - cameraSize.width / 2,
-						 targetNode->getPosition().y - cameraSize.height / 2));
+		setPosition(Vec2(m_targetNode->getPosition().x - m_cameraSize.width / 2,
+						 m_targetNode->getPosition().y - m_cameraSize.height / 2));
 		//Create camera bounds here
-		if (boundsEnabled == true)
+		if (m_boundsEnabled)
 		{
 			//Keep the camera in bounds.
-			if (position.x < cameraBounds.xMin)
+			if (m_position.x < m_cameraBounds.xMin)
 			{
-				position.x = cameraBounds.xMin;
+				m_position.x = m_cameraBounds.xMin;
 			}
-			if (position.y < cameraBounds.yMin)
+			if (m_position.y < m_cameraBounds.yMin)
 			{
-				position.y = cameraBounds.yMin;
+				m_position.y = m_cameraBounds.yMin;
 			}
-			if (position.x > cameraBounds.xMax - cameraSize.width)
+			if (m_position.x > m_cameraBounds.xMax - m_cameraSize.width)
 			{
-				position.x = cameraBounds.xMax - cameraSize.width;
+				m_position.x = m_cameraBounds.xMax - m_cameraSize.width;
 			}
-			if (position.y > cameraBounds.yMax - cameraSize.height)
+			if (m_position.y > m_cameraBounds.yMax - m_cameraSize.height)
 			{
-				position.y = cameraBounds.yMax - cameraSize.height;
+				m_position.y = m_cameraBounds.yMax - m_cameraSize.height;
 			}
 		}
 	}
@@ -66,14 +66,14 @@ void Camera::updateCameraPosition()
 
 void Camera::setCameraBounds(float _xMin, float _xMax, float _yMin, float _yMax)
 {
-	cameraBounds.xMin = _xMin;
-	cameraBounds.xMax = _xMax;
-	cameraBounds.yMin = _yMin;
-	cameraBounds.yMax = _yMax;
-	boundsEnabled = true;
+	m_cameraBounds.xMin = _xMin;
+	m_cameraBounds.xMax = _xMax;
+	m_cameraBounds.yMin = _yMin;
+	m_cameraBounds.yMax = _yMax;
+	m_boundsEnabled = true;
 }
 
 void Camera::disableBounds()
 {
-	boundsEnabled = false;
+	m_boundsEnabled = false;
 }

@@ -3,11 +3,12 @@
 std::shared_ptr<InitialScene> InitialScene::create()
 {
 	auto pRet = std::make_shared<InitialScene>(InitialScene());
-	if (pRet)
-		if( pRet->init())
-		return pRet;
-	else
-		assert(false);
+	if (pRet) {
+		if (pRet->init())
+			return pRet;
+	}
+	assert(false);
+	return nullptr;
 }
 
 bool InitialScene::init()
@@ -70,7 +71,7 @@ void InitialScene::animatedSpriteTest()
 			aSprite->animate("onhit", "idle");
 		}
 	});
-	eventHandler.addKeyboardHolder(test);
+	m_eventHandler.addKeyboardHolder(test);
 }
 
 void InitialScene::aSpriteEvents()
@@ -93,5 +94,5 @@ void InitialScene::aSpriteEvents()
 			aSprite->moveX(speed);
 		}
 	});
-	eventHandler.addKeyboardHolder(moveWarrior);
+	m_eventHandler.addKeyboardHolder(moveWarrior);
 }

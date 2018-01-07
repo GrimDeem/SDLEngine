@@ -11,21 +11,21 @@
 class Scene : public Node, public Updatable
 {
 protected:
-	EventHandler eventHandler;
-	std::function<void(const Uint8*, float)> _update;
-	virtual void insertChild(NodePtr child, int order, std::string key) override;
+	EventHandler m_eventHandler;
+	std::function<void(const Uint8*, float)> m_update;
+
+private:
+	virtual void insertChild(NodePtr _child, int _order, const std::string& _key) override;
 
 public:
-	Scene() 
-		: _update(nullptr)
-	{}
+	Scene();
 	static std::shared_ptr<Scene> create();
-	virtual ~Scene() {}
+	virtual ~Scene() = default;
 
-	virtual void removeChild(NodePtr childToRemove) override;
-	virtual void update(float dt) override;
+	virtual void removeChild(NodePtr _childToRemove) override;
+	virtual void update(float _dt) override;
 
-	virtual EventHandler getEventHandler();
+	virtual EventHandler& getEventHandler();
 };
 
 #endif // !__SCENE_H__

@@ -13,32 +13,32 @@ private:
 	typedef std::vector<SDL_Texture*> AnimationFrames;
 
 	// map of key(animationName) and animation frames
-	std::unordered_map<std::string, AnimationFrames> animations;
+	std::unordered_map<std::string, AnimationFrames> m_animations;
 
 	// The FPS the animation is running at (24FPS by default).
-	float animFPS;
+	float m_animFPS;
 
 	// is currentAnimation looped or not
-	bool isLooped;
+	bool m_isLooped;
 
 	// The frame number of the active animation that's being displayed
-	int frameNum;
+	int m_frameNum;
 
 	// Amount of time the current frame has been displayed
-	float frameTime;
+	float m_frameTime;
 
-	AnimationFrames currentAnimation;
+	AnimationFrames m_currentAnimation;
 
 	// animation, that will be played after currentAnimation
-	AnimationFrames nextAnimation;
+	AnimationFrames m_nextAnimation;
 
 protected:
-	virtual void insertChild(NodePtr child) override;
+	virtual void insertChild(NodePtr _child) override;
 
 public:
 	AnimatedSprite();
 	static std::shared_ptr<AnimatedSprite> create();
-	virtual ~AnimatedSprite();
+	virtual ~AnimatedSprite() = default;
 
 	virtual void update(float deltaTime) override;
 	virtual void removeChild(NodePtr child) override;
@@ -46,17 +46,17 @@ public:
 	/*
 	add animation to animations with <animationName> key
 	*/
-	void addAnimation(std::string animationName, AnimationFrames frames);
+	void addAnimation(const std::string& animationName, const AnimationFrames& frames);
 
 	/*
 	after end of <animationName> <nextAnimationName> will be looped
 	*/
-	void animate(std::string animationName, std::string nextAnimationName);
+	void animate(const std::string& animationName, const std::string& nextAnimationName);
 
 	/*
 	play <loopedAnimationName> in loop
 	*/
-	void animateLooped(std::string loopedAnimationName);
+	void animateLooped(const std::string& loopedAnimationName);
 
 	virtual void setAnimFPS(int newFPS);
 	virtual int getAnimFPS();

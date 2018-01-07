@@ -19,23 +19,23 @@ private:
 	};
 
 private:
-	Vec2 position;
-	Size cameraSize;
-	NodePtr targetNode;
-	Bounds cameraBounds;
-	bool boundsEnabled;
+	Vec2 m_position;
+	Size m_cameraSize;
+	NodePtr m_targetNode;
+	Bounds m_cameraBounds;
+	bool m_boundsEnabled;
 
 private:
-	void setPosition(Vec2 newPos);
+	void setPosition(const Vec2& _newPos);
 
 public:
-	Camera(Size size);
-	Camera(int sizeX, int sizeY);
+	Camera(const Size& _size);
+	Camera(int _sizeX, int _sizeY);
 	
-	void setTargetNode(NodePtr targetNode);
+	void setTargetNode(NodePtr _targetNode);
 	NodePtr getTargetNode();
 	
-	Vec2 getPosition();
+	const Vec2& getPosition();
 	void updateCameraPosition();
 
 	void setCameraBounds(float _xMin, float _xMax, float _yMin, float _yMax);

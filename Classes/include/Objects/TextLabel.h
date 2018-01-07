@@ -14,15 +14,15 @@ class TextLabel : public Node
 public:
 	typedef std::shared_ptr<TextLabel> TextLabelPtr;
 private:
-	std::string fontPath;
-	std::string contentText;
-	int fontSize;
-	Size labelRealSize;
+	std::string m_fontPath;
+	std::string m_contentText;
+	int m_fontSize;
+	Size m_labelRealSize;
 
-	TTF_Font * font;
-	SDL_Texture * texture;
-	SDL_Surface * surface;
-	SDL_Color textColor;
+	TTF_Font* m_font;
+	SDL_Texture* m_texture;
+	SDL_Surface* m_surface;
+	SDL_Color m_textColor;
 
 protected:
 	/*func should be called every time when any of this is chnged:
@@ -34,8 +34,8 @@ protected:
 	virtual void updateSurface();
 	virtual void clearSurface();
 public:
-	TextLabel(std::string _fontPath, int fsize, std::string _text);
-	static TextLabelPtr create(std::string _fontPath, int fsize, std::string _text);
+	TextLabel(const std::string& _fontPath, int _fsize, const std::string& _text);
+	static TextLabelPtr create(const std::string& _fontPath, int _fsize, const std::string& _text);
 	virtual ~TextLabel();
 
 	virtual void draw() override;
@@ -44,28 +44,28 @@ public:
 	/*
 	@brief sets new text content to a label
 	*/
-	virtual void setString(std::string _newText);
-	virtual std::string getString();
+	virtual void setString(const std::string& _newText);
+	virtual const std::string& getString();
 
 	/*
 	@brief sets new font color to a text label
 	*/
-	virtual void setColor(SDL_Color _color);
-	virtual SDL_Color getColor();
+	virtual void setColor(const SDL_Color& _color);
+	virtual const SDL_Color& getColor();
 
 	/*
 	@brief sets new font size to a text label
 	*/
-	virtual void setFontSize(int fsize);
-	virtual int getFontSize();
+	virtual void setFontSize(int _fsize);
+	virtual int getFontSize() const;
 
 	/*
 	@brief sets new font to a label loaded from dedicated path
 	*/
-	virtual void setFontPath(std::string newFontPath);
-	virtual std::string getFontPath();
+	virtual void setFontPath(const std::string& _newFontPath);
+	virtual const std::string& getFontPath() const;
 
-	virtual const Size getRealSize() const;
+	virtual const Size& getRealSize() const;
 };
 
 #endif __TEXT_LABEL_H__

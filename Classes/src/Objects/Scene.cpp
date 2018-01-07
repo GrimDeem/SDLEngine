@@ -1,37 +1,41 @@
 #include "Objects/Scene.h"
 
+Scene::Scene()
+	: m_update(nullptr)
+{}
+
 std::shared_ptr<Scene> Scene::create()
 {
 	return std::make_shared<Scene>();
 }
 
-void Scene::removeChild(NodePtr childToRemove)
+void Scene::removeChild(NodePtr _childToRemove)
 {
-	Node::removeChild(childToRemove);
-	Updatable::removeChild(childToRemove);
+	Node::removeChild(_childToRemove);
+	Updatable::removeChild(_childToRemove);
 }
 
-void Scene::insertChild(NodePtr child, int order, std::string key)
+void Scene::insertChild(NodePtr _child, int _order, const std::string& _key)
 {
-	Node::insertChild(child, order, key);
-	Updatable::insertChild(child);
+	Node::insertChild(_child, _order, _key);
+	Updatable::insertChild(_child);
 }
 
-void Scene::update(float dt)
+void Scene::update(float _dt)
 {
-	if (_update != nullptr) {
+	if (m_update != nullptr) {
 		const Uint8* state = SDL_GetKeyboardState(NULL);
 		try {
-			_update(state, dt);
+			m_update(state, _dt);
 		}
 		catch (const std::bad_function_call& e) {
 			LOG(e.what());
 		}
 	}
-	Updatable::update(dt);
+	Updatable::update(_dt);
 }
 
-EventHandler Scene::getEventHandler()
+EventHandler& Scene::getEventHandler()
 {
-	return eventHandler;
+	return m_eventHandler;
 }

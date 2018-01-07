@@ -6,7 +6,7 @@
 /*
 	Updatable is auxiliary class to describe objects
 	which have to be updated each frame with delta time
-	sush as animated sprite
+	such as animated sprite
 	Methods of the "updatable" class should be called in overridden 
 	methods of the derived classes with similar "Node" methods 
 	to avoid memory leaks
@@ -18,40 +18,40 @@ class Updatable
 public:
 	typedef std::shared_ptr<Updatable> UpdatablePtr;
 private:
-	std::vector<UpdatablePtr> updChilds;
+	std::vector<UpdatablePtr> m_updChilds;
 
 protected:
-	Updatable() {}
-	~Updatable() {} //do not del or remove childs to avoid multiple del (node destructor)
-	virtual void removeChild(Node::NodePtr childToRemove)
+	Updatable() = default;
+	~Updatable() = default; //do not del or remove childs to avoid multiple del (node destructor)
+	virtual void removeChild(Node::NodePtr _childToRemove)
 	{
-		if (updChilds.empty())
+		if (m_updChilds.empty())
 			return;
-		auto updChild = std::dynamic_pointer_cast<Updatable>(childToRemove);
+		auto updChild = std::dynamic_pointer_cast<Updatable>(_childToRemove);
 		if (updChild != nullptr) {
-			auto iter = std::find(updChilds.begin(), updChilds.end(), updChild);
-			if (iter != updChilds.end())
-				updChilds.erase(iter);
+			auto iter = std::find(m_updChilds.begin(), m_updChilds.end(), updChild);
+			if (iter != m_updChilds.end())
+				m_updChilds.erase(iter);
 		}
 	}
 
-	virtual void insertChild(Node::NodePtr child)
+	virtual void insertChild(Node::NodePtr _child)
 	{
-		auto updChild = std::dynamic_pointer_cast<Updatable>(child);
+		auto updChild = std::dynamic_pointer_cast<Updatable>(_child);
 		if (updChild != nullptr)
-			updChilds.push_back(updChild);
+			m_updChilds.push_back(updChild);
 	}
 
 public:
-	virtual void update(float dt)
+	virtual void update(float _dt)
 	{
 		for (auto &child : Updatable::getUpdatableChildren())
-			child->update(dt);
+			child->update(_dt);
 	}
 
-	virtual const std::vector<UpdatablePtr> getUpdatableChildren() const
+	virtual const std::vector<UpdatablePtr>& getUpdatableChildren() const
 	{
-		return updChilds;
+		return m_updChilds;
 	}
 };
 
