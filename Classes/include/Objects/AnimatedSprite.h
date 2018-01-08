@@ -3,8 +3,8 @@
 #define __ANIMATED_SPRITE_H__
 
 #include <unordered_map>
-#include "Objects/Sprite.h"
-#include "Objects/Updatable.h"
+#include <Objects/Sprite.h>
+#include <Objects/Updatable.h>
 
 
 class AnimatedSprite : public Sprite, public Updatable
@@ -33,7 +33,8 @@ private:
 	AnimationFrames m_nextAnimation;
 
 protected:
-	virtual void insertChild(NodePtr _child) override;
+	void _onAnimate(bool nextLooped);
+	virtual void _insertChild(NodePtr _child) override;
 
 public:
 	AnimatedSprite();

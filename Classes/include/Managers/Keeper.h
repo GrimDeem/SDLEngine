@@ -7,11 +7,11 @@
 #include <SDL_render.h>
 #include <SDL_ttf.h>
 
-#include "Managers/TextureManager.h"
-#include "Managers/WindowManager.h"
-#include "Managers/SceneManager.h"
+#include <Managers/TextureManager.h>
+#include <Managers/WindowManager.h>
+#include <Managers/SceneManager.h>
 
-#include "Objects/Camera.h"
+#include <Objects/Camera.h>
 
 /*  Keeper is the main class of the game engine
 	Stores an unique entities such as TextureManager,

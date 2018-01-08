@@ -3,16 +3,16 @@
 #define __SCENE_MANAGER_H__
 
 #include <unordered_map>
-#include "Objects/Scene.h"
+#include <Objects/Scene.h>
 
 /*SceneManager is entity responsible for scene switching and storage*/
 class SceneManager
 {
 private:
-
 	std::shared_ptr<Scene> m_currentScene;
 	std::shared_ptr<Scene> m_nextScene;
 	std::unordered_map<std::string, std::shared_ptr<Scene>> m_scenePool;
+
 public:
 	SceneManager();
 	~SceneManager();

@@ -8,8 +8,8 @@
 #include <string>
 #include <memory>
 #include <SDL.h>
-#include "Core/GlobalDefines.h"
-#include "Core/Vec2.h"
+#include <Core/GlobalDefines.h>
+#include <Core/Vec2.h>
 
 /*	Node is the base element of the Scene Graph. 
 	Elements of the Scene Graph must be Node objects or subclasses of it.
@@ -74,8 +74,8 @@ private:
 	std::string m_nodeKey;
 
 protected:
-	virtual void setParent(NodePtr _parent);
-	virtual void insertChild(NodePtr _child, int _order, const std::string& _key);
+	virtual void _setParent(NodePtr _parent);
+	virtual void _insertChild(NodePtr _child, int _order, const std::string& _key);
 
 public:
 	Node();

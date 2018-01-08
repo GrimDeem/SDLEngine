@@ -1,4 +1,4 @@
-#include "Objects/TextLabel.h"
+#include <Objects/TextLabel.h>
 
 TextLabel::TextLabel(const std::string& _fontPath, int _fsize, const std::string& _text)
 	: m_fontPath(_fontPath)
@@ -19,20 +19,17 @@ TextLabel::TextLabel(const std::string& _fontPath, int _fsize, const std::string
 		&m_labelRealSize.height);
 }
 
-TextLabel::TextLabelPtr TextLabel::create(const std::string& _fontPath, int _fsize, const std::string& _text)
-{
+TextLabel::TextLabelPtr TextLabel::create(const std::string& _fontPath, int _fsize, const std::string& _text) {
 	return std::make_shared<TextLabel>(_fontPath, _fsize, _text);
 }
 
-TextLabel::~TextLabel()
-{
+TextLabel::~TextLabel() {
 	TTF_CloseFont(m_font);
-	clearSurface();
+	_clearSurface();
 }
 
-void TextLabel::updateSurface()
-{
-	clearSurface();
+void TextLabel::_updateSurface() {
+	_clearSurface();
 
 	m_surface = TTF_RenderText_Solid(m_font, m_contentText.c_str(), m_textColor);
 	m_texture = SDL_CreateTextureFromSurface(
@@ -41,14 +38,12 @@ void TextLabel::updateSurface()
 		&m_labelRealSize.height);
 }
 
-void TextLabel::clearSurface()
-{
+void TextLabel::_clearSurface() {
 	SDL_DestroyTexture(m_texture);
 	SDL_FreeSurface(m_surface);
 }
 
-void TextLabel::draw()
-{
+void TextLabel::draw() {
 	Node::draw();
 
 	SDL_Rect texr;
@@ -62,30 +57,25 @@ void TextLabel::draw()
 		Node::getFlipState().getSDLFlip());
 }
 
-void TextLabel::setString(const std::string& _newText)
-{
+void TextLabel::setString(const std::string& _newText) {
 	m_contentText = _newText;
-	updateSurface();
+	_updateSurface();
 }
 
-const std::string& TextLabel::getString()
-{
+const std::string& TextLabel::getString() {
 	return m_contentText;
 }
 
-void TextLabel::setColor(const SDL_Color& _color)
-{
+void TextLabel::setColor(const SDL_Color& _color) {
 	m_textColor = _color;
-	updateSurface();
+	_updateSurface();
 }
 
-const SDL_Color& TextLabel::getColor()
-{
+const SDL_Color& TextLabel::getColor() {
 	return m_textColor;
 }
 
-void TextLabel::setFontSize(int _fsize)
-{
+void TextLabel::setFontSize(int _fsize) {
 	TTF_CloseFont(m_font);
 	m_fontSize = _fsize;
 
@@ -94,16 +84,14 @@ void TextLabel::setFontSize(int _fsize)
 		LOG(TTF_GetError());
 		exit(1);
 	}
-	updateSurface();
+	_updateSurface();
 }
 
-int TextLabel::getFontSize() const
-{
+int TextLabel::getFontSize() const {
 	return m_fontSize;
 }
 
-void TextLabel::setFontPath(const std::string& _newFontPath)
-{
+void TextLabel::setFontPath(const std::string& _newFontPath) {
 	TTF_CloseFont(m_font);
 	m_fontPath = _newFontPath;
 
@@ -113,15 +101,13 @@ void TextLabel::setFontPath(const std::string& _newFontPath)
 		exit(1);
 	}
 
-	updateSurface();
+	_updateSurface();
 }
 
-const std::string& TextLabel::getFontPath() const
-{
+const std::string& TextLabel::getFontPath() const {
 	return m_fontPath;
 }
 
-const Size& TextLabel::getRealSize() const
-{
+const Size& TextLabel::getRealSize() const {
 	return m_labelRealSize;
 }

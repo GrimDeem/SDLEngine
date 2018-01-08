@@ -2,9 +2,9 @@
 #ifndef __TEXT_LABEL_H__
 #define __TEXT_LABEL_H__
 
-#include "SDL_ttf.h"
-#include "Objects/Node.h"
-#include "Managers/Keeper.h"
+#include <SDL_ttf.h>
+#include <Objects/Node.h>
+#include <Managers/Keeper.h>
 
 /*
 TextLabel is a simple text rendered on surface.
@@ -31,8 +31,8 @@ protected:
 	-textContent
 	-textColor
 	*/
-	virtual void updateSurface();
-	virtual void clearSurface();
+	virtual void _updateSurface();
+	virtual void _clearSurface();
 public:
 	TextLabel(const std::string& _fontPath, int _fsize, const std::string& _text);
 	static TextLabelPtr create(const std::string& _fontPath, int _fsize, const std::string& _text);

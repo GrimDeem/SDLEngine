@@ -2,7 +2,7 @@
 #ifndef __UPDATABLE_H__
 #define __UPDATABLE_H__
 
-#include "Objects/Node.h"
+#include <Objects/Node.h>
 /*
 	Updatable is auxiliary class to describe objects
 	which have to be updated each frame with delta time
@@ -23,8 +23,7 @@ private:
 protected:
 	Updatable() = default;
 	~Updatable() = default; //do not del or remove childs to avoid multiple del (node destructor)
-	virtual void removeChild(Node::NodePtr _childToRemove)
-	{
+	virtual void _removeChild(Node::NodePtr _childToRemove) {
 		if (m_updChilds.empty())
 			return;
 		auto updChild = std::dynamic_pointer_cast<Updatable>(_childToRemove);
@@ -35,22 +34,19 @@ protected:
 		}
 	}
 
-	virtual void insertChild(Node::NodePtr _child)
-	{
+	virtual void _insertChild(Node::NodePtr _child) {
 		auto updChild = std::dynamic_pointer_cast<Updatable>(_child);
 		if (updChild != nullptr)
 			m_updChilds.push_back(updChild);
 	}
 
 public:
-	virtual void update(float _dt)
-	{
+	virtual void update(float _dt) {
 		for (auto &child : Updatable::getUpdatableChildren())
 			child->update(_dt);
 	}
 
-	virtual const std::vector<UpdatablePtr>& getUpdatableChildren() const
-	{
+	virtual const std::vector<UpdatablePtr>& getUpdatableChildren() const {
 		return m_updChilds;
 	}
 };

@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <SDL_image.h>
-#include "Managers/Keeper.h"
+#include <Managers/Keeper.h>
 
 /*
 	TextureManager is the class, which load, unload,
@@ -19,7 +19,7 @@ private:
 	/* map of the loaded textures(texture pool)*/
 	std::unordered_map<std::string, SDL_Texture*> m_textures;
 	/*load texture and add it to the map*/
-	SDL_Texture* loadTexture(const std::string& _pathToTexture);
+	SDL_Texture* _loadTexture(const std::string& _pathToTexture);
 public:
 	TextureManager() = default;
 	~TextureManager();

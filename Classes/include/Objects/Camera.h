@@ -2,7 +2,7 @@
 #define _CAMERA_
 
 #include <memory>
-#include "Core/Vec2.h"
+#include <Core/Vec2.h>
 
 class Node;
 
@@ -29,7 +29,7 @@ private:
 	void setPosition(const Vec2& _newPos);
 
 public:
-	Camera(const Size& _size);
+	explicit Camera(const Size& _size);
 	Camera(int _sizeX, int _sizeY);
 	
 	void setTargetNode(NodePtr _targetNode);

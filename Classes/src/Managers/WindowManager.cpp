@@ -1,18 +1,15 @@
-#include "Managers/WindowManager.h"
+#include <Managers/WindowManager.h>
 
-WindowManager::WindowManager()
-{
+WindowManager::WindowManager() {
 	m_windowSize = Size(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 	m_position = Vec2(WINDOW_POSITION_X, WINDOW_POSITION_Y);
 }
 
-WindowManager::~WindowManager()
-{
+WindowManager::~WindowManager() {
 	destroyWindow();
 }
 
-SDL_Window * WindowManager::createWindow()
-{
+SDL_Window * WindowManager::createWindow() {
 	m_instance = SDL_CreateWindow(
 		WINDOW_TITLE,
 		WINDOW_POSITION_X,
@@ -23,13 +20,11 @@ SDL_Window * WindowManager::createWindow()
 	return m_instance;
 }
 
-Size WindowManager::getWindowSize()
-{
+Size WindowManager::getWindowSize() {
 	return m_windowSize;
 }
 
-void WindowManager::destroyWindow()
-{
+void WindowManager::destroyWindow() {
 	SDL_DestroyWindow(m_instance);
 }
 

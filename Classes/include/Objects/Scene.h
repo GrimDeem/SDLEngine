@@ -4,9 +4,9 @@
 
 #include <functional>
 #include <SDL.h>
-#include "Objects/Node.h"
-#include "Objects/Updatable.h"
-#include "Input/EventHandler.h"
+#include <Objects/Node.h>
+#include <Objects/Updatable.h>
+#include <Input/EventHandler.h>
 
 class Scene : public Node, public Updatable
 {
@@ -15,7 +15,7 @@ protected:
 	std::function<void(const Uint8*, float)> m_update;
 
 private:
-	virtual void insertChild(NodePtr _child, int _order, const std::string& _key) override;
+	virtual void _insertChild(NodePtr _child, int _order, const std::string& _key) override;
 
 public:
 	Scene();
