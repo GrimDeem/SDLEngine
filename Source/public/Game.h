@@ -6,7 +6,6 @@
 #include <SDL_main.h>
 #include <SDL_ttf.h>
 #include <Managers/Keeper.h>
-#include <../InitialScene.h>
 
 #define FRAME_VALUES 10
 class Game

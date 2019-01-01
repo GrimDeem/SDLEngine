@@ -5,8 +5,6 @@ Game::Game()
 	initFPS();
 	initSDL();	
 	is_running = true;
-
-	Keeper::getInstance().runFirstScene(InitialScene::create());
 }
 
 bool Game::initSDL()
