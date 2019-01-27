@@ -64,19 +64,29 @@ set(KDENGINE_HEADERS
     ${SOURCE_DIR}/public/Game.h
 )
 
-find_library(SDL2	    libSDL2.so		    ${SDL2_LIBRARIES_DIR})
-find_library(SDL2_IMAGE	libSDL2_image.so	${SDL2_LIBRARIES_DIR})
-find_library(SDL2_MIXER	libSDL2_mixer.so	${SDL2_LIBRARIES_DIR})
-find_library(SDL2_NET	libSDL2_net.so		${SDL2_LIBRARIES_DIR})
-find_library(SDL2_TTF	libSDL2_ttf.so	 	${SDL2_LIBRARIES_DIR})
+if(UNIX)
+    find_library(SDL2_LIB	    libSDL2.so		    ${SDL2_LIBRARIES_DIR})
+    find_library(SDL2_IMAGE_LIB	libSDL2_image.so	${SDL2_LIBRARIES_DIR})
+    find_library(SDL2_MIXER_LIB	libSDL2_mixer.so	${SDL2_LIBRARIES_DIR})
+    find_library(SDL2_NET_LIB	libSDL2_net.so		${SDL2_LIBRARIES_DIR})
+    find_library(SDL2_TTF_LIB	libSDL2_ttf.so	 	${SDL2_LIBRARIES_DIR})
 
-message("\nChecking libraries...")
-message(STATUS "	      sdl2: " ${SDL2})
-message(STATUS "      sdl_image: " ${SDL2_IMAGE})
-message(STATUS "      sdl_mixer: " ${SDL2_MIXER})
-message(STATUS "        sdl_net: " ${SDL2_NET})
-message(STATUS "        sdl_ttf: " ${SDL2_TTF})
-message("")
+    message("\nChecking libraries...")
+    message(STATUS "	      sdl2: " ${SDL2_LIB})
+    message(STATUS "      sdl_image: " ${SDL2_IMAGE_LIB})
+    message(STATUS "      sdl_mixer: " ${SDL2_MIXER_LIB})
+    message(STATUS "        sdl_net: " ${SDL2_NET_LIB})
+    message(STATUS "        sdl_ttf: " ${SDL2_TTF_LIB})
+    message("")
+endif(UNIX)
+
+if(WIN32)
+    set(SDL2_LIB ${SDL2_LIBRARIES_DIR}/_SDL2main.lib)
+    set(SDL2_IMAGE_LIB ${SDL2_LIBRARIES_DIR}/SDL2_image.lib)
+    set(SDL2_MIXER_LIB ${SDL2_LIBRARIES_DIR})
+    set(SDL2_NET_LIB ${SDL2_LIBRARIES_DIR}/SDL2_net.lib)
+    set(SDL2_TTF_LIB ${SDL2_LIBRARIES_DIR}/SDL2_ttf.lib)
+endif(WIN32)
 
 add_library(${PROJECT_NAME} SHARED ${KDENGINE_SOURCES} ${KDENGINE_HEADERS})
 
@@ -86,9 +96,9 @@ target_include_directories(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME} 
-		PUBLIC ${SDL2}
-		PUBLIC ${SDL2_IMAGE}
-		PUBLIC ${SDL2_MIXER}
-		PUBLIC ${SDL2_NET}
-		PUBLIC ${SDL2_TTF}
+		PUBLIC ${SDL2_LIB}
+		PUBLIC ${SDL2_IMAGE_LIB}
+		PUBLIC ${SDL2_MIXER_LIB}
+		PUBLIC ${SDL2_NET_LIB}
+		PUBLIC ${SDL2_TTF_LIB}
         )
