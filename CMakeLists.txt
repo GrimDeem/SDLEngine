@@ -5,7 +5,7 @@ project(${PROJECT_NAME} VERSION 1.0.1)
 
 if(WIN32)
     message("Detected platform: WIN32")
-    set(PLATFORM_DIR ${CMAKE_SOURCE_DIR}/External/Windows/)
+    set(PLATFORM_DIR ${CMAKE_SOURCE_DIR}/External/Windows)
 endif(WIN32)
 
 if(UNIX)
@@ -70,23 +70,27 @@ if(UNIX)
     find_library(SDL2_MIXER_LIB	libSDL2_mixer.so	${SDL2_LIBRARIES_DIR})
     find_library(SDL2_NET_LIB	libSDL2_net.so		${SDL2_LIBRARIES_DIR})
     find_library(SDL2_TTF_LIB	libSDL2_ttf.so	 	${SDL2_LIBRARIES_DIR})
-
-    message("\nChecking libraries...")
-    message(STATUS "	      sdl2: " ${SDL2_LIB})
-    message(STATUS "      sdl_image: " ${SDL2_IMAGE_LIB})
-    message(STATUS "      sdl_mixer: " ${SDL2_MIXER_LIB})
-    message(STATUS "        sdl_net: " ${SDL2_NET_LIB})
-    message(STATUS "        sdl_ttf: " ${SDL2_TTF_LIB})
-    message("")
 endif(UNIX)
 
 if(WIN32)
-    set(SDL2_LIB ${SDL2_LIBRARIES_DIR}/_SDL2main.lib)
+    # probably will require copying .dll's to output dir
+    # so need to be aware of this.
+    # Also we aint using available SDL2main.lib and _SDL2main.lib,
+    # but looks like its linking fine for now, so dont really care
+    set(SDL2_LIB ${SDL2_LIBRARIES_DIR}/SDL2.lib)
     set(SDL2_IMAGE_LIB ${SDL2_LIBRARIES_DIR}/SDL2_image.lib)
     set(SDL2_MIXER_LIB ${SDL2_LIBRARIES_DIR})
     set(SDL2_NET_LIB ${SDL2_LIBRARIES_DIR}/SDL2_net.lib)
     set(SDL2_TTF_LIB ${SDL2_LIBRARIES_DIR}/SDL2_ttf.lib)
 endif(WIN32)
+
+message("\nChecking libraries...")
+message(STATUS "	      sdl2: " ${SDL2_LIB})
+message(STATUS "      sdl_image: " ${SDL2_IMAGE_LIB})
+message(STATUS "      sdl_mixer: " ${SDL2_MIXER_LIB})
+message(STATUS "        sdl_net: " ${SDL2_NET_LIB})
+message(STATUS "        sdl_ttf: " ${SDL2_TTF_LIB})
+message("")
 
 add_library(${PROJECT_NAME} SHARED ${KDENGINE_SOURCES} ${KDENGINE_HEADERS})
 
