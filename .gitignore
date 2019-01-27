@@ -256,7 +256,5 @@ ModelManifest.xml
 
 *tlog/
 Test/
-*.dll
 *.exe
-*.lib
 *.idb
