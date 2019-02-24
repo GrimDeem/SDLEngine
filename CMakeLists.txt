@@ -5,18 +5,18 @@ project(${PROJECT_NAME} VERSION 1.0.1)
 
 if(WIN32)
     message("Detected platform: WIN32")
-    set(PLATFORM_DIR ${CMAKE_SOURCE_DIR}/External/Windows)
+    set(PLATFORM_DIR ${CMAKE_CURRENT_SOURCE_DIR}/External/Windows)
 endif(WIN32)
 
 if(UNIX)
     message("Detected platform: UNIX")
-    set(PLATFORM_DIR ${CMAKE_SOURCE_DIR}/External/Linux/)
+    set(PLATFORM_DIR ${CMAKE_CURRENT_SOURCE_DIR}/External/Linux/)
 endif(UNIX)
 
 set(SDL2_DIR ${PLATFORM_DIR}/SDL2)
 set(SDL2_LIBRARIES_DIR ${SDL2_DIR}/libs)
 set(SDL2_INCLUDE_DIR ${SDL2_DIR}/include)
-set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/Source/)
+set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Source/)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -w")
 
 set(KDENGINE_SOURCES
