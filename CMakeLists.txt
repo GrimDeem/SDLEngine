@@ -16,6 +16,11 @@ endif(UNIX)
 set(SDL2_DIR ${PLATFORM_DIR}/SDL2)
 set(SDL2_LIBRARIES_DIR ${SDL2_DIR}/libs)
 set(SDL2_INCLUDE_DIR ${SDL2_DIR}/include)
+
+# TODO: REMOVE
+set(SDL2_INCLUDE_DIR_P ${SDL2_DIR}/include PARENT_SCOPE)
+message(WARNING "Get rid of this!")
+
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Source/)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -w")
 
@@ -84,13 +89,12 @@ if(WIN32)
     set(SDL2_TTF_LIB ${SDL2_LIBRARIES_DIR}/SDL2_ttf.lib)
 endif(WIN32)
 
-message("\nChecking libraries...")
+message("Checking libraries...")
 message(STATUS "	      sdl2: " ${SDL2_LIB})
 message(STATUS "      sdl_image: " ${SDL2_IMAGE_LIB})
 message(STATUS "      sdl_mixer: " ${SDL2_MIXER_LIB})
 message(STATUS "        sdl_net: " ${SDL2_NET_LIB})
 message(STATUS "        sdl_ttf: " ${SDL2_TTF_LIB})
-message("")
 
 add_library(${PROJECT_NAME} SHARED ${KDENGINE_SOURCES} ${KDENGINE_HEADERS})
 
