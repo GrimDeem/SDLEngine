@@ -1,5 +1,5 @@
 # SDLEngine
-Simple 2d game engine based on SDL2 with a scene graph and event dispatching.
+Simple 2d game library based on SDL2 with a scene graph and event dispatching.
 
 ## Getting Started
 Following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -33,7 +33,7 @@ make -j2
 ```
 
 #### Windows
-All steps below is done via Git Bash, but you can reproduce the using cmd.
+All steps below is done via Git Bash, but you can reproduce them using cmd.
 
 Change your directory to the project folder and create a build directory.
 ```
