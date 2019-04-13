@@ -19,7 +19,8 @@ set(SDL2_INCLUDE_DIR ${SDL2_DIR}/include)
 
 # TODO: REMOVE
 set(SDL2_INCLUDE_DIR_P ${SDL2_DIR}/include PARENT_SCOPE)
-message(WARNING "Get rid of this!")
+set(SDL2_LIBRARIES_DIR_P ${SDL2_DIR}/libs PARENT_SCOPE)
+message(WARNING "Get rid of this hack!")
 
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Source/)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -w")
@@ -80,9 +81,12 @@ endif(UNIX)
 if(WIN32)
     # probably will require copying .dll's to output dir
     # so need to be aware of this.
-    # Also we aint using available SDL2main.lib and _SDL2main.lib,
+	set(SDL2_DLL ${SDL2_LIBRARIES_DIR}/SDL2.dll)
+
+    # Also we aint using available _SDL2main.lib,
     # but looks like its linking fine for now, so dont really care
     set(SDL2_LIB ${SDL2_LIBRARIES_DIR}/SDL2.lib)
+	set(SDL2_MAIN_LIB ${SDL2_LIBRARIES_DIR}/SDL2main.lib)
     set(SDL2_IMAGE_LIB ${SDL2_LIBRARIES_DIR}/SDL2_image.lib)
     set(SDL2_MIXER_LIB ${SDL2_LIBRARIES_DIR})
     set(SDL2_NET_LIB ${SDL2_LIBRARIES_DIR}/SDL2_net.lib)
@@ -91,10 +95,13 @@ endif(WIN32)
 
 message("Checking libraries...")
 message(STATUS "	      sdl2: " ${SDL2_LIB})
+message(STATUS "       sdl_main: " ${SDL2_MAIN_LIB})
 message(STATUS "      sdl_image: " ${SDL2_IMAGE_LIB})
 message(STATUS "      sdl_mixer: " ${SDL2_MIXER_LIB})
 message(STATUS "        sdl_net: " ${SDL2_NET_LIB})
 message(STATUS "        sdl_ttf: " ${SDL2_TTF_LIB})
+
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_library(${PROJECT_NAME} SHARED ${KDENGINE_SOURCES} ${KDENGINE_HEADERS})
 
@@ -105,6 +112,7 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} 
 		PUBLIC ${SDL2_LIB}
+		PUBLIC ${SDL2_MAIN_LIB}
 		PUBLIC ${SDL2_IMAGE_LIB}
 		PUBLIC ${SDL2_MIXER_LIB}
 		PUBLIC ${SDL2_NET_LIB}
