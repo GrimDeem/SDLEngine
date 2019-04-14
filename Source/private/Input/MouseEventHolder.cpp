@@ -1,3 +1,4 @@
+#include <SDL.h>
 #include <Input/MouseEventHolder.h>
 
 void MouseEventHolder::onButtonPressed(mouseBtnCallback _callback) {

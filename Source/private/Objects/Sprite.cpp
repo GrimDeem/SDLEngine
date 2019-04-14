@@ -1,3 +1,6 @@
+#include <SDL_image.h>
+
+#include <Managers/Keeper.h>
 #include <Objects/Sprite.h>
 
 Sprite::Sprite(const std::string& _pathToImg)
@@ -24,10 +27,10 @@ void Sprite::draw() {
 	texr.h = m_imageRealSize.height * Node::getScaleY();
 	texr.x = Node::getPositionX() - Node::getAnchorPoint().x * texr.w
 		- Keeper::getInstance().getCamera()->getPosition().x;  //SpritePosition
-	texr.y = Node::getPositionY() - Node::getAnchorPoint().y * texr.h 
+	texr.y = Node::getPositionY() - Node::getAnchorPoint().y * texr.h
 		- Keeper::getInstance().getCamera()->getPosition().y;
 
-	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(), 
+	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(),
 			 m_texture2D, nullptr, &texr, Node::getRotation(),
 			 nullptr, Node::getFlipState().getSDLFlip());
 	Node::draw();

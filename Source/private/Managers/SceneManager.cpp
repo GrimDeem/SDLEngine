@@ -1,3 +1,6 @@
+#include <cassert>
+
+#include <Objects/Scene.h>
 #include <Managers/SceneManager.h>
 
 SceneManager::SceneManager()
@@ -35,7 +38,7 @@ std::shared_ptr<Scene> SceneManager::getSceneFromPool(const std::string& _sceneT
 			return m_scenePool.at(_sceneTag);
 	}
 	assert(false); //scene with this tag not finded
-	return nullptr; 
+	return nullptr;
 }
 
 void SceneManager::removeSceneFromPool(const std::string& _sceneTag) {
@@ -64,11 +67,11 @@ void SceneManager::drawCurrentScene() {
 void SceneManager::updateCurrentScene(float _dt) {
 	assert(m_currentScene != nullptr);
 	m_currentScene->update(_dt);
-	
+
 	if (m_nextScene != nullptr) {
 		m_currentScene = m_nextScene;
 		m_nextScene = nullptr;
-	}		
+	}
 }
 
 const std::unordered_map<std::string, std::shared_ptr<Scene>> SceneManager::getScenePool() {

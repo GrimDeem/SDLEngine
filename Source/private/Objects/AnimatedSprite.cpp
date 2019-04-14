@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include <Objects/AnimatedSprite.h>
 
 AnimatedSprite::AnimatedSprite()
@@ -14,7 +16,7 @@ void AnimatedSprite::update(float _deltaTime) {
 	m_frameTime += _deltaTime / 1000; // Convert to sec
 	// This check determines if it's time to change to the next frame.
 	if (m_frameTime > (1 / m_animFPS))
-		// The number of frames to increment is 
+		// The number of frames to increment is
 		// m_frameTime / (1 / m_animFPS) == m_frameTime * m_animFPS
 		m_frameNum += m_frameTime * m_animFPS;
 

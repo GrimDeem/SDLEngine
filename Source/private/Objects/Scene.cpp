@@ -1,3 +1,4 @@
+#include <Core/GlobalDefines.h>
 #include "Objects/Scene.h"
 
 Scene::Scene()

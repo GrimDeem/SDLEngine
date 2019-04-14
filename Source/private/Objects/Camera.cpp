@@ -1,17 +1,15 @@
 #include <Objects/Camera.h>
 #include <Objects/Node.h>
 
-Camera::Camera(const Size& _size) {
-	m_cameraSize = _size;
-	m_boundsEnabled = false;
-}
+Camera::Camera(const Size& _size)
+: m_cameraSize(_size)
+, m_boundsEnabled(false)
+, m_position(0, 0)
+{ }
 
 Camera::Camera(int _sizeX, int _sizeY)
-	: m_position(0, 0) 
-{
-	m_cameraSize = Size(_sizeX, _sizeY);
-	m_boundsEnabled = false;
-}
+: Camera(Size(_sizeX, _sizeY))
+{}
 
 void Camera::setTargetNode(NodePtr _targetNode) {
 	this->m_targetNode = _targetNode;

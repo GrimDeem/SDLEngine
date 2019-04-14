@@ -2,13 +2,15 @@
 #define WINDOW_MANAGER
 
 #include <Core/Vec2.h>
-#include <SDL_render.h>
 
+// load this data from config
 #define WINDOW_TITLE "SDL_Game"
 #define WINDOW_POSITION_X 200
 #define WINDOW_POSITION_Y 200
 #define WINDOW_SIZE_X 1366
 #define WINDOW_SIZE_Y 768
+
+class SDL_Window;
 
 class WindowManager
 {

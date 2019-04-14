@@ -8,7 +8,7 @@ class Node;
 
 class Camera
 {
-private: 
+private:
 	typedef std::shared_ptr<Node> NodePtr;
 	struct Bounds
 	{
@@ -31,10 +31,10 @@ private:
 public:
 	explicit Camera(const Size& _size);
 	Camera(int _sizeX, int _sizeY);
-	
+
 	void setTargetNode(NodePtr _targetNode);
 	NodePtr getTargetNode();
-	
+
 	const Vec2& getPosition();
 	void updateCameraPosition();
 

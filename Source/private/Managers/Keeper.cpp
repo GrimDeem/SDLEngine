@@ -1,3 +1,8 @@
+#include <cassert>
+
+#include <SDL_ttf.h>
+#include <SDL_render.h>
+
 #include <Managers/Keeper.h>
 
 Keeper::Keeper()
@@ -56,11 +61,11 @@ void Keeper::updateCurrentScene(float _dt) {
 	m_sceneMgr->updateCurrentScene(_dt);
 }
 
-void Keeper::setFPS(float _fps) {
+void Keeper::setFPS(uint32_t _fps) {
 	m_framerate = _fps;
 }
 
-float Keeper::getFPS() {
+uint32_t Keeper::getFPS() {
 	return m_framerate;
 }
 

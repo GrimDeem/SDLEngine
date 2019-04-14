@@ -2,16 +2,17 @@
 #ifndef __UPDATABLE_H__
 #define __UPDATABLE_H__
 
+#include <algorithm>
 #include <Objects/Node.h>
 /*
 	Updatable is auxiliary class to describe objects
 	which have to be updated each frame with delta time
 	such as animated sprite
-	Methods of the "updatable" class should be called in overridden 
-	methods of the derived classes with similar "Node" methods 
+	Methods of the "updatable" class should be called in overridden
+	methods of the derived classes with similar "Node" methods
 	to avoid memory leaks
 
-	Updatable can contain other updatable objects (insertChild) 
+	Updatable can contain other updatable objects (insertChild)
 */
 class Updatable
 {

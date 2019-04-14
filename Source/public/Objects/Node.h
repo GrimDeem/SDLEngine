@@ -1,24 +1,20 @@
 #pragma once
 #ifndef __NODE_H__
-#define __NODE_H__ 
+#define __NODE_H__
 
 #include <vector>
-#include <algorithm>
-#include <cassert>
 #include <string>
 #include <memory>
 #include <SDL.h>
-#include <Core/GlobalDefines.h>
 #include <Core/Vec2.h>
 
-/*	Node is the base element of the Scene Graph. 
+/*
+	Node is the base element of the Scene Graph.
 	Elements of the Scene Graph must be Node objects or subclasses of it.
 
 	Node is drawable object
-	Node can contain other node objects (addChild)	
+	Node can contain other node objects (addChild)
 */
-
-//class Camera;
 
 struct FlipState
 {
@@ -34,7 +30,7 @@ struct FlipState
 	: vertical(_vertical)
 	, horisontal(_horisontal)
 	{ }
-	
+
 	SDL_RendererFlip getSDLFlip() const
 	{
 		SDL_RendererFlip flip;
@@ -143,7 +139,7 @@ public:
 	virtual void move(float _deltaX, float _deltaY);
 	virtual void moveX(float _deltaX);
 	virtual void moveY(float _deltaY);
-	virtual void moveRecursive(float _deltaX, float _deltaY);		
+	virtual void moveRecursive(float _deltaX, float _deltaY);
 
 	virtual void needsSort();
 };

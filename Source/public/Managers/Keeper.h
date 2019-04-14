@@ -2,10 +2,7 @@
 #ifndef __KEEPER_H__
 #define __KEEPER_H__
 
-#include <cassert>
-#include <iostream>
-#include <SDL_render.h>
-#include <SDL_ttf.h>
+#include <cstdint>
 
 #include <Managers/TextureManager.h>
 #include <Managers/WindowManager.h>
@@ -17,15 +14,16 @@
 	Stores an unique entities such as TextureManager,
 	SceneManager, renderer and provides access to them.
 */
+class SDL_Renderer;
 class TextureManager;
 
-class Keeper 
+class Keeper
 {
 private:
 	Keeper();
 	Keeper(Keeper const&) = delete;		//forbid to copy and create new instances
 	Keeper& operator= (Keeper const&) = delete;
-	
+
 	WindowManager* m_windowMgr;
 	SDL_Renderer* m_renderer;
 	TextureManager* m_textureMgr;
@@ -65,8 +63,8 @@ public:
 	/*
 	FPS
 	*/
-	void setFPS(float fps);
-	float getFPS();
+	void setFPS(uint32_t fps);
+	uint32_t getFPS();
 
 	/*
 	Camera
@@ -74,7 +72,7 @@ public:
 	Camera* getCamera();
 
 	/*End engine, release memory, destroy window*/
-	void end(); 
+	void end();
 };
 
 #endif // !__KEEPER_H__

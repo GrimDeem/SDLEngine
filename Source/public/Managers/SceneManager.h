@@ -2,9 +2,12 @@
 #ifndef __SCENE_MANAGER_H__
 #define __SCENE_MANAGER_H__
 
+#include <memory>
 #include <unordered_map>
-#include <Objects/Scene.h>
 
+#include <Input/EventHandler.h>
+
+class Scene;
 /*SceneManager is entity responsible for scene switching and storage*/
 class SceneManager
 {
@@ -31,7 +34,7 @@ public:
 	@brief adds scene to pool with tag
 	 */
 	void addSceneToPool(const std::string& _sceneTag, std::shared_ptr<Scene> _newScene);
-	
+
 	/*
 	@brief search scene by tag in scene pool and return shared_ptr on it
 	 */
@@ -41,7 +44,7 @@ public:
 	@brief remove scene with passed tag from pool (if it exists)
 	 */
 	void removeSceneFromPool(const std::string& _sceneTag);
-	
+
 	/*
 	@brief remove passed scene from pool (if it exists)
 	*/
@@ -51,7 +54,7 @@ public:
 	@brief replaces current scene with a passed new one
 	 */
 	void replaceCurrentScene(std::shared_ptr<Scene> _newScene);
-	
+
 	void drawCurrentScene();
 	void updateCurrentScene(float _dt);
 

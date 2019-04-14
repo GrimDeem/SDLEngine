@@ -1,3 +1,9 @@
+#include <cassert>
+
+#include <SDL_image.h>
+
+#include <Core/GlobalDefines.h>
+#include <Managers/Keeper.h>
 #include <Managers/TextureManager.h>
 
 TextureManager::~TextureManager() {

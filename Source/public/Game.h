@@ -2,12 +2,11 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
-#include <SDL_render.h>
-#include <SDL_main.h>
-#include <SDL_ttf.h>
-#include <Managers/Keeper.h>
+#include <cstdint>
 
 #define FRAME_VALUES 10
+
+
 class Game
 {
 public:
@@ -23,9 +22,9 @@ private:
 	void clean();
 
 	bool is_running;
-	Uint32 frametimes[FRAME_VALUES]; // An array to store frame times
-	Uint32 frametimelast;  // Last calculated SDL_GetTicks
-	Uint32 framecount; 	   // total frames rendered
+	uint32_t frametimes[FRAME_VALUES]; // An array to store frame times
+	uint32_t frametimelast;  // Last calculated SDL_GetTicks
+	uint32_t framecount; 	   // total frames rendered
 	float framespersecond;
 	const float targetFrameTime = 33.f; // for 60 fps
 };

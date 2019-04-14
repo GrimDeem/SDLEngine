@@ -4,7 +4,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
-static void log(const char* format, ...) 
+static void log(const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);

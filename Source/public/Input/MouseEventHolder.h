@@ -1,9 +1,11 @@
 #ifndef _MOUSE_EVENT_HOLDER_
 #define _MOUSE_EVENT_HOLDER_
 
-#include <SDL.h>
 #include <vector>
 #include <functional>
+
+class SDL_MouseButtonEvent;
+class SDL_MouseMotionEvent;
 
 class MouseEventHolder
 {

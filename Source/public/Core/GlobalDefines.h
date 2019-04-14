@@ -1,7 +1,8 @@
 #pragma once
 #ifndef __GLOBAL_DEFINES_H__
-#define __GLOBAL_DEFINES_H__ 
+#define __GLOBAL_DEFINES_H__
 
+// define from some settings file (cmake?) would be better
 #define LOGGING 1
 
 #if !defined(LOGGING) || LOGGING == 0

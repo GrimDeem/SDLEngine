@@ -1,3 +1,4 @@
+#include <SDL.h>
 #include <Input/KeyboardEventHolder.h>
 
 void KeyboardEventHolder::onKeyPressed(kbCallback _callback) {

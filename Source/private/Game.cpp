@@ -1,9 +1,14 @@
+#include <SDL_render.h>
+#include <SDL_main.h>
+#include <SDL_ttf.h>
+
 #include <Game.h>
+#include <Managers/Keeper.h>
 
 Game::Game()
 {
 	initFPS();
-	initSDL();	
+	initSDL();
 	is_running = true;
 }
 
@@ -18,7 +23,7 @@ bool Game::initSDL()
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Cant init sdl_ttf", NULL);
 		exit(1);
 	}
-	
+
 	SDL_Window* window = Keeper::getInstance().getWindowManager()->createWindow();
 	if (!window) {
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Cant create window", NULL);
@@ -32,7 +37,7 @@ bool Game::initSDL()
 	return true;
 }
 
-void Game::initFPS() 
+void Game::initFPS()
 {
 	memset(frametimes, 0, sizeof(frametimes));
 	framecount = 0;
@@ -40,12 +45,12 @@ void Game::initFPS()
 	frametimelast = SDL_GetTicks();
 }
 
-float Game::calcFPS() 
+float Game::calcFPS()
 {
-	Uint32 frametimesindex;
-	Uint32 getticks;
-	Uint32 count;
-	Uint32 i;
+	uint32_t frametimesindex;
+	uint32_t getticks;
+	uint32_t count;
+	uint32_t i;
 	// frametimesindex is the position in the array. It ranges from 0 to FRAME_VALUES.
 	// This value rotates back to 0 after it hits FRAME_VALUES.
 	frametimesindex = framecount % FRAME_VALUES;
@@ -57,13 +62,13 @@ float Game::calcFPS()
 	frametimelast = getticks;
 	// increment the frame count
 	framecount++;
-	if (framecount < FRAME_VALUES) 
+	if (framecount < FRAME_VALUES)
 		count = framecount;
-	else 
+	else
 		count = FRAME_VALUES;
 	// add up all the values and divide to get the average frame time.
 	framespersecond = 0;
-	for (i = 0; i < count; i++) 
+	for (i = 0; i < count; i++)
 		framespersecond += frametimes[i];
 	framespersecond /= count;
 	// now to make it an actual frames per second value...
@@ -72,13 +77,13 @@ float Game::calcFPS()
 }
 
 void Game::run()
-{ 
+{
 	unsigned int lastTime = 0;
 	while (is_running) {
 		unsigned int loopStartTime = SDL_GetTicks();
 		float deltaTime = loopStartTime - lastTime;
 		Keeper::getInstance().setFPS(calcFPS());
-		
+
 		processEvents(deltaTime);
 		updateWorld(deltaTime);
 		draw();
@@ -109,7 +114,7 @@ void Game::processEvents(float dt)
 		case SDL_KEYUP:
 			handler.processKBHoldersReleased(&event.key, dt);
 			break;
-		
+
 		case SDL_MOUSEMOTION:
 			handler.processMouseHoldersMoved(&event.motion, dt);
 			break;
@@ -134,7 +139,7 @@ void Game::updateWorld(float dt) //1 dt = 1ms
 void Game::draw()
 {
 	SDL_RenderClear(Keeper::getInstance().getRenderer());
-	
+
 	Keeper::getInstance().drawCurrentScene();
 
 	SDL_RenderPresent(Keeper::getInstance().getRenderer());

@@ -1,3 +1,7 @@
+#include <algorithm>
+#include <cassert>
+
+#include <Core/GlobalDefines.h>
 #include <Objects/Node.h>
 #include <Managers/Keeper.h>
 

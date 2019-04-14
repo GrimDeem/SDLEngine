@@ -1,3 +1,4 @@
+#include <Core/GlobalDefines.h>
 #include <Objects/TextLabel.h>
 
 TextLabel::TextLabel(const std::string& _fontPath, int _fsize, const std::string& _text)

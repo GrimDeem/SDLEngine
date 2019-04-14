@@ -1,3 +1,5 @@
+#include <SDL_render.h>
+
 #include <Managers/WindowManager.h>
 
 WindowManager::WindowManager() {
@@ -27,4 +29,3 @@ Size WindowManager::getWindowSize() {
 void WindowManager::destroyWindow() {
 	SDL_DestroyWindow(m_instance);
 }
-

@@ -32,12 +32,12 @@ public:
 	Vec2(float _x, float _y)
 		: x(_x), y(_y)
 	{ }
-	
+
 	/**
 	* @brief Constructs a new vector that is a copy of the specified vector.
 	*
-	* @param _copy The vector to copy.
-	*/	
+	* @param _copy An instance to be copied.
+	*/
 	Vec2(const Vec2& _copy)
 	{
 		x = _copy.x;
@@ -51,7 +51,7 @@ public:
 		Vec2 result(*this);
 		result.x += _another.x;
 		result.y += _another.y;
-		return result;	
+		return result;
 	}
 
 	inline void operator+=(const Vec2& _another)
@@ -102,7 +102,7 @@ public:
 		y /= _divider;
 	}
 };
-	
+
 inline bool operator==(const Vec2& _lhs, const Vec2& _rhs)
 {
 	if (_lhs.x == _rhs.x && _lhs.y == _rhs.y)
@@ -116,11 +116,12 @@ struct Size
 		: width(0)
 		, height(0)
 	{}
-	
+
 	Size(int _width, int _height)
 		: width(_width)
 		, height(_height)
 	{}
 	int width, height;
 };
+
 #endif // !__CORE_VECTOR_H__

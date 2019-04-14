@@ -3,15 +3,15 @@
 #define __SPRITE_H__
 
 #include <Objects/Node.h>
-#include <SDL_image.h>
-#include <Managers/Keeper.h>
+
+struct SDL_Texture;
 
 /*
 	Sprite is a 2d image.
 */
 class Sprite : public Node
 {
-private: 
+private:
 	SDL_Texture* m_texture2D; //texture to draw
 	std::string m_path;
 	Size m_imageRealSize; // texture width & height
