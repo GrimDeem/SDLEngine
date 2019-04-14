@@ -1,4 +1,7 @@
 # SDLEngine
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7d7a4317eb5849e0a44be631f99a5542)](https://app.codacy.com/app/DmitryFrolov/SDLEngine?utm_source=github.com&utm_medium=referral&utm_content=DmitryFrolov/SDLEngine&utm_campaign=Badge_Grade_Dashboard)
+
 Simple 2d game library based on SDL2 with a scene graph and event dispatching.
 
 ## Getting Started
