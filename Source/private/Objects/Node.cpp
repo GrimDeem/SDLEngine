@@ -36,6 +36,11 @@ void Node::draw() {
 		child->draw();
 }
 
+void Node::update(float _dt) {
+	for (auto &child : m_drwChilds)
+		child->update(_dt);
+}
+
 void Node::addChild(NodePtr _child) {
 	this->addChild(_child, 0, "");
 }

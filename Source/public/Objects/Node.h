@@ -79,6 +79,7 @@ public:
 	virtual ~Node();
 
 	virtual void draw();
+	virtual void update(float _dt);
 
 	virtual void addChild(NodePtr _child);
 	virtual void addChild(NodePtr _child, int _drawOrder);

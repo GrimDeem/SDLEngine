@@ -9,16 +9,6 @@ std::shared_ptr<Scene> Scene::create() {
 	return std::make_shared<Scene>();
 }
 
-void Scene::removeChild(NodePtr _childToRemove) {
-	Node::removeChild(_childToRemove);
-	Updatable::_removeChild(_childToRemove);
-}
-
-void Scene::_insertChild(NodePtr _child, int _order, const std::string& _key) {
-	Node::_insertChild(_child, _order, _key);
-	Updatable::_insertChild(_child);
-}
-
 void Scene::update(float _dt) {
 	if (m_update != nullptr) {
 		const Uint8* state = SDL_GetKeyboardState(NULL);
@@ -29,7 +19,7 @@ void Scene::update(float _dt) {
 			LOG(e.what());
 		}
 	}
-	Updatable::update(_dt);
+	Node::update(_dt);
 }
 
 EventHandler& Scene::getEventHandler() {

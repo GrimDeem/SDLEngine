@@ -4,10 +4,9 @@
 
 #include <unordered_map>
 #include <Objects/Sprite.h>
-#include <Objects/Updatable.h>
 
 
-class AnimatedSprite : public Sprite, public Updatable
+class AnimatedSprite : public Sprite
 {
 private:
 	typedef std::vector<SDL_Texture*> AnimationFrames;
@@ -34,7 +33,6 @@ private:
 
 protected:
 	void _onAnimate(bool nextLooped);
-	virtual void _insertChild(NodePtr _child) override;
 
 public:
 	AnimatedSprite();
@@ -42,7 +40,6 @@ public:
 	virtual ~AnimatedSprite() = default;
 
 	virtual void update(float deltaTime) override;
-	virtual void removeChild(NodePtr child) override;
 
 	/*
 	add animation to animations with <animationName> key

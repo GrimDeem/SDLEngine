@@ -65,7 +65,6 @@ set(KDENGINE_HEADERS
     ${SOURCE_DIR}/public/Objects/Scene.h
     ${SOURCE_DIR}/public/Objects/Sprite.h
     ${SOURCE_DIR}/public/Objects/TextLabel.h
-    ${SOURCE_DIR}/public/Objects/Updatable.h
 
     ${SOURCE_DIR}/public/Game.h
 )
