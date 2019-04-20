@@ -32,12 +32,7 @@ void AnimatedSprite::update(float _deltaTime) {
 	}
 	Sprite::setTexture((m_currentAnimation[m_frameNum]));
 	m_frameTime = fmod(m_frameTime, 1 / m_animFPS);
-	Updatable::update(_deltaTime);
-}
-
-void AnimatedSprite::removeChild(NodePtr _child) {
-	Node::removeChild(_child);
-	Updatable::_removeChild(_child);
+	Node::update(_deltaTime);
 }
 
 void AnimatedSprite::addAnimation(const std::string& _animationName, const AnimationFrames& _frames) {
@@ -50,11 +45,6 @@ void AnimatedSprite::animate(const std::string& _animationName, const std::strin
 	_onAnimate(false);
 	m_currentAnimation = m_animations[_animationName];
 	m_nextAnimation = m_animations[_nextAnimationName];
-}
-
-void AnimatedSprite::_insertChild(NodePtr _child) {
-	Node::_insertChild(_child, 0, "");
-	Updatable::_insertChild(_child);
 }
 
 void AnimatedSprite::animateLooped(const std::string& _loopedAnimationName) {
