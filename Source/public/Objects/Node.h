@@ -73,6 +73,14 @@ protected:
 	virtual void _setParent(NodePtr _parent);
 	virtual void _insertChild(NodePtr _child, int _order, const std::string& _key);
 
+	template<typename Fun, typename... Types>
+	void for_each_child(Fun _function, Types... _args)
+	{
+		for (auto &child : Node::getDrawableChildren()) {
+			(child.get()->*_function)(_args...);
+		}
+	}
+
 public:
 	Node();
 	static NodePtr create();

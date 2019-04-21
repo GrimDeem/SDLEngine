@@ -32,13 +32,11 @@ void Node::draw() {
 		});
 		this->m_needsSortFlag = false;
 	}
-	for (auto &child : Node::getDrawableChildren())
-		child->draw();
+	for_each_child(&Node::draw);
 }
 
 void Node::update(float _dt) {
-	for (auto &child : m_drwChilds)
-		child->update(_dt);
+	for_each_child(&Node::update, _dt);
 }
 
 void Node::addChild(NodePtr _child) {
@@ -61,14 +59,12 @@ const std::vector<Node::NodePtr>& Node::getDrawableChildren() const {
 }
 
 void Node::removeChildren() {
-	for (auto child : m_drwChilds)
-		child->_setParent(nullptr);
+	for_each_child(&Node::_setParent, nullptr);
 	m_drwChilds.clear();
 }
 
 void Node::destroyChildrenRecursive() {
-	for (auto child : m_drwChilds)
-		child->destroyChildrenRecursive();
+	for_each_child(&Node::destroyChildrenRecursive);
 	removeChildren();
 }
 
@@ -102,7 +98,7 @@ void Node::removeChild(NodePtr _childToRemove) {
 
 Node::NodePtr Node::getChildByKey(const std::string& _childKey) const {
 	if (!_childKey.empty()) {
-		auto iter = std::find_if(m_drwChilds.begin(), m_drwChilds.end(), 
+		auto iter = std::find_if(m_drwChilds.begin(), m_drwChilds.end(),
 			[_childKey](Node::NodePtr child)
 		{
 			return child->getNodeKey() == _childKey;
@@ -147,8 +143,7 @@ void Node::setScaleX(float _scaleX) {
 
 void Node::setScaleXRecursive(float _scaleX) {
 	m_scaleX = _scaleX;
-	for (auto &child : Node::getDrawableChildren())
-		child->setScaleXRecursive(_scaleX);
+	for_each_child(&Node::setScaleXRecursive, _scaleX);
 }
 
 void Node::setScaleY(float _scaleY) {
@@ -157,8 +152,7 @@ void Node::setScaleY(float _scaleY) {
 
 void Node::setScaleYRecursive(float _scaleY) {
 	m_scaleY = _scaleY;
-	for (auto &child : Node::getDrawableChildren())
-		child->setScaleYRecursive(_scaleY);
+	for_each_child(&Node::setScaleYRecursive, _scaleY);
 }
 
 void Node::setScale(float _scale) {
@@ -230,8 +224,7 @@ void Node::setRotation(float _angle) {
 
 void Node::setRotationRecursive(float _angle) {
 	this->setRotation(_angle);
-	for (auto &child : Node::getDrawableChildren())
-		child->setRotationRecursive(_angle);
+	for_each_child(&Node::setRotationRecursive, _angle);
 }
 
 float Node::getRotation() const {
@@ -276,11 +269,10 @@ void Node::moveX(float _deltaX) {
 void Node::moveY(float _deltaY) {
 	Node::move(Vec2(0, _deltaY));
 }
-       
+
 void Node::moveRecursive(float _deltaX, float _deltaY) {
 	Node::move(Vec2(_deltaX, _deltaY));
-	for (auto &child : Node::getDrawableChildren())
-		child->moveRecursive(_deltaX, _deltaY);
+	for_each_child(&Node::moveRecursive, _deltaX, _deltaY);
 }
 
 void Node::needsSort() {
