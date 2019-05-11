@@ -86,7 +86,10 @@ public:
 	static NodePtr create();
 	virtual ~Node();
 
+	// It is better to override on* functions just to do not mess scene graph
+	virtual void onDraw();
 	virtual void draw();
+	virtual void onUpdate(float _dt);
 	virtual void update(float _dt);
 
 	virtual void addChild(NodePtr _child);
@@ -124,8 +127,6 @@ public:
 
 	virtual void setDrawOrder(int _order);
 	virtual int getDrawOrder() const;
-
-	virtual void setKey(const std::string& _key);
 
 	virtual void setAnchorPoint(const Vec2& _newAnchorPoint);
 	virtual void setAnchorPoint(float _anchorX, float _anchorY);

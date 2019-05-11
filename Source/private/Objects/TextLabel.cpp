@@ -44,9 +44,7 @@ void TextLabel::_clearSurface() {
 	SDL_FreeSurface(m_surface);
 }
 
-void TextLabel::draw() {
-	Node::draw();
-
+void TextLabel::onDraw() {
 	SDL_Rect texr;
 	texr.w = m_labelRealSize.width  * Node::getScaleX();
 	texr.h = m_labelRealSize.height * Node::getScaleY();

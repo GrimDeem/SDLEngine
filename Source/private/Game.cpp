@@ -86,7 +86,7 @@ void Game::run()
 
 		processEvents(deltaTime);
 		updateWorld(deltaTime);
-		draw();
+		drawWorld();
 
 		while ((SDL_GetTicks() - lastTime) < targetFrameTime)	//frame limiting
 			SDL_Delay(targetFrameTime - (SDL_GetTicks() - lastTime));
@@ -136,7 +136,7 @@ void Game::updateWorld(float dt) //1 dt = 1ms
 	Keeper::getInstance().getCamera()->updateCameraPosition();
 }
 
-void Game::draw()
+void Game::drawWorld()
 {
 	SDL_RenderClear(Keeper::getInstance().getRenderer());
 

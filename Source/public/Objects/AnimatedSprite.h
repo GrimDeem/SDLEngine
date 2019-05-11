@@ -39,7 +39,7 @@ public:
 	static std::shared_ptr<AnimatedSprite> create();
 	virtual ~AnimatedSprite() = default;
 
-	virtual void update(float deltaTime) override;
+	virtual void onUpdate(float deltaTime) override;
 
 	/*
 	add animation to animations with <animationName> key

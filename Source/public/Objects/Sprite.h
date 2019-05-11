@@ -23,7 +23,7 @@ public:
 	static std::shared_ptr<Sprite> create(const std::string& _imgPath);
 	virtual ~Sprite();
 
-	virtual void draw() override;
+	virtual void onDraw() override;
 	virtual const Size& getContentSize() const;
 	virtual void setTexture(const std::string& _imgPath);
 	virtual void setTexture(SDL_Texture* _texture);

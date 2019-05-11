@@ -11,7 +11,7 @@ std::shared_ptr<AnimatedSprite> AnimatedSprite::create() {
 	return std::make_shared<AnimatedSprite>();
 }
 
-void AnimatedSprite::update(float _deltaTime) {
+void AnimatedSprite::onUpdate(float _deltaTime) {
 	// Update how long the current frame has been displayed
 	m_frameTime += _deltaTime / 1000; // Convert to sec
 	// This check determines if it's time to change to the next frame.
@@ -32,7 +32,6 @@ void AnimatedSprite::update(float _deltaTime) {
 	}
 	Sprite::setTexture((m_currentAnimation[m_frameNum]));
 	m_frameTime = fmod(m_frameTime, 1 / m_animFPS);
-	Node::update(_deltaTime);
 }
 
 void AnimatedSprite::addAnimation(const std::string& _animationName, const AnimationFrames& _frames) {

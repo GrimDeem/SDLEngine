@@ -21,7 +21,7 @@ std::shared_ptr<Sprite> Sprite::create(const std::string& _imgPath) {
 	return std::make_shared<Sprite>(_imgPath);
 }
 
-void Sprite::draw() {
+void Sprite::onDraw() {
 	SDL_Rect texr;
 	texr.w = m_imageRealSize.width  * Node::getScaleX();		    //SpriteSize
 	texr.h = m_imageRealSize.height * Node::getScaleY();
@@ -33,7 +33,6 @@ void Sprite::draw() {
 	SDL_RenderCopyEx(Keeper::getInstance().getRenderer(),
 			 m_texture2D, nullptr, &texr, Node::getRotation(),
 			 nullptr, Node::getFlipState().getSDLFlip());
-	Node::draw();
 }
 
 const Size& Sprite::getContentSize() const {
