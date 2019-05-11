@@ -125,8 +125,6 @@ public:
 	virtual void setDrawOrder(int _order);
 	virtual int getDrawOrder() const;
 
-	virtual void setKey(const std::string& _key);
-
 	virtual void setAnchorPoint(const Vec2& _newAnchorPoint);
 	virtual void setAnchorPoint(float _anchorX, float _anchorY);
 	virtual const Vec2& getAnchorPoint() const;

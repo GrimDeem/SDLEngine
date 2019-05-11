@@ -44,7 +44,7 @@ void Node::addChild(NodePtr _child) {
 }
 
 void Node::addChild(NodePtr _child, int _drawOrder) {
-	Node::addChild(_child, _drawOrder, "");
+	this->addChild(_child, _drawOrder, "");
 }
 
 void Node::addChild(NodePtr _child, int _drawOrder, const std::string& _key) {
@@ -122,7 +122,7 @@ void Node::setPosition(const Vec2& _position) {
 }
 
 void Node::setPosition(float _x, float _y) {
-	m_position = Vec2(_x, _y);
+	this->setPosition(Vec2(_x, _y));
 }
 
 const Vec2& Node::getPosition() const {
@@ -130,11 +130,11 @@ const Vec2& Node::getPosition() const {
 }
 
 float Node::getPositionX() const {
-	return m_position.x;
+	return getPosition().x;
 }
 
 float Node::getPositionY() const {
-	return m_position.y;
+	return getPosition().y;
 }
 
 void Node::setScaleX(float _scaleX) {
@@ -142,7 +142,7 @@ void Node::setScaleX(float _scaleX) {
 }
 
 void Node::setScaleXRecursive(float _scaleX) {
-	m_scaleX = _scaleX;
+	this->setScaleX(_scaleX);
 	for_each_child(&Node::setScaleXRecursive, _scaleX);
 }
 
@@ -151,18 +151,16 @@ void Node::setScaleY(float _scaleY) {
 }
 
 void Node::setScaleYRecursive(float _scaleY) {
-	m_scaleY = _scaleY;
+	this->setScaleY(_scaleY);
 	for_each_child(&Node::setScaleYRecursive, _scaleY);
 }
 
 void Node::setScale(float _scale) {
-	this->setScaleX(_scale);
-	this->setScaleY(_scale);
+	this->setScale(_scale, _scale);
 }
 
 void Node::setScaleRecursive(float _scale) {
-	this->setScaleXRecursive(_scale);
-	this->setScaleYRecursive(_scale);
+	this->setScaleRecursive(_scale, _scale);
 }
 
 void Node::setScale(float _scaleX, float _scaleY) {
@@ -199,10 +197,6 @@ int Node::getDrawOrder() const {
 	return m_drawOrder;
 }
 
-void Node::setKey(const std::string& _key) {
-	m_nodeKey = _key;
-}
-
 void Node::setAnchorPoint(const Vec2& _newAnchorPoint) {
 	assert(_newAnchorPoint.x <= 1 && _newAnchorPoint.x >= 0
 		&& _newAnchorPoint.y <= 1 && _newAnchorPoint.y >= 0);
@@ -210,8 +204,7 @@ void Node::setAnchorPoint(const Vec2& _newAnchorPoint) {
 }
 
 void Node::setAnchorPoint(float _anchorX, float _anchorY) {
-	assert(_anchorX <= 1 && _anchorX >= 0 && _anchorY <= 1 && _anchorY >= 0);
-	m_anchorPoint = Vec2(_anchorX, _anchorY);
+	this->setAnchorPoint(Vec2(_anchorX, _anchorY));
 }
 
 const Vec2& Node::getAnchorPoint() const {
