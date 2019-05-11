@@ -86,7 +86,10 @@ public:
 	static NodePtr create();
 	virtual ~Node();
 
+	// It is better to override on* functions just to do not mess scene graph
+	virtual void onDraw();
 	virtual void draw();
+	virtual void onUpdate(float _dt);
 	virtual void update(float _dt);
 
 	virtual void addChild(NodePtr _child);

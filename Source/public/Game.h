@@ -18,7 +18,7 @@ private:
 	float calcFPS();
 	void processEvents(float dt);
 	void updateWorld(float dt);
-	void draw();
+	void drawWorld();
 	void clean();
 
 	bool is_running;

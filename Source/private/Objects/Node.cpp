@@ -25,6 +25,10 @@ Node::NodePtr Node::create() {
 	return std::make_shared<Node>();
 }
 
+void Node::onDraw() {
+	// To be implemented in derived classes
+}
+
 void Node::draw() {
 	if (this->m_needsSortFlag == true) {
 		std::sort(m_drwChilds.begin(), m_drwChilds.end(), [&](NodePtr first, NodePtr second) {
@@ -32,10 +36,16 @@ void Node::draw() {
 		});
 		this->m_needsSortFlag = false;
 	}
+	this->onDraw();
 	for_each_child(&Node::draw);
 }
 
+void Node::onUpdate(float _dt) {
+	// To be implemented in derived classes
+}
+
 void Node::update(float _dt) {
+	this->onUpdate(_dt);
 	for_each_child(&Node::update, _dt);
 }
 

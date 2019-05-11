@@ -38,7 +38,7 @@ public:
 	static TextLabelPtr create(const std::string& _fontPath, int _fsize, const std::string& _text);
 	virtual ~TextLabel();
 
-	virtual void draw() override;
+	virtual void onDraw() override;
 
 
 	/*

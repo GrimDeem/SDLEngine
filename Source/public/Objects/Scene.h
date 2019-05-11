@@ -18,7 +18,7 @@ public:
 	static std::shared_ptr<Scene> create();
 	virtual ~Scene() = default;
 
-	virtual void update(float _dt) override;
+	virtual void onUpdate(float _dt) override;
 
 	virtual EventHandler& getEventHandler();
 };

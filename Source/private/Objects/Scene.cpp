@@ -9,7 +9,7 @@ std::shared_ptr<Scene> Scene::create() {
 	return std::make_shared<Scene>();
 }
 
-void Scene::update(float _dt) {
+void Scene::onUpdate(float _dt) {
 	if (m_update != nullptr) {
 		const Uint8* state = SDL_GetKeyboardState(NULL);
 		try {
@@ -19,7 +19,6 @@ void Scene::update(float _dt) {
 			LOG(e.what());
 		}
 	}
-	Node::update(_dt);
 }
 
 EventHandler& Scene::getEventHandler() {
