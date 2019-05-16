@@ -25,6 +25,8 @@ message(WARNING "Get rid of this hack!")
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Source/)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -w")
 
+add_subdirectory(External/TaskScheduler)
+
 set(KDENGINE_SOURCES
     ${SOURCE_DIR}/private/Input/EventHandler.cpp
     ${SOURCE_DIR}/private/Input/KeyboardEventHolder.cpp
@@ -116,4 +118,5 @@ target_link_libraries(${PROJECT_NAME}
 		PUBLIC ${SDL2_MIXER_LIB}
 		PUBLIC ${SDL2_NET_LIB}
 		PUBLIC ${SDL2_TTF_LIB}
+        PUBLIC task_scheduler
         )
