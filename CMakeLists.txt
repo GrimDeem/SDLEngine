@@ -23,7 +23,7 @@ set(SDL2_LIBRARIES_DIR_P ${SDL2_DIR}/libs PARENT_SCOPE)
 message(WARNING "Get rid of this hack!")
 
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Source/)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -w")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -w -fPIC")
 
 add_subdirectory(External/TaskScheduler)
 
@@ -106,12 +106,14 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_library(${PROJECT_NAME} SHARED ${KDENGINE_SOURCES} ${KDENGINE_HEADERS})
 
-target_include_directories(${PROJECT_NAME} 
+target_include_directories(${PROJECT_NAME}
         PUBLIC ${SOURCE_DIR}/public/
         PUBLIC ${SDL2_INCLUDE_DIR}/
+        PUBLIC ${SDL2_INCLUDE_DIR}/
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/External
 )
 
-target_link_libraries(${PROJECT_NAME} 
+target_link_libraries(${PROJECT_NAME}
 		PUBLIC ${SDL2_LIB}
 		PUBLIC ${SDL2_MAIN_LIB}
 		PUBLIC ${SDL2_IMAGE_LIB}
