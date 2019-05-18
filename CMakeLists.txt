@@ -114,11 +114,11 @@ target_include_directories(${PROJECT_NAME}
 )
 
 target_link_libraries(${PROJECT_NAME}
-		PUBLIC ${SDL2_LIB}
-		PUBLIC ${SDL2_MAIN_LIB}
-		PUBLIC ${SDL2_IMAGE_LIB}
-		PUBLIC ${SDL2_MIXER_LIB}
-		PUBLIC ${SDL2_NET_LIB}
-		PUBLIC ${SDL2_TTF_LIB}
+        PUBLIC ${SDL2_LIB}
+        PUBLIC ${SDL2_MAIN_LIB}
+        PUBLIC ${SDL2_IMAGE_LIB}
+        PUBLIC ${SDL2_MIXER_LIB}
+        PUBLIC ${SDL2_NET_LIB}
+        PUBLIC ${SDL2_TTF_LIB}
         PUBLIC task_scheduler
         )
