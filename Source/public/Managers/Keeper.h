@@ -4,6 +4,8 @@
 
 #include <cstdint>
 
+#include <EngineSettings.h>
+
 #include <Managers/TextureManager.h>
 #include <Managers/WindowManager.h>
 #include <Managers/SceneManager.h>
@@ -25,6 +27,8 @@ private:
 	Keeper(Keeper const&) = delete;		//forbid to copy and create new instances
 	Keeper& operator= (Keeper const&) = delete;
 
+	static EngineSettings m_settings;
+
 	WindowManager* m_windowMgr;
 	SDL_Renderer* m_renderer;
 	TextureManager* m_textureMgr;
@@ -35,7 +39,7 @@ private:
 	float  m_framerate;
 public:
 	static Keeper& getInstance();
-
+	static void applySettings(EngineSettings settings);
 	/*
 	TMGR
 	*/

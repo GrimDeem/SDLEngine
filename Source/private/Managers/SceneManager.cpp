@@ -1,4 +1,5 @@
 #include <cassert>
+#include <algorithm>
 
 #include <Objects/Scene.h>
 #include <Managers/SceneManager.h>
