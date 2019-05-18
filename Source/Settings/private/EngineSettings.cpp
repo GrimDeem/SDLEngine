@@ -16,9 +16,12 @@ EngineSettings::EngineSettings(const std::string& config_path)
 	}
 
 	try {
-		m_wsettings = WindowSettings(m_dataSource["window"]);
+		m_wsettings = WindowSettings(m_dataSource.at("window"));
 	} catch (...) {
 		m_wsettings = WindowSettings();
 	}
 }
 
+const WindowSettings& EngineSettings::getWindowSettings() const {
+	return m_wsettings;
+}

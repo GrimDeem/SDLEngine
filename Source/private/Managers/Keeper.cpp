@@ -6,10 +6,12 @@
 #include <TaskScheduler/TaskScheduler.h>
 #include <Managers/Keeper.h>
 
+EngineSettings Keeper::m_settings;
+
 Keeper::Keeper()
 	: m_renderer(nullptr)
 	, m_framerate(0) {
-	m_windowMgr = new WindowManager();
+	m_windowMgr = new WindowManager(m_settings.getWindowSettings());
 	m_textureMgr = new TextureManager();
 	m_sceneMgr = new SceneManager();
 	m_camera = new Camera(m_windowMgr->getWindowSize());
@@ -19,6 +21,10 @@ Keeper::Keeper()
 Keeper & Keeper::getInstance() {
 	static Keeper inst;
 	return inst;
+}
+
+void Keeper::applySettings(EngineSettings settings) {
+	Keeper::m_settings = std::move(settings);
 }
 
 TextureManager* Keeper::getTextureManager() {

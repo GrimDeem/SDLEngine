@@ -55,6 +55,13 @@ public:
 	WindowSettings();
 	// Initialize with settings from config file
 	WindowSettings(const nlohmann::json& data);
+
+	const std::string& getTitle() const;
+	uint32_t getPositionX() const;
+	uint32_t getPositionY() const;
+	uint32_t getSizeX() const;
+	uint32_t getSizeY() const;
+	bool isFullscreen() const;
 };
 
 

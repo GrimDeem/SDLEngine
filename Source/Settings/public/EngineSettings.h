@@ -16,6 +16,8 @@ public:
 	EngineSettings();
 	// Initialize with settings from config file
 	EngineSettings(const std::string& config_path);
+
+	const WindowSettings& getWindowSettings() const;
 };
 
 

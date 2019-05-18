@@ -1,10 +1,11 @@
+#include <iostream>
 #include <SDL_render.h>
-
 #include <Managers/WindowManager.h>
 
-WindowManager::WindowManager() {
-	m_windowSize = Size(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-	m_position = Vec2(WINDOW_POSITION_X, WINDOW_POSITION_Y);
+WindowManager::WindowManager(const WindowSettings& settings) {
+	m_windowTitle = settings.getTitle();
+	m_windowSize = Size(settings.getSizeX(), settings.getSizeY());
+	m_position = Vec2(settings.getPositionX(), settings.getPositionY());
 }
 
 WindowManager::~WindowManager() {
@@ -13,12 +14,17 @@ WindowManager::~WindowManager() {
 
 SDL_Window * WindowManager::createWindow() {
 	m_instance = SDL_CreateWindow(
-		WINDOW_TITLE,
-		WINDOW_POSITION_X,
-		WINDOW_POSITION_Y,
-		WINDOW_SIZE_X,
-		WINDOW_SIZE_Y,
+		m_windowTitle.c_str(),
+		m_position.x,
+		m_position.y,
+		m_windowSize.width,
+		m_windowSize.height,
 		SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+	std::cout << m_windowTitle.c_str() << " "
+				<< m_position.x << " "
+				<< m_position.y << " "
+				<< m_windowSize.width << " "
+				<< m_windowSize.height << " " << std::endl;
 	return m_instance;
 }
 
