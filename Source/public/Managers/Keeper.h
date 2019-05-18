@@ -16,6 +16,7 @@
 */
 class SDL_Renderer;
 class TextureManager;
+class Scheduler;
 
 class Keeper
 {
@@ -29,6 +30,7 @@ private:
 	TextureManager* m_textureMgr;
 	SceneManager* m_sceneMgr;
 	Camera* m_camera;
+	Scheduler* m_scheduler;
 
 	float  m_framerate;
 public:
@@ -70,6 +72,11 @@ public:
 	Camera
 	*/
 	Camera* getCamera();
+
+	/*
+	Scheduler
+	*/
+	Scheduler* getScheduler();
 
 	/*End engine, release memory, destroy window*/
 	void end();

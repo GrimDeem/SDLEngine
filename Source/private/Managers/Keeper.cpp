@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 #include <SDL_render.h>
 
+#include <TaskScheduler/TaskScheduler.h>
 #include <Managers/Keeper.h>
 
 Keeper::Keeper()
@@ -12,6 +13,7 @@ Keeper::Keeper()
 	m_textureMgr = new TextureManager();
 	m_sceneMgr = new SceneManager();
 	m_camera = new Camera(m_windowMgr->getWindowSize());
+	m_scheduler = new Scheduler();
 }
 
 Keeper & Keeper::getInstance() {
@@ -71,6 +73,10 @@ uint32_t Keeper::getFPS() {
 
 Camera* Keeper::getCamera() {
 	return m_camera;
+}
+
+Scheduler* Keeper::getScheduler() {
+	return m_scheduler;
 }
 
 void Keeper::end() {
