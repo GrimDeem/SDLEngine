@@ -1,3 +1,6 @@
 [submodule "External/TaskScheduler"]
 	path = External/TaskScheduler
 	url = git@github.com:DmitryFrolov/TaskScheduler.git
+[submodule "External/json"]
+	path = External/json
+	url = git@github.com:nlohmann/json.git

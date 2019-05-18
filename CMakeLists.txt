@@ -23,9 +23,13 @@ set(SDL2_LIBRARIES_DIR_P ${SDL2_DIR}/libs PARENT_SCOPE)
 message(WARNING "Get rid of this hack!")
 
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Source/)
+# -fPIC flag is for pthread link with shared library
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -w -fPIC")
 
+add_subdirectory(Source/Settings)
 add_subdirectory(External/TaskScheduler)
+add_subdirectory(External/json)
+set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 set(KDENGINE_SOURCES
     ${SOURCE_DIR}/private/Input/EventHandler.cpp
@@ -120,5 +124,6 @@ target_link_libraries(${PROJECT_NAME}
         PUBLIC ${SDL2_MIXER_LIB}
         PUBLIC ${SDL2_NET_LIB}
         PUBLIC ${SDL2_TTF_LIB}
+        PUBLIC engine_settings
         PUBLIC task_scheduler
         )

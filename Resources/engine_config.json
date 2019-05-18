@@ -1,0 +1,14 @@
+{
+    "window": {
+        "title": "SDLEngine Preview",
+        "size": {
+            "x": 1366,
+            "y": 768
+        },
+        "position": {
+            "x": 200,
+            "y": 200
+        },
+        "fullscreen": false
+    }
+}
