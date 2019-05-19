@@ -1,10 +1,9 @@
 #ifndef _KB_EVENT_HOLDER_
 #define _KB_EVENT_HOLDER_
 
+#include <SDL.h>
 #include <vector>
 #include <functional>
-
-class SDL_KeyboardEvent;
 
 class KeyboardEventHolder
 {

@@ -3,13 +3,13 @@
 #define __TEXTURE_MANAGER_H__
 
 #define __TM_LOG__ 1
+#include <SDL_image.h>
 #include <unordered_map>
 #include <algorithm>
 
-class SDL_Texture;
 /*
 	TextureManager is the class, which load, unload,
-	store and provide access to all texures in engine
+	store and provide access to all textures in engine
 */
 class TextureManager
 {
