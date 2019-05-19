@@ -10,7 +10,6 @@ set(SOURCES
     private/WindowSettings.cpp
     )
 
-
 set ( CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_library(${SETTINGS} SHARED ${SOURCES} ${HEADERS})
