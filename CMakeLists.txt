@@ -13,8 +13,6 @@ if(UNIX)
     set(PLATFORM_DIR ${CMAKE_CURRENT_SOURCE_DIR}/External/Linux/)
 endif(UNIX)
 
-set ( CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-
 set(SDL2_DIR ${PLATFORM_DIR}/SDL2)
 set(SDL2_LIBRARIES_DIR ${SDL2_DIR}/libs)
 set(SDL2_INCLUDE_DIR ${SDL2_DIR}/include)
@@ -34,6 +32,8 @@ add_subdirectory(External/json)
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 set(KDENGINE_SOURCES
+	${SOURCE_DIR}/private/Controllers/Button.cpp
+
     ${SOURCE_DIR}/private/Input/EventHandler.cpp
     ${SOURCE_DIR}/private/Input/KeyboardEventHolder.cpp
     ${SOURCE_DIR}/private/Input/MouseEventHolder.cpp
@@ -50,11 +50,14 @@ set(KDENGINE_SOURCES
     ${SOURCE_DIR}/private/Objects/Scene.cpp
     ${SOURCE_DIR}/private/Objects/Sprite.cpp
     ${SOURCE_DIR}/private/Objects/TextLabel.cpp
+	${SOURCE_DIR}/private/Objects/SpriteButton.cpp
 
     ${SOURCE_DIR}/private/Game.cpp
 )
 
 set(KDENGINE_HEADERS
+	${SOURCE_DIR}/public/Controllers/Button.h
+
     ${SOURCE_DIR}/public/Core/GlobalDefines.h
     ${SOURCE_DIR}/public/Core/Logger.h
     ${SOURCE_DIR}/public/Core/Vec2.h
@@ -75,6 +78,7 @@ set(KDENGINE_HEADERS
     ${SOURCE_DIR}/public/Objects/Scene.h
     ${SOURCE_DIR}/public/Objects/Sprite.h
     ${SOURCE_DIR}/public/Objects/TextLabel.h
+	${SOURCE_DIR}/public/Objects/SpriteButton.h
 
     ${SOURCE_DIR}/public/Game.h
 )

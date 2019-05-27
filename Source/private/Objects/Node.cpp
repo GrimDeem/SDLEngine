@@ -281,3 +281,24 @@ void Node::moveRecursive(float _deltaX, float _deltaY) {
 void Node::needsSort() {
 	this->m_needsSortFlag = true;
 }
+
+float Node::_calcucatePositionOnScreenX() {
+	if (m_enabledFixedPositionOnScreen)
+		return Node::getPositionX();
+	return Node::getPositionX() - Keeper::getInstance().getCamera()->getPosition().x;
+}
+
+float Node::_calcucatePositionOnScreenY() {
+	if (m_enabledFixedPositionOnScreen)
+		return Node::getPositionY();
+	return Node::getPositionY() - Keeper::getInstance().getCamera()->getPosition().y;
+}
+
+void Node::enableFixedPositionOnScreen() {
+	m_enabledFixedPositionOnScreen = true;
+}
+
+void Node::disableFixedPositionOnScreen() {
+	m_enabledFixedPositionOnScreen = false;
+}
+

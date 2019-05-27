@@ -53,6 +53,7 @@ public:
 	typedef std::weak_ptr<Node> ParentPtr;
 private:
 	Vec2 m_position;
+	bool m_enabledFixedPositionOnScreen;
 
 	float m_scaleX;
 	float m_scaleY;
@@ -80,6 +81,9 @@ protected:
 			(child.get()->*_function)(_args...);
 		}
 	}
+
+	float _calcucatePositionOnScreenX();
+	float _calcucatePositionOnScreenY();
 
 public:
 	Node();
@@ -152,6 +156,9 @@ public:
 	virtual void moveRecursive(float _deltaX, float _deltaY);
 
 	virtual void needsSort();
+
+	void enableFixedPositionOnScreen();
+	void disableFixedPositionOnScreen();
 };
 
 #endif //!__NODE_H__
