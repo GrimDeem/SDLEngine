@@ -126,6 +126,18 @@ void Game::processEvents(float dt)
 		case SDL_MOUSEBUTTONUP:
 			handler.processMouseHoldersPressed(&event.button, dt);
 			break;
+
+		case SDL_FINGERDOWN:
+			handler.processFingerEventHoldersFingerDown(&event.tfinger, dt);
+			break;
+
+		case SDL_FINGERUP:
+			handler.processFingerEventHoldersFingerUp(&event.tfinger, dt);
+			break;
+
+		case SDL_FINGERMOTION:
+			handler.processFingerEventHoldersFingerMotion(&event.tfinger, dt);
+			break;
 		}
 	}
 }
