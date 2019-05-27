@@ -37,6 +37,7 @@ set(KDENGINE_SOURCES
     ${SOURCE_DIR}/private/Input/EventHandler.cpp
     ${SOURCE_DIR}/private/Input/KeyboardEventHolder.cpp
     ${SOURCE_DIR}/private/Input/MouseEventHolder.cpp
+	${SOURCE_DIR}/private/Input/TouchFingerEventHolder.cpp
 
     ${SOURCE_DIR}/private/Managers/Keeper.cpp
     ${SOURCE_DIR}/private/Managers/SceneManager.cpp
@@ -61,6 +62,7 @@ set(KDENGINE_HEADERS
     ${SOURCE_DIR}/public/Input/EventHandler.h
     ${SOURCE_DIR}/public/Input/KeyboardEventHolder.h
     ${SOURCE_DIR}/public/Input/MouseEventHolder.h
+	${SOURCE_DIR}/public/Input/TouchFingerEventHolder.h
 
     ${SOURCE_DIR}/public/Managers/Keeper.h
     ${SOURCE_DIR}/public/Managers/SceneManager.h
